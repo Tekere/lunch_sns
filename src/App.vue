@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import LeftNav from '@/components/LeftNav.vue';
+import Header from "@/components/Header.vue";
+import LeftNav from "@/components/LeftNav.vue";
 export default {
   components: {
     Header,
@@ -22,14 +22,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import './css/reset.css';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+@import "./css/reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
 
 /*
 * base
 */
 html {
-  font-family: 'Noto Sans JP', Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans JP", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -38,7 +38,7 @@ html {
   letter-spacing: 0.04em;
   line-height: 1.5;
 }
-a{
+a {
   cursor: pointer;
 }
 
@@ -49,6 +49,10 @@ a{
   display: flex;
 }
 .ly_cont {
-  width: calc(100% - 100px);
+  width: calc(100% - 72px);
+}
+main {
+  background-color: #f6f7fb;
+  height: 90vh;
 }
 </style>

@@ -1,17 +1,14 @@
 <template>
   <header class="ly_header">
     <div class="bl_header">
-      <div class="bl_header_logo">
-        <h1><a href="">Shikra</a></h1>
-      </div>
       <div class="bl_header_searchBox bl_search">
         <img src="@/assets/search-solid.svg" alt="" class="bl_search_icon" />
-        <input type="text" class="bl_search_input" placeholder="Search" />
-        <div class="bl_search_btn">
+        <input type="text" class="bl_search_input" placeholder="Search..." />
+        <!-- <div class="bl_search_btn">
           <button>
             <img src="@/assets/filter.svg" alt="">
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
@@ -19,15 +16,15 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
 };
 </script>
 
 <style lang="scss">
 .ly_header {
   width: 100%;
-  background: #f6f7fb;
-  padding: 18px 40px;
+  background: #fff;
+  padding: 15px 40px;
 }
 
 /*
@@ -66,9 +63,10 @@ export default {
 }
 .bl_search_input {
   background-color: #fff;
+  border: 2px solid #afafaf;
   width: 326px;
   border-radius: 25px;
-  padding: 13px 0 13px 50px;
+  padding: 7px 0 7px 50px;
   font-size: 1rem;
   line-height: 1;
   letter-spacing: 0.05em;
@@ -85,17 +83,19 @@ export default {
     height: 44px;
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 3px 3px 0 rgba(248, 101, 73, 0.24), 0 1.5px 7.5px 0 rgba(248, 101, 73, 0.24), 0 4.5px 1.5px -3px rgba(248, 101, 73, 0.4);
-    &:hover{
+    box-shadow: 0 3px 3px 0 rgba(248, 101, 73, 0.24),
+      0 1.5px 7.5px 0 rgba(248, 101, 73, 0.24),
+      0 4.5px 1.5px -3px rgba(248, 101, 73, 0.4);
+    &:hover {
       opacity: 0.8;
     }
-    img{
+    img {
       display: block;
       width: 26px;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
     }
   }
 }
