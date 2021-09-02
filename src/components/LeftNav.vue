@@ -1,67 +1,77 @@
 <template>
   <div class="ly_leftNav">
     <div class="bl_leftNav">
-      <a class="bl_leftNav_toggleBtn">
-        <img src="@/assets/bars-solid.svg" alt="" />
+      <a class="bl_leftNav_logo">
+        <img src="@/assets/power-off-white.svg" alt="" />
       </a>
       <div>
         <ul class="bl_leftNav_links">
           <li class="bl_leftNav_link el_link_btn">
-            <a href="">
-              <img src="@/assets/home.svg" alt="" />
+            <router-link :to="{ name: 'Home' }">
+              <svg-home></svg-home>
               <span class="bl_leftNav_link_txt">Home</span>
-            </a>
+            </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
-            <a href="">
-              <img src="@/assets/archive.svg" alt="" />
+            <router-link :to="{ name: 'Archive' }">
+              <svg-archive></svg-archive>
               <span class="bl_leftNav_link_txt">Archive</span>
-            </a>
+            </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
-            <a href="">
-              <img src="@/assets/user.svg" alt="" />
+            <router-link :to="{ name: 'Profile' }">
+              <svg-user></svg-user>
               <span class="bl_leftNav_link_txt">Profile</span>
-            </a>
+            </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
-            <a href="">
-              <img src="@/assets/compass.svg" alt="" />
+            <router-link :to="{ name: 'Explore' }">
+              <svg-compass></svg-compass>
               <span class="bl_leftNav_link_txt">Explore</span>
-            </a>
+            </router-link>
           </li>
         </ul>
-        <div class="el_link_btn uq__logout">
+        <!-- <div class="el_link_btn uq__logout">
           <a href="">
-              <img src="@/assets/power-off.svg" alt="" />
-              <span class="bl_leftNav_link_txt">Logout</span>
+            <svg-compass></svg-compass>
+            <span class="bl_leftNav_link_txt">Logout</span>
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import SvgHome from "@/components/svg/SvgHome.vue";
+import SvgArchive from "@/components/svg/SvgArchive.vue";
+import SvgUser from "@/components/svg/SvgUser.vue";
+import SvgCompass from "@/components/svg/SvgCompass.vue";
 export default {
-  name: 'LeftNav',
+  name: "LeftNav",
+  components: {
+    SvgHome,
+    SvgArchive,
+    SvgUser,
+    SvgCompass
+  },
 };
 </script>
 
 <style lang="scss">
 .ly_leftNav {
-  width: 100px;
+  width: 72px;
   height: 100vh;
-  background: #f6f7fb;
+  background: #373b53;
 }
-.bl_leftNav{
+.bl_leftNav {
   position: relative;
   height: 100%;
 }
-.bl_leftNav_toggleBtn {
-  background-color: #393d46;
+.bl_leftNav_logo {
+  background-color: #ff6647;
   width: 100%;
-  height: 84.72px;
+  height: 70.68px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -80,40 +90,45 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 53px;
+  padding-top: 40px;
+}
+
+.bl_leftNav_link {
+  display: block;
+  margin-bottom: 48px;
+  position: relative;
   
 }
-
-.bl_leftNav_link{
-  display: block;
-  margin-bottom: 53px;
-  position: relative;
-
+.router-link-active {
+  transition: all 0.3s;
+  background-color: #fff;
+  svg path{
+    fill: #FF6647;
+  }
 }
-.bl_leftNav_link_txt{
+.bl_leftNav_link_txt {
   font-size: 12px;
   position: absolute;
-  bottom: -24px;
-  color: #7987A5;
+  bottom: -17px;
+  color: #fff;
 }
 .el_link_btn {
   a {
     display: flex;
-    width: 55px;
-    height: 55px;
-    background: #ffffff;
+    width: 47px;
+    height: 47px;
+    // background: #ffffff;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
-    
   }
-  img {
+  svg {
     width: 25px;
     height: 25px;
   }
 }
 
-.uq__logout{
+.uq__logout {
   position: absolute;
   bottom: 80px;
   left: 50%;
