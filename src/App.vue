@@ -4,7 +4,9 @@
     <div class="ly_cont">
       <Header></Header>
       <main>
-        <router-view />
+        <transition>
+          <router-view />
+        </transition>
       </main>
     </div>
   </div>
@@ -55,4 +57,12 @@ main {
   background-color: #f6f7fb;
   height: 90vh;
 }
+
+ .v-enter-active {
+    transition: opacity 3s;
+    opacity: 0;
+  }
+  .v-enter-to {
+    opacity: 1;
+  }
 </style>
