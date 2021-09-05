@@ -64,7 +64,8 @@ export default {
 <style lang="scss">
 .ly_header {
   width: 100%;
-  background: #fff;
+  // background: #fff;
+  background-color: #f6f7fb;
   padding: 15px 40px;
 }
 
@@ -150,7 +151,7 @@ export default {
   align-items: center;
   padding-right: 1rem;
 
-  border-right: 1px solid #f7f7f7;
+  border-right: 1px solid #C9CED6;
 }
 .bl_usr_name {
   margin-right: 1rem;

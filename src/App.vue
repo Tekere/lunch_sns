@@ -3,7 +3,7 @@
     <LeftNav></LeftNav>
     <div class="ly_cont">
       <Header></Header>
-      <main>
+      <main class="ly_mainCont">
         <transition>
           <router-view />
         </transition>
@@ -53,13 +53,15 @@ a {
 .ly_cont {
   width: calc(100% - 72px);
 }
-main {
-  background-color: #f6f7fb;
+.ly_mainCont {
+  // background-color: #f6f7fb;
+  background-color: #fff;
   height: 90vh;
+  padding: 20px 25px;
 }
 
  .v-enter-active {
-    transition: opacity 3s;
+    transition: opacity 0.7s;
     opacity: 0;
   }
   .v-enter-to {

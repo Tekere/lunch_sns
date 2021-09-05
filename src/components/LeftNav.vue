@@ -7,9 +7,9 @@
       <div>
         <ul class="bl_leftNav_links">
           <li class="bl_leftNav_link el_link_btn">
-            <router-link :to="{ name: 'Home' }">
+            <router-link :to="{ name: 'DashBoard' }">
               <svg-home></svg-home>
-              <span class="bl_leftNav_link_txt">Home</span>
+              <span class="bl_leftNav_link_txt">DashBoard</span>
             </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
@@ -107,7 +107,7 @@ export default {
   }
 }
 .bl_leftNav_link_txt {
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
   bottom: -17px;
   color: #fff;
