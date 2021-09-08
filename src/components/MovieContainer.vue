@@ -17,6 +17,9 @@
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </router-link>
         </div>
+        <span class="bl_movieCard_badge">
+          <img src="@/assets/good.svg" alt="" />
+        </span>
       </router-link>
     </div>
     <!-- / .bl_movieCard -->
@@ -62,16 +65,16 @@ export default {
   position: relative;
 }
 
-.bl_movieCard{
+.bl_movieCard {
   display: block;
   // hover
-  &:hover{
-      opacity:0.8
+  &:hover {
+    opacity: 0.8;
   }
 }
 .bl_movieCard_wrapper {
   background-color: #fff;
-  overflow: hidden;
+
   flex-shrink: 0;
   width: 140px;
   margin-right: 20px;
@@ -91,7 +94,6 @@ export default {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.4;
-    
   }
   .bl_movieCard_person {
     position: absolute;
@@ -107,8 +109,24 @@ export default {
       height: 22px;
     }
     border: none;
-    
-    
+  }
+
+  .bl_movieCard_badge {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ff6647;
+    background-color: #3b3b3b;
+    display: block;
+    padding: 5px;
+    top: 186px;
+    left: -2px;
+    img{
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .bl_movieCard_movieCreated {
