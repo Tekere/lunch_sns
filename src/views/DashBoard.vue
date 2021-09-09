@@ -9,11 +9,11 @@
 
 <script>
 // import Detail from "@/components/Detail.vue";
-import PageTitle from '@/components/elements/PageTitle.vue';
-import MovieContainer from '@/components/MovieContainer.vue';
+import PageTitle from "@/components/elements/PageTitle.vue";
+import MovieContainer from "@/components/MovieContainer.vue";
 
 export default {
-  name: 'DashBoard',
+  name: "DashBoard",
   components: {
     // Detail,
     PageTitle,
@@ -22,10 +22,7 @@ export default {
 };
 </script>
 <style lang="scss">
-
 .bl_mainCont_body {
   padding: 30px 0;
 }
-
-
 </style>

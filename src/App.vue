@@ -60,11 +60,11 @@ a {
   padding: 20px 25px;
 }
 
- .v-enter-active {
-    transition: opacity 0.7s;
-    opacity: 0;
-  }
-  .v-enter-to {
-    opacity: 1;
-  }
+.v-enter-active {
+  transition: opacity 0.7s;
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
 </style>

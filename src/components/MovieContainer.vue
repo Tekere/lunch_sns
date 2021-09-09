@@ -1,6 +1,9 @@
 <template>
   <div
-    class="bl_movieCard_container dc_has_innerShadow dc_has_innerShadow__right"
+    class="
+      bl_movieCard_container bl_movieCard_container__1row
+      dc_has_innerShadow dc_has_innerShadow__right
+    "
   >
     <div v-for="n of 10" :key="n" class="bl_movieCard_wrapper">
       <router-link to="/" class="bl_movieCard">
@@ -28,7 +31,7 @@
 
 <script>
 export default {
-  name: 'MovieContainer',
+  name: "MovieContainer",
 
   methods: {},
 };
@@ -38,7 +41,7 @@ export default {
 .dc_has_innerShadow__right {
   // position: relative;
   &:after {
-    content: '';
+    content: "";
     position: fixed;
     width: 35px;
     height: 290px; // contents hight
@@ -60,9 +63,14 @@ export default {
 
 .bl_movieCard_container {
   display: flex;
+  flex-wrap: wrap;
   overflow-x: scroll;
   padding-bottom: 20px;
   position: relative;
+}
+.bl_movieCard_container.bl_movieCard_container__1row {
+  overflow-x: scroll;
+  flex-wrap: nowrap;
 }
 
 .bl_movieCard {
@@ -122,7 +130,7 @@ export default {
     padding: 5px;
     top: 186px;
     left: -2px;
-    img{
+    img {
       display: block;
       width: 100%;
       height: 100%;

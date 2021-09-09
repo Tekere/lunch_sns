@@ -14,12 +14,26 @@
         <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
           <p class="bl_usr_name">たびちゃん</p>
 
-        <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
+          <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
         </router-link>
         <div class="bl_usr_action">
           <a href="" class="bl_usr_logout">
             <!-- <svg-logout></svg-logout> -->
-        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#C9CED6"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/></g></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              enable-background="new 0 0 24 24"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+              fill="#C9CED6"
+            >
+              <g><path d="M0,0h24v24H0V0z" fill="none" /></g>
+              <g>
+                <path
+                  d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"
+                />
+              </g>
+            </svg>
           </a>
         </div>
       </div>
@@ -29,7 +43,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
 };
 </script>
 
@@ -121,29 +135,29 @@ export default {
 .bl_usr_info {
   display: flex;
   align-items: center;
-  border-right: 1px solid #C9CED6;
+  border-right: 1px solid #c9ced6;
 }
 .bl_usr_name {
   margin-right: 0.2em;
 }
-.bl_usr_action{
+.bl_usr_action {
   display: flex;
   align-items: center;
   padding-left: 1rem;
 }
-.bl_usr_logout{
+.bl_usr_logout {
   height: 24px;
-  svg{
+  svg {
     width: 24px;
     height: 24px;
   }
 }
-.bl_header_usr{
-  .bl_usr_info{
+.bl_header_usr {
+  .bl_usr_info {
     padding-right: 1rem;
   }
   .bl_usr_name {
-  margin-right: 0.6em;
-}
+    margin-right: 0.6em;
+  }
 }
 </style>

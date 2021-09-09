@@ -5,7 +5,6 @@ import Archive from "../views/Archive.vue";
 import Profile from "../views/Profile.vue";
 import Explore from "../views/Explore.vue";
 
-
 Vue.use(VueRouter);
 
 const routes = [

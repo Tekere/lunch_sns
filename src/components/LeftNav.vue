@@ -53,7 +53,7 @@ export default {
     SvgHome,
     SvgArchive,
     SvgUser,
-    SvgCompass
+    SvgCompass,
   },
 };
 </script>
@@ -97,13 +97,12 @@ export default {
   display: block;
   margin-bottom: 48px;
   position: relative;
-  
 }
 .router-link-active {
   transition: all 0.3s;
   background-color: #fff;
-  svg path{
-    fill: #FF6647;
+  svg path {
+    fill: #ff6647;
   }
 }
 .bl_leftNav_link_txt {
