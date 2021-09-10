@@ -1,5 +1,5 @@
 <template>
-  <h1 class="el_pageTtl">{{ title }}</h1>
+  <h2 class="el_lv2_ttl">{{ title }}</h2>
 </template>
 
 <script>
@@ -13,9 +13,5 @@ export default {
 </script>
 
 <style>
-.el_pageTtl {
-  font-size: 26px;
-  font-weight: 500;
-  letter-spacing: 0;
-}
+
 </style>
