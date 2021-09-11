@@ -2,7 +2,7 @@
   <div class="bl_dashboard">
     <page-title :title="this.$route.name"></page-title>
     <div class="bl_mainCont_body">
-      <movie-container></movie-container>
+      <movie-container :one-row='true'></movie-container>
     </div>
     <div class="bl_dashboard_2colCont">
       <div class="bl_allUserArea">

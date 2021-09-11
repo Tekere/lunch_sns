@@ -1,9 +1,10 @@
 <template>
   <div
     class="
-      bl_movieCard_container bl_movieCard_container__1row
+      bl_movieCard_container
       dc_has_innerShadow dc_has_innerShadow__right
     "
+    :class="oneRow? 'bl_movieCard_container__1row':''"
   >
     <div v-for="n of 10" :key="n" class="bl_movieCard_wrapper">
       <router-link to="/" class="bl_movieCard">
@@ -32,7 +33,9 @@
 <script>
 export default {
   name: "MovieContainer",
-
+  props: {
+    oneRow:Boolean
+  },
   methods: {},
 };
 </script>
