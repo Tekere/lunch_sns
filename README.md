@@ -1,5 +1,4 @@
-# movie_sns_front
-
+# lunch_sns
 
 
 ## Project setup

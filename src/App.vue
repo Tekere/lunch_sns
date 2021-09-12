@@ -68,15 +68,15 @@ a {
   opacity: 1;
 }
 
-
 .el_lv1_ttl {
   font-size: 26px;
   font-weight: 500;
   letter-spacing: 0;
 }
-.el_lv2_ttl{
+.el_lv2_ttl {
   font-size: 20px;
   letter-spacing: 0;
   font-weight: 500;
+  margin-bottom: 10px;
 }
 </style>

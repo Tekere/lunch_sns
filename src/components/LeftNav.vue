@@ -9,7 +9,7 @@
           <li class="bl_leftNav_link el_link_btn">
             <router-link :to="{ name: 'DashBoard' }">
               <svg-home></svg-home>
-              <span class="bl_leftNav_link_txt">DashBoard</span>
+              <span class="bl_leftNav_link_txt">Home</span>
             </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
@@ -19,15 +19,15 @@
             </router-link>
           </li>
           <li class="bl_leftNav_link el_link_btn">
-            <router-link :to="{ name: 'Profile' }">
-              <svg-user></svg-user>
-              <span class="bl_leftNav_link_txt">Profile</span>
-            </router-link>
-          </li>
-          <li class="bl_leftNav_link el_link_btn">
             <router-link :to="{ name: 'Explore' }">
               <svg-compass></svg-compass>
               <span class="bl_leftNav_link_txt">Explore</span>
+            </router-link>
+          </li>
+          <li class="bl_leftNav_link el_link_btn">
+            <router-link :to="{ name: 'Profile' }">
+              <svg-user></svg-user>
+              <span class="bl_leftNav_link_txt">Profile</span>
             </router-link>
           </li>
         </ul>
@@ -43,12 +43,12 @@
 </template>
 
 <script>
-import SvgHome from "@/components/svg/SvgHome.vue";
-import SvgArchive from "@/components/svg/SvgArchive.vue";
-import SvgUser from "@/components/svg/SvgUser.vue";
-import SvgCompass from "@/components/svg/SvgCompass.vue";
+import SvgHome from '@/components/svg/SvgHome.vue';
+import SvgArchive from '@/components/svg/SvgArchive.vue';
+import SvgUser from '@/components/svg/SvgUser.vue';
+import SvgCompass from '@/components/svg/SvgCompass.vue';
 export default {
-  name: "LeftNav",
+  name: 'LeftNav',
   components: {
     SvgHome,
     SvgArchive,
