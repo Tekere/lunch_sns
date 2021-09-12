@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: 'ShopContainer',
+  name: "ShopContainer",
   props: {
     oneRow: Boolean,
   },
@@ -45,7 +45,7 @@ export default {
 .dc_has_innerShadow__right {
   // position: relative;
   &:after {
-    content: '';
+    content: "";
     position: fixed;
     width: 35px;
     height: 290px; // contents hight
@@ -120,10 +120,10 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  .bl_shopCard_pin{
+  .bl_shopCard_pin {
     display: flex;
     font-size: 0.76rem;
-    img{
+    img {
       widows: 21px;
       height: 21px;
     }

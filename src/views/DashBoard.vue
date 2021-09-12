@@ -12,10 +12,10 @@
 <script>
 // import Detail from "@/components/Detail.vue";
 // import PageTitle from '@/components/elements/PageTitle.vue';
-import ShopContainer from '@/components/ShopContainer.vue';
+import ShopContainer from "@/components/ShopContainer.vue";
 
 export default {
-  name: 'DashBoard',
+  name: "DashBoard",
   components: {
     // Detail,
     // PageTitle,
