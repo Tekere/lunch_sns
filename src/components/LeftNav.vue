@@ -4,7 +4,7 @@
       <a class="bl_leftNav_logo">
         <img src="@/assets/power-off-white.svg" alt="" />
       </a>
-      <div>
+      <div class="bl_leftNav_inner">
         <ul class="bl_leftNav_links">
           <li class="bl_leftNav_link el_link_btn">
             <router-link :to="{ name: 'DashBoard' }">
@@ -61,12 +61,16 @@ export default {
 <style lang="scss">
 .ly_leftNav {
   width: 72px;
-  height: 100vh;
+  
   background: #373b53;
 }
 .bl_leftNav {
   position: relative;
   height: 100%;
+}
+.bl_leftNav_inner{
+  position: sticky;
+  top: 10px;
 }
 .bl_leftNav_logo {
   background-color: #ff6647;

@@ -42,10 +42,11 @@ export default {
 </script>
 
 <style lang="scss">
+
 .dc_has_innerShadow__right {
   // position: relative;
   &:after {
-    content: "";
+    // content: "";
     position: fixed;
     width: 35px;
     height: 290px; // contents hight
@@ -138,6 +139,7 @@ export default {
       height: 22px;
     }
     border: none;
+    
   }
 
   .bl_shopCard_badge {

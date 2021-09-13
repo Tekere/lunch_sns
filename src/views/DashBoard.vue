@@ -4,7 +4,7 @@
     <shop-container :one-row="true"></shop-container>
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
       <h2 class="el_lv2_ttl">Schedule</h2>
-      <div class="bl_allUserArea_body"></div>
+      <calendar></calendar>
     </div>
   </div>
 </template>
@@ -13,13 +13,14 @@
 // import Detail from "@/components/Detail.vue";
 // import PageTitle from '@/components/elements/PageTitle.vue';
 import ShopContainer from "@/components/ShopContainer.vue";
+import Calendar from "@/components/Calendar.vue";
 
 export default {
   name: "DashBoard",
   components: {
     // Detail,
-    // PageTitle,
     ShopContainer,
+    Calendar,
   },
 };
 </script>
