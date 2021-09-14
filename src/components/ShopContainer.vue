@@ -23,7 +23,7 @@
           </div>
         </div>
         <span class="bl_shopCard_badge">
-          <img src="@/assets/good.svg" alt="" />
+      &#x1f64b;
         </span>
       </router-link>
     </div>
@@ -144,20 +144,18 @@ export default {
 
   .bl_shopCard_badge {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     border: 2px solid #ff6647;
     background-color: #3b3b3b;
     display: block;
-    padding: 5px;
-    top: 145px;
-    left: 6px;
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+    font-size: 1.75rem;
+    line-height: 1;
+    padding: 7px;
+    top: 140px;
+    right: 6px;
+    
   }
 
   .bl_shopCard_shopCreated {
