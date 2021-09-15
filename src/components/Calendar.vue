@@ -27,6 +27,39 @@
         @click:date="viewDay"
       ></v-calendar>
     </v-sheet>
+
+    <v-dialog v-model="dialog" width="500">
+      <v-card class="mx-auto" color="#ff9800" dark max-width="500">
+        <v-card-title>
+          <v-icon large left>  </v-icon>
+          <span class="text-h6 font-weight-bold">権八  12:00</span>
+        </v-card-title>
+
+        <v-card-text class="text-h5 font-weight-bold">
+          ヒーハー わしのおごり！！！
+        </v-card-text>
+
+        <v-card-actions>
+          <v-list-item class="grow">
+            <v-list-item-avatar color="grey darken-3">
+              <v-img
+                class="elevation-6"
+                alt=""
+                src="@/assets/testuser.svg"
+              ></v-img>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>たびちゃん</v-list-item-title>
+            </v-list-item-content>
+
+            <v-row align="center" justify="end">
+              <v-icon class="mr-1"> mdi-heart </v-icon>
+              <span class="subheading mr-2">2</span>
+            </v-row>
+          </v-list-item>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -37,6 +70,7 @@ export default {
   data: () => ({
     events: [],
     value: moment().format('yyyy-MM-DD'),
+    dialog: false,
   }),
   computed: {
     title() {
@@ -44,11 +78,17 @@ export default {
     },
   },
   methods: {
+    click() {
+      console.log('click');
+    },
     setToday() {
       this.value = moment().format('yyyy-MM-DD');
     },
     showEvent({ event }) {
-      alert(`clicked ${event.name}`);
+      // alert(`clicked ${event.name}`);
+      // this.dialog.value = false;
+      this.dialog = true;
+      console.log(event);
     },
     viewDay({ date }) {
       alert(`date: ${date}`);
@@ -57,7 +97,7 @@ export default {
       const events = [
         // new Dateからmomentに変更
         {
-          name: 'テスト1',
+          name: '権八 たびちゃん',
           start: moment('2021-09-10 12:00:00').toDate(),
           end: moment('2021-09-10 13:00:00').toDate(),
           color: 'orange',

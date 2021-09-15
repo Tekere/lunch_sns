@@ -6,8 +6,7 @@
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
     </div>
-    <p v-if="isShowDetail">hello</p>
-    <button @click="toggleIsShowDetail">click</button>
+
   </div>
 </template>
 
