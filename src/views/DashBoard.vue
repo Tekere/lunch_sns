@@ -6,6 +6,8 @@
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
     </div>
+    <p v-if="isShowDetail">hello</p>
+    <button @click="toggleIsShowDetail">click</button>
   </div>
 </template>
 
@@ -14,6 +16,8 @@
 // import PageTitle from '@/components/elements/PageTitle.vue';
 import ShopContainer from "@/components/ShopContainer.vue";
 import Calendar from "@/components/Calendar.vue";
+import { mapGetters } from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: "DashBoard",
@@ -21,6 +25,16 @@ export default {
     // Detail,
     ShopContainer,
     Calendar,
+  },
+  computed:{
+    ...mapGetters([
+      'isShowDetail'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'toggleIsShowDetail'
+    ])
   },
 };
 </script>
