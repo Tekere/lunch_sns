@@ -3,14 +3,14 @@
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : ''"
   >
-    <div v-for="n of 5" :key="n" class="bl_shopCard_wrapper">
+    <div v-for="n of 5" :key="n" class="bl_shopCard_wrapper new">
       <router-link to="/" class="bl_shopCard">
         <figure class="bl_shopCard_img">
           <img src="@/assets/noimage.png" alt="" />
         </figure>
         <div class="bl_shopCard_body">
           <p class="bl_shopCard_shopTtl">権八</p>
-          <p class="bl_shopCard_shopCategory">和食</p>
+          <p class="bl_shopCard_shopCategory">12:00</p>
           <div class="bl_shopCard_subInfo">
             <div class="bl_shopCard_pin">
               <img src="@/assets/pin.svg" alt="" />
@@ -23,7 +23,7 @@
           </div>
         </div>
         <span class="bl_shopCard_badge">
-      &#x1f64b;
+          <img src="@/assets/heart.svg" alt="" />
         </span>
       </router-link>
     </div>
@@ -42,7 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .dc_has_innerShadow__right {
   // position: relative;
   &:after {
@@ -70,7 +69,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   overflow-x: scroll;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   position: relative;
   justify-content: space-around;
 }
@@ -139,7 +138,6 @@ export default {
       height: 22px;
     }
     border: none;
-    
   }
 
   .bl_shopCard_badge {
@@ -147,18 +145,45 @@ export default {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    border: 2px solid #ff6647;
-    background-color: #3b3b3b;
     display: block;
     font-size: 1.75rem;
     line-height: 1;
     padding: 7px;
     top: 140px;
     right: 6px;
-    
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .bl_shopCard_shopCreated {
+  }
+}
+// .bl_shopCard_wrapper.mask {
+// &::after {
+//   content: '';
+//   display: block;
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   background-color: black;
+//   padding: 0px;
+//   top: 0px;
+//   left: 0px;
+//   opacity: 0.4;
+//   border-radius: 10px;
+// }
+// }
+.bl_shopCard_wrapper.new {
+  &::after {
+    content: "New!";
+    display: block;
+    top: 5px;
+    transform: rotate(45deg);
+    right: 0;
+    position: absolute;
+    z-index: 101;
   }
 }
 </style>

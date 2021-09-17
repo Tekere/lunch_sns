@@ -1,22 +1,22 @@
 <template>
   <!-- <v-app> -->
-    <div id="app" class="ly_page">
-      <LeftNav></LeftNav>
-      <div class="ly_cont">
-        <Header></Header>
-        <main class="ly_mainCont">
-          <transition>
-            <router-view />
-          </transition>
-        </main>
-      </div>
+  <div id="app" class="ly_page">
+    <LeftNav></LeftNav>
+    <div class="ly_cont">
+      <Header></Header>
+      <main class="ly_mainCont">
+        <transition>
+          <router-view />
+        </transition>
+      </main>
     </div>
+  </div>
   <!-- </v-app> -->
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import LeftNav from '@/components/LeftNav.vue';
+import Header from "@/components/Header.vue";
+import LeftNav from "@/components/LeftNav.vue";
 export default {
   components: {
     Header,
@@ -26,14 +26,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import './css/reset.css';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+@import "./css/reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
 
 /*
 * base
 */
 html {
-  font-family: 'Noto Sans JP', Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans JP", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -58,7 +58,7 @@ a {
 .ly_mainCont {
   // background-color: #f6f7fb;
   background-color: #fff;
-  height: 100%;
+  height: fit-content;
   padding: 20px 25px;
 }
 
@@ -81,10 +81,4 @@ a {
   font-weight: 500;
   margin-bottom: 10px;
 }
-
-
-
-
-
-
 </style>

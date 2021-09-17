@@ -11,7 +11,7 @@
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
     </v-sheet>
-    <v-sheet height="70vh">
+    <v-sheet height="60vh">
       <v-calendar
         ref="calendar"
         v-model="value"
@@ -24,12 +24,11 @@
         "
         @change="getEvents"
         @click:event="showEvent"
-        @click:date="viewDay"
+        @click:date="createEvent"
       ></v-calendar>
     </v-sheet>
-
     <v-dialog v-model="dialog" width="500">
-      <v-card class="mx-auto" color="#ff9800" dark max-width="500">
+      <v-card class="mx-auto" color="#fff"  max-width="500">
         <v-card-title>
           <v-icon large left>  </v-icon>
           <span class="text-h6 font-weight-bold">権八  12:00</span>
@@ -38,6 +37,7 @@
         <v-card-text class="text-h5 font-weight-bold">
           ヒーハー わしのおごり！！！
         </v-card-text>
+        <v-card-text>島岡・もっちゃん </v-card-text>
 
         <v-card-actions>
           <v-list-item class="grow">
@@ -51,9 +51,8 @@
             <v-list-item-content>
               <v-list-item-title>たびちゃん</v-list-item-title>
             </v-list-item-content>
-
             <v-row align="center" justify="end">
-              <v-icon class="mr-1"> mdi-heart </v-icon>
+              <v-icon class="mr-1" color="red"> mdi-heart </v-icon>
               <span class="subheading mr-2">2</span>
             </v-row>
           </v-list-item>
@@ -64,64 +63,63 @@
 </template>
 
 <script>
-import moment from 'moment';
-
+import moment from "moment";
+import { mapActions } from "vuex";
 export default {
   data: () => ({
     events: [],
-    value: moment().format('yyyy-MM-DD'),
-    dialog: false,
+    dialog:false,
+    value: moment().format("yyyy-MM-DD"),
   }),
   computed: {
     title() {
-      return moment(this.value).format('yyyy年 M月');
+      return moment(this.value).format("yyyy年 M月");
     },
   },
   methods: {
-    click() {
-      console.log('click');
-    },
+    ...mapActions(["toggleIsShowDetail"]),
     setToday() {
-      this.value = moment().format('yyyy-MM-DD');
+      this.value = moment().format("yyyy-MM-DD");
     },
-    showEvent({ event }) {
+    showEvent() {
+      // shoEvent({event}) でイベントも取ってこれる
       // alert(`clicked ${event.name}`);
-      // this.dialog.value = false;
-      this.dialog = true;
-      console.log(event);
+      this.dialog = true
+      this.toggleIsShowDetail();
     },
-    viewDay({ date }) {
-      alert(`date: ${date}`);
+    createEvent() {
+      console.log("createEvent");
     },
+
     getEvents() {
       const events = [
         // new Dateからmomentに変更
         {
-          name: '権八 たびちゃん',
-          start: moment('2021-09-10 12:00:00').toDate(),
-          end: moment('2021-09-10 13:00:00').toDate(),
-          color: 'orange',
+          name: "権八 たびちゃん",
+          start: moment("2021-09-10 12:00:00").toDate(),
+          end: moment("2021-09-10 13:00:00").toDate(),
+          color: "blue",
           timed: true,
         },
         {
-          name: 'テスト2',
-          start: moment('2021-09-21 12:00:00').toDate(),
-          end: moment('2021-09-21 13:00:00').toDate(),
-          color: 'orange',
+          name: "テスト2",
+          start: moment("2021-09-21 12:00:00").toDate(),
+          end: moment("2021-09-21 13:00:00").toDate(),
+          color: "blue",
           timed: true,
         },
         {
-          name: 'テスト3',
-          start: moment('22021-09-15 12:30:00').toDate(),
-          end: moment('2021-09-15 13:30:00').toDate(),
-          color: 'orange',
+          name: "テスト3",
+          start: moment("22021-09-15 12:30:00").toDate(),
+          end: moment("2021-09-15 13:30:00").toDate(),
+          color: "blue",
           timed: true,
         },
         {
-          name: 'テスト4',
-          start: moment('2021-10-01 13:00:00').toDate(),
-          end: moment('2021-10-01 14:00:00').toDate(),
-          color: 'orange',
+          name: "テスト4",
+          start: moment("2021-10-01 13:00:00").toDate(),
+          end: moment("2021-10-01 14:00:00").toDate(),
+          color: "blue",
           timed: true,
         },
       ];
@@ -135,13 +133,11 @@ export default {
 </script>
 
 <style lang="scss">
-// .theme--light.v-btn.v-btn--has-bg {
-//   background-color: transparent !important;
-// }
-
-// .v-calendar .v-event {
-//   background-color: #2196f3 !important;
-//   color: #fff !important;
-//   padding-left: 8px;
-// }
+.v-calendar .v-event {
+  height: 30px !important;
+  line-height: 30px !important;
+}
+.v-dialog > .v-card > .v-card__title {
+  padding-left: 16px !important;
+}
 </style>

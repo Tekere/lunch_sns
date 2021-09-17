@@ -61,14 +61,14 @@ export default {
 <style lang="scss">
 .ly_leftNav {
   width: 72px;
-  
+
   background: #373b53;
 }
 .bl_leftNav {
   position: relative;
   height: 100%;
 }
-.bl_leftNav_inner{
+.bl_leftNav_inner {
   position: sticky;
   top: 10px;
 }

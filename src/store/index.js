@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		isShowDetail: true
+		isShowDetail: false
 	},
 	getters: {
 		isShowDetail: state => state.isShowDetail
@@ -16,7 +16,7 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		toggleShowDetail: ({ commit }) => {
+		toggleIsShowDetail: ({ commit }) => {
 			commit('toggleShowDetail')
 		}
 	},

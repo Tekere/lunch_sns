@@ -5,18 +5,17 @@
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
+      <p vi-if="isShowDetail">hello</p>
     </div>
-
   </div>
 </template>
 
 <script>
 // import Detail from "@/components/Detail.vue";
-// import PageTitle from '@/components/elements/PageTitle.vue';
 import ShopContainer from "@/components/ShopContainer.vue";
 import Calendar from "@/components/Calendar.vue";
-import { mapGetters } from 'vuex'
-import {mapActions} from 'vuex'
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "DashBoard",
@@ -25,15 +24,11 @@ export default {
     ShopContainer,
     Calendar,
   },
-  computed:{
-    ...mapGetters([
-      'isShowDetail'
-    ])
+  computed: {
+    ...mapGetters(["isShowDetail"]),
   },
   methods: {
-    ...mapActions([
-      'toggleIsShowDetail'
-    ])
+    ...mapActions(["toggleIsShowDetail"]),
   },
 };
 </script>
