@@ -12,7 +12,7 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		toggleShowDetail: state => {
-			state.isShowDetail != state.isShowDetail
+			state.isShowDetail = !state.isShowDetail
 		}
 	},
 	actions: {
