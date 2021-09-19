@@ -7,6 +7,7 @@
       <calendar></calendar>
       <p v-if="isShowDetail">hello</p>
     </div>
+    <!-- <detail></detail> -->
   </div>
 </template>
 

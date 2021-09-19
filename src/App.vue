@@ -10,6 +10,7 @@
         </transition>
       </main>
     </div>
+    <detail></detail>
   </div>
   <!-- </v-app> -->
 </template>
@@ -17,10 +18,12 @@
 <script>
 import Header from "@/components/Header.vue";
 import LeftNav from "@/components/LeftNav.vue";
+import Detail from "@/components/Detail.vue";
 export default {
   components: {
     Header,
     LeftNav,
+    Detail
   },
 };
 </script>
@@ -53,14 +56,16 @@ a {
   display: flex;
 }
 .ly_cont {
-  width: calc(100% - 72px);
+  // width: calc(100% - 72px);  //Detail用
+  width: calc(100% - 422px);
   margin-left: 72px;
 }
 .ly_mainCont {
   // background-color: #f6f7fb;
   background-color: #fff;
   height: fit-content;
-  padding: 20px 25px;
+  // padding: 20px 25px;  //Detail用
+  padding: 20px 0 25px 20px;
 }
 
 .v-enter-active {
