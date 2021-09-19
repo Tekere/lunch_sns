@@ -43,12 +43,12 @@
 </template>
 
 <script>
-import SvgHome from "@/components/svg/SvgHome.vue";
-import SvgArchive from "@/components/svg/SvgArchive.vue";
-import SvgUser from "@/components/svg/SvgUser.vue";
-import SvgCompass from "@/components/svg/SvgCompass.vue";
+import SvgHome from '@/components/svg/SvgHome.vue';
+import SvgArchive from '@/components/svg/SvgArchive.vue';
+import SvgUser from '@/components/svg/SvgUser.vue';
+import SvgCompass from '@/components/svg/SvgCompass.vue';
 export default {
-  name: "LeftNav",
+  name: 'LeftNav',
   components: {
     SvgHome,
     SvgArchive,
@@ -61,16 +61,16 @@ export default {
 <style lang="scss">
 .ly_leftNav {
   width: 72px;
-
+  position: fixed;
   background: #373b53;
+  height: 100%;
 }
 .bl_leftNav {
   position: relative;
   height: 100%;
 }
 .bl_leftNav_inner {
-  position: sticky;
-  top: 10px;
+  
 }
 .bl_leftNav_logo {
   background-color: #ff6647;

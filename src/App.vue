@@ -54,6 +54,7 @@ a {
 }
 .ly_cont {
   width: calc(100% - 72px);
+  margin-left: 72px;
 }
 .ly_mainCont {
   // background-color: #f6f7fb;

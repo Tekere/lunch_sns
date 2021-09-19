@@ -13,7 +13,6 @@ export default {
   name: "Archive",
   components: {
     // Detail,
-
     ShopContainer,
   },
 };

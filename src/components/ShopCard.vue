@@ -1,37 +1,37 @@
 <template>
   <div class="bl_shopCard_wrapper">
-      <a @click="toggleIsShowDetail" class="bl_shopCard btnripple new">
-        <figure class="bl_shopCard_img">
-          <img src="@/assets/noimage.png" alt="" />
-        </figure>
-        <div class="bl_shopCard_body">
-          <p class="bl_shopCard_shopTtl">権八</p>
-          <p class="bl_shopCard_shopCategory">12:00</p>
-          <div class="bl_shopCard_subInfo">
-            <div class="bl_shopCard_pin">
-              <img src="@/assets/pin.svg" alt="" />
-              <p>100m</p>
-            </div>
-            <div class="bl_shopCard_person bl_usr_info">
-              <p class="bl_usr_name">たびちゃん</p>
-              <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
-            </div>
+    <a @click="toggleIsShowDetail" class="bl_shopCard btnripple new">
+      <figure class="bl_shopCard_img">
+        <img src="@/assets/noimage.png" alt="" />
+      </figure>
+      <div class="bl_shopCard_body">
+        <p class="bl_shopCard_shopTtl">権八</p>
+        <p class="bl_shopCard_shopCategory">12:00</p>
+        <div class="bl_shopCard_subInfo">
+          <div class="bl_shopCard_pin">
+            <img src="@/assets/pin.svg" alt="" />
+            <p>100m</p>
+          </div>
+          <div class="bl_shopCard_person bl_usr_info">
+            <p class="bl_usr_name">たびちゃん</p>
+            <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
         </div>
-        <span class="bl_shopCard_badge">
-          <img src="@/assets/heart.svg" alt="" />
-        </span>
-      </a>
-    </div>
+      </div>
+      <span class="bl_shopCard_badge">
+        <img src="@/assets/heart.svg" alt="" />
+      </span>
+    </a>
+  </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
 export default {
   name: 'ShopCard',
 
   methods: {
-    ...mapActions(["toggleIsShowDetail"]),
+    ...mapActions(['toggleIsShowDetail']),
   },
 };
 </script>
@@ -47,11 +47,9 @@ export default {
   background-color: #f4f4f4;
   border-radius: 12px;
   transition: 0.3s;
-  // hover
-  &:hover {
-    // opacity: 0.8;
-    transform: translateY(-5px);
-  }
+}
+.bl_shopCard_container.bl_shopCard_container__1row .bl_shopCard:hover {
+  transform: translateY(-5px);
 }
 .bl_shopCard_wrapper {
   flex-shrink: 0;

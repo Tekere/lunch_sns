@@ -3,13 +3,12 @@
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : ''"
   >
-    <shop-card  v-for="n of 5" :key="n"></shop-card>
-    <!-- / .bl_shopCard -->
+    <shop-card v-for="n of 5" :key="n"></shop-card>
   </div>
 </template>
 
 <script>
-import ShopCard from "@/components/ShopCard.vue";
+import ShopCard from '@/components/ShopCard.vue';
 export default {
   name: 'ShopContainer',
   components: {
@@ -51,12 +50,18 @@ export default {
   overflow-x: scroll;
   padding-bottom: 40px;
   position: relative;
-  justify-content: space-around;
+  .bl_shopCard_wrapper {
+    margin: 0 20px 20px 0;
+  }
 }
+
 .bl_shopCard_container.bl_shopCard_container__1row {
   overflow-x: scroll;
   flex-wrap: nowrap;
   justify-content: start;
   padding-top: 5px;
+  .bl_shopCard_wrapper {
+    margin: 0 0 20px 20px;
+  }
 }
 </style>
