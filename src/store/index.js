@@ -1,7 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
@@ -11,13 +11,25 @@ export default new Vuex.Store({
 		isShowDetail: state => state.isShowDetail
 	},
 	mutations: {
-		toggleShowDetail: state => {
+		toggleIsShowDetail: state => {
 			state.isShowDetail = !state.isShowDetail
+		},
+		showIsShowDetail: state => {
+			state.isShowDetail = true
+		},
+		hiddenIsShowDetail: state => {
+			state.isShowDetail = false
 		}
 	},
 	actions: {
 		toggleIsShowDetail: ({ commit }) => {
-			commit('toggleShowDetail')
+			commit('toggleIsShowDetail')
+		},
+		showIsShowDetail: ({ commit }) => {
+			commit('showIsShowDetail')
+		},
+		hiddenIsShowDetail: ({ commit }) => {
+			commit('hiddenIsShowDetail')
 		}
 	},
 	modules: {}

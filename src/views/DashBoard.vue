@@ -5,9 +5,7 @@
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
-      <p v-if="isShowDetail">hello</p>
     </div>
-    <!-- <detail></detail> -->
   </div>
 </template>
 
@@ -16,6 +14,7 @@
 import ShopContainer from "@/components/ShopContainer.vue";
 import Calendar from "@/components/Calendar.vue";
 import { mapGetters } from "vuex";
+import {mapActions} from 'vuex';
 
 export default {
   name: "DashBoard",
@@ -28,7 +27,7 @@ export default {
     ...mapGetters(["isShowDetail"]),
   },
   methods: {
-    
+    ...mapActions(["toggleIsShowDetail"])
   },
 };
 </script>

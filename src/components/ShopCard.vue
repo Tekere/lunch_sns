@@ -1,6 +1,6 @@
 <template>
   <div class="bl_shopCard_wrapper">
-    <a @click="toggleIsShowDetail" class="bl_shopCard btnripple new">
+    <a @click.stop="showIsShowDetail" class="bl_shopCard btnripple new">
       <figure class="bl_shopCard_img">
         <img src="@/assets/noimage.png" alt="" />
       </figure>
@@ -31,7 +31,7 @@ export default {
   name: 'ShopCard',
 
   methods: {
-    ...mapActions(['toggleIsShowDetail']),
+    ...mapActions(['showIsShowDetail']),
   },
 };
 </script>

@@ -2,10 +2,14 @@
   <!-- <v-app> -->
   <div id="app" class="ly_page">
     <LeftNav></LeftNav>
-    <div class="ly_cont">
+    <div
+      @click="hiddenIsShowDetail"
+      class="ly_cont"
+      :class="{ ly_cont__mini: isShowDetail }"
+    >
       <Header></Header>
       <main class="ly_mainCont">
-        <transition>
+        <transition name="fade">
           <router-view />
         </transition>
       </main>
@@ -16,27 +20,34 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import LeftNav from "@/components/LeftNav.vue";
-import Detail from "@/components/Detail.vue";
+import Header from '@/components/Header.vue';
+import LeftNav from '@/components/LeftNav.vue';
+import Detail from '@/components/Detail.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   components: {
     Header,
     LeftNav,
-    Detail
+    Detail,
+  },
+  computed: {
+    ...mapGetters(['isShowDetail']),
+  },
+  methods: {
+    ...mapActions(['hiddenIsShowDetail']),
   },
 };
 </script>
 
 <style lang="scss">
-@import "./css/reset.css";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
+@import './css/reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
 
 /*
 * base
 */
 html {
-  font-family: "Noto Sans JP", Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans JP', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -56,24 +67,31 @@ a {
   display: flex;
 }
 .ly_cont {
-  // width: calc(100% - 72px);  //Detail用
-  width: calc(100% - 422px);
+  width: calc(100% - 72px);
   margin-left: 72px;
+  // transition: 0.4s;
+  transition: 0.4s;
 }
 .ly_mainCont {
   // background-color: #f6f7fb;
   background-color: #fff;
   height: fit-content;
-  // padding: 20px 25px;  //Detail用
-  padding: 20px 0 25px 20px;
+  padding: 20px 25px;
+}
+.ly_cont.ly_cont__mini {
+  width: calc(100% - 382px);
+  .ly_mainCont {
+    padding: 20px 0 25px 20px;
+  }
 }
 
-.v-enter-active {
-  transition: opacity 0.7s;
-  opacity: 0;
+.fade-enter-active {
+  will-change: opacity;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
-.v-enter-to {
-  opacity: 1;
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .el_lv1_ttl {

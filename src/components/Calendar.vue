@@ -45,15 +45,15 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["toggleIsShowDetail"]),
+    ...mapActions(["showIsShowDetail"]),
     setToday() {
       this.value = moment().format("yyyy-MM-DD");
     },
     showEvent() {
       // shoEvent({event}) でイベントも取ってこれる
       // alert(`clicked ${event.name}`);
-    
-      this.toggleIsShowDetail();
+      stopPropagation()
+      this.showIsShowDetail();
       
     },
     createEvent() {
