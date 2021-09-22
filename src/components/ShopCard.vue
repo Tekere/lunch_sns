@@ -26,12 +26,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 export default {
-  name: 'ShopCard',
+  name: "ShopCard",
 
   methods: {
-    ...mapActions(['showIsShowDetail']),
+    ...mapActions(["showIsShowDetail"]),
   },
 };
 </script>
@@ -122,7 +122,7 @@ export default {
 
 .bl_shopCard.new {
   &::before {
-    content: 'New!';
+    content: "New!";
     display: block;
     top: 5px;
     transform: rotate(45deg);
@@ -141,7 +141,7 @@ export default {
 }
 
 .btnripple::after {
-  content: '';
+  content: "";
   /*絶対配置で波紋位置を決める*/
   position: absolute;
   width: 100%;

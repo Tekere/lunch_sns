@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import LeftNav from '@/components/LeftNav.vue';
-import Detail from '@/components/Detail.vue';
-import { mapActions, mapGetters } from 'vuex';
+import Header from "@/components/Header.vue";
+import LeftNav from "@/components/LeftNav.vue";
+import Detail from "@/components/Detail.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Header,
@@ -31,23 +31,23 @@ export default {
     Detail,
   },
   computed: {
-    ...mapGetters(['isShowDetail']),
+    ...mapGetters(["isShowDetail"]),
   },
   methods: {
-    ...mapActions(['hiddenIsShowDetail']),
+    ...mapActions(["hiddenIsShowDetail"]),
   },
 };
 </script>
 
 <style lang="scss">
-@import './css/reset.css';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
+@import "./css/reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
 
 /*
 * base
 */
 html {
-  font-family: 'Noto Sans JP', Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans JP", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import ShopCard from '@/components/ShopCard.vue';
+import ShopCard from "@/components/ShopCard.vue";
 export default {
-  name: 'ShopContainer',
+  name: "ShopContainer",
   components: {
     ShopCard,
   },

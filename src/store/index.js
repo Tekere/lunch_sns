@@ -5,10 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		isShowDetail: false
+		isShowDetail: false,
+		detailData: {
+			text: 'hello'
+		}
 	},
 	getters: {
-		isShowDetail: state => state.isShowDetail
+		isShowDetail: state => state.isShowDetail,
+		detailData: state => state.detailData
 	},
 	mutations: {
 		toggleIsShowDetail: state => {
@@ -19,6 +23,9 @@ export default new Vuex.Store({
 		},
 		hiddenIsShowDetail: state => {
 			state.isShowDetail = false
+		},
+		updateDetailData: (state, arg) => {
+			state.detailData.text = arg
 		}
 	},
 	actions: {
@@ -26,10 +33,13 @@ export default new Vuex.Store({
 			commit('toggleIsShowDetail')
 		},
 		showIsShowDetail: ({ commit }) => {
-			commit('showIsShowDetail')
+      commit('showIsShowDetail')
 		},
 		hiddenIsShowDetail: ({ commit }) => {
 			commit('hiddenIsShowDetail')
+		},
+		updateDetailData: ({ commit },arg) => {
+			commit('updateDetailData',arg)
 		}
 	},
 	modules: {}
