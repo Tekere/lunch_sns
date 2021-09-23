@@ -48,11 +48,11 @@ export default {
     setToday() {
       this.value = moment().format('yyyy-MM-DD');
     },
-    showEvent({ event }) {
+    showEvent(e) {
       // shoEvent({event}) でイベントも取ってこれる
-      console.log(event)  //クリックされたカレンダーのデータ
+      console.log(e.event)  //クリックされたカレンダーのデータ
       this.showIsShowDetail()
-
+      event.stopPropagation()
     },
     createEvent() {
       console.log('createEvent');
