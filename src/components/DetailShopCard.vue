@@ -31,9 +31,6 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props:{
-    inDetail:Boolean
-  },
   name: "DetailShopCard",
 
   methods: {

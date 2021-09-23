@@ -38,6 +38,11 @@ export default {
   methods: {
     ...mapActions(['hiddenIsShowDetail']),
   },
+  watch:{
+    $route(){
+      this.hiddenIsShowDetail()
+    }
+  }
 };
 </script>
 
