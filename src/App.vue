@@ -9,21 +9,23 @@
     >
       <Header></Header>
       <main class="ly_mainCont">
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
           <router-view />
         </transition>
       </main>
     </div>
-    <detail></detail>
+    <transition name="fade">
+      <detail></detail>
+    </transition>
   </div>
   <!-- </v-app> -->
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import LeftNav from "@/components/LeftNav.vue";
-import Detail from "@/components/Detail.vue";
-import { mapActions, mapGetters } from "vuex";
+import Header from '@/components/Header.vue';
+import LeftNav from '@/components/LeftNav.vue';
+import Detail from '@/components/Detail.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   components: {
     Header,
@@ -31,23 +33,23 @@ export default {
     Detail,
   },
   computed: {
-    ...mapGetters(["isShowDetail"]),
+    ...mapGetters(['isShowDetail']),
   },
   methods: {
-    ...mapActions(["hiddenIsShowDetail"]),
+    ...mapActions(['hiddenIsShowDetail']),
   },
 };
 </script>
 
 <style lang="scss">
-@import "./css/reset.css";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
+@import './css/reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap');
 
 /*
 * base
 */
 html {
-  font-family: "Noto Sans JP", Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans JP', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -69,7 +71,7 @@ a {
 .ly_cont {
   width: calc(100% - 72px);
   margin-left: 72px;
-  // transition: 0.4s;
+
   transition: 0.4s;
 }
 .ly_mainCont {
@@ -85,14 +87,7 @@ a {
   }
 }
 
-.fade-enter-active {
-  will-change: opacity;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+
 
 .el_lv1_ttl {
   font-size: 26px;
@@ -105,4 +100,48 @@ a {
   font-weight: 500;
   margin-bottom: 10px;
 }
+
+
+
+/*
+* transition
+*/
+// fade
+.fade-enter-active {
+  will-change: opacity;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-leave-active{
+  will-change: opacity;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-leave{
+  opacity: 1;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// right
+// .right-enter-active,
+// .right-leave-active {
+//   transform: translate(0px, 0px); 
+//   transition: transform 0.4s;
+// }
+
+// .right-leave-active {
+//   position: absolute;
+//   width: 100%;
+// }
+
+// .right-enter,
+// .right-leave-to {
+//   // transform: translateX(100%) translateX(0px);
+//   transform: translateX(100%) translateX(0px);
+// }
+// .right-enter-to,
+// .right-leave{
+//   transform: translateX(0px);
+// }
 </style>
