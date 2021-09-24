@@ -1,6 +1,7 @@
 <template>
   
-    <div v-if="isShowDetail" class="ly_detail">
+    <!-- <div v-if="isShowDetail" class="ly_detail"> -->
+    <div  class="ly_detail">
       <detail-shop-card in-detail="true"></detail-shop-card>
     </div>
 

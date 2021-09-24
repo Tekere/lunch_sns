@@ -76,8 +76,7 @@ a {
 .ly_cont {
   width: calc(100% - 72px);
   margin-left: 72px;
-
-  transition: 0.4s;
+  transition: width 0.5s;
 }
 .ly_mainCont {
   // background-color: #f6f7fb;
@@ -104,6 +103,7 @@ a {
   letter-spacing: 0;
   font-weight: 500;
   margin-bottom: 10px;
+  width: calc(100vw - 72px);
 }
 
 

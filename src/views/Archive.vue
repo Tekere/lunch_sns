@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+  <div class="bl_archive">
+    <h2 class="el_lv2_ttl">Archive</h2>
     <shop-container></shop-container>
   </div>
 </template>

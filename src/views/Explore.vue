@@ -1,5 +1,7 @@
 <template>
-  <div class="home"></div>
+  <div class="bl_explore">
+    <h2 class="el_lv2_ttl">Explore</h2>
+  </div>
 </template>
 
 <script>

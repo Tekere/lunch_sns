@@ -22,7 +22,8 @@ export default new Vuex.Store({
 			state.isShowDetail = true
 		},
 		hiddenIsShowDetail: state => {
-			state.isShowDetail = false
+      state.isShowDetail = false
+      console.log('clode')
 		},
 		updateDetailData: (state, arg) => {
 			state.detailData.text = arg

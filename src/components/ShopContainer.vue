@@ -50,6 +50,8 @@ export default {
   overflow-x: scroll;
   padding-bottom: 40px;
   position: relative;
+    justify-content: start;
+    overflow-x: scroll;
   .bl_shopCard_wrapper {
     margin: 0 20px 20px 0;
   }
