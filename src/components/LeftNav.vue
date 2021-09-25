@@ -24,12 +24,12 @@
               <span class="bl_leftNav_link_txt">Explore</span>
             </router-link>
           </li>
-          <li class="bl_leftNav_link el_link_btn">
+          <!-- <li class="bl_leftNav_link el_link_btn">
             <router-link :to="{ name: 'Profile' }">
               <svg-user></svg-user>
               <span class="bl_leftNav_link_txt">Profile</span>
             </router-link>
-          </li>
+          </li> -->
         </ul>
         <!-- <div class="el_link_btn uq__logout">
           <a href="">
