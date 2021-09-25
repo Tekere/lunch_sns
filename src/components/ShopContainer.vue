@@ -1,21 +1,28 @@
 <template>
-  <div
+  <transition-group
+    tag="div" name="cell"
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
-    :class="oneRow ? 'bl_shopCard_container__1row' : ''"
+    :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
     <shop-card v-for="n of 5" :key="n"></shop-card>
-  </div>
+  </transition-group>
 </template>
 
 <script>
-import ShopCard from "@/components/ShopCard.vue";
+import ShopCard from '@/components/ShopCard.vue';
+import Muuri from 'muuri';
+
 export default {
-  name: "ShopContainer",
+  name: 'ShopContainer',
   components: {
     ShopCard,
   },
   props: {
     oneRow: Boolean,
+  },
+  mounted() {
+    // 動的にClassを付与するので、mount後に初期化
+    new Muuri('.grid');
   },
 };
 </script>
@@ -50,11 +57,22 @@ export default {
   overflow-x: scroll;
   padding-bottom: 40px;
   position: relative;
-    justify-content: start;
-    overflow-x: scroll;
+  justify-content: start;
+  overflow-x: scroll;
   .bl_shopCard_wrapper {
     margin: 0 20px 20px 0;
   }
+}
+.bl_shopCard_container.grid{
+  position: relative;
+  margin-right: -20px;  //中のカードの右マージン相殺
+  .bl_shopCard_wrapper{
+    position: absolute;
+  }
+}
+
+.ly_cont__mini .bl_shopCard_container.grid{
+  margin-right: 5px; //相殺した分を返す（中のカードの右マージン相殺）
 }
 
 .bl_shopCard_container.bl_shopCard_container__1row {
@@ -65,5 +83,8 @@ export default {
   .bl_shopCard_wrapper {
     margin: 0 0 20px 20px;
   }
+}
+.cell-move {
+  transition: transform 1s;
 }
 </style>

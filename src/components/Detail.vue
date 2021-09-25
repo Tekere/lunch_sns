@@ -29,14 +29,14 @@ export default {
   position: sticky;
   top: 0;
   padding:71px 10px 10px;
-  background-color: rgba(196, 196, 196, 0.1);
+  background-color: #f6f7fb;
   
 }
 .bl_detail {
   width: 100%;
   height: 100%;
   padding: 5px;
-  box-shadow: -5px 0 6px rgba(191, 191, 191, 0.2);
+  // box-shadow: -5px 0 6px rgba(191, 191, 191, 0.2);
 }
 
 
