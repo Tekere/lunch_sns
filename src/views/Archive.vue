@@ -6,16 +6,13 @@
 </template>
 
 <script>
-// import Detail from "@/components/Detail.vue";
-
-import ShopContainer from '@/components/ShopContainer.vue';
+import ShopContainer from "@/components/ShopContainer.vue";
 
 export default {
-  name: 'Archive',
+  name: "Archive",
   components: {
-    // Detail,
     ShopContainer,
   },
-
+  
 };
 </script>

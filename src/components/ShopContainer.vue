@@ -1,6 +1,7 @@
 <template>
   <transition-group
-    tag="div" name="cell"
+    tag="div"
+    name="cell"
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
@@ -9,11 +10,11 @@
 </template>
 
 <script>
-import ShopCard from '@/components/ShopCard.vue';
-import Muuri from 'muuri';
+import ShopCard from "@/components/ShopCard.vue";
+import Muuri from "muuri";
 
 export default {
-  name: 'ShopContainer',
+  name: "ShopContainer",
   components: {
     ShopCard,
   },
@@ -22,7 +23,7 @@ export default {
   },
   mounted() {
     // 動的にClassを付与するので、mount後に初期化
-    new Muuri('.grid');
+    new Muuri(".grid");
   },
 };
 </script>
@@ -63,15 +64,15 @@ export default {
     margin: 0 20px 20px 0;
   }
 }
-.bl_shopCard_container.grid{
+.bl_shopCard_container.grid {
   position: relative;
-  margin-right: -20px;  //中のカードの右マージン相殺
-  .bl_shopCard_wrapper{
+  margin-right: -20px; //中のカードの右マージン相殺
+  .bl_shopCard_wrapper {
     position: absolute;
   }
 }
 
-.ly_cont__mini .bl_shopCard_container.grid{
+.ly_cont__mini .bl_shopCard_container.grid {
   margin-right: 5px; //相殺した分を返す（中のカードの右マージン相殺）
 }
 

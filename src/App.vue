@@ -1,36 +1,47 @@
 <template>
-  <!-- <v-app> -->
-  <div id="app" class="ly_page">
-    <LeftNav></LeftNav>
-    <div
-      @click="hiddenIsShowDetail"
-      class="ly_cont"
-      :class="{ ly_cont__mini: isShowDetail }"
-    >
-      <Header></Header>
-      <main class="ly_mainCont">
-        <transition name="fade" mode="out-in">
-          <router-view />
-        </transition>
-      </main>
+  <div id="app">
+    <div class="ly_page">
+      <LeftNav></LeftNav>
+      <div
+        @click="hiddenIsShowDetail"
+        class="ly_cont"
+        :class="{ ly_cont__mini: isShowDetail }"
+      >
+        <Header></Header>
+        <main class="ly_mainCont">
+          <transition name="fade" mode="out-in">
+            <router-view />
+          </transition>
+        </main>
+      </div>
+      <transition name="fade">
+        <detail></detail>
+      </transition>
     </div>
-    <transition name="fade">
-      <detail></detail>
-    </transition>
+      <transition name="fade-out">
+        <Loading v-if="isLoading"></Loading>
+      </transition>
   </div>
-  <!-- </v-app> -->
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
 import LeftNav from '@/components/LeftNav.vue';
 import Detail from '@/components/Detail.vue';
+import Loading from '@/components/Loading.vue';
+
 import { mapActions, mapGetters } from 'vuex';
 export default {
   components: {
     Header,
     LeftNav,
     Detail,
+    Loading,
+  },
+  data() {
+    return {
+      isLoading: true,
+    };
   },
   computed: {
     ...mapGetters(['isShowDetail']),
@@ -38,11 +49,16 @@ export default {
   methods: {
     ...mapActions(['hiddenIsShowDetail']),
   },
-  watch:{
-    $route(){
-      this.hiddenIsShowDetail()
-    }
-  }
+  watch: {
+    $route() {
+      this.hiddenIsShowDetail();
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  },
 };
 </script>
 
@@ -91,8 +107,6 @@ a {
   }
 }
 
-
-
 .el_lv1_ttl {
   font-size: 26px;
   font-weight: 500;
@@ -106,8 +120,6 @@ a {
   width: calc(100vw - 72px);
 }
 
-
-
 /*
 * transition
 */
@@ -116,11 +128,11 @@ a {
   will-change: opacity;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.fade-leave-active{
+.fade-leave-active {
   will-change: opacity;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.fade-leave{
+.fade-leave {
   opacity: 1;
 }
 .fade-enter,
@@ -128,10 +140,17 @@ a {
   opacity: 0;
 }
 
+.fade-out-leave-to{
+  opacity: 0;
+}
+.fade-out-leave-active{
+  transition: opacity 0.3s;
+}
+
 // right
 // .right-enter-active,
 // .right-leave-active {
-//   transform: translate(0px, 0px); 
+//   transform: translate(0px, 0px);
 //   transition: transform 0.4s;
 // }
 

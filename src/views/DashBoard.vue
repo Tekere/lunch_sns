@@ -48,4 +48,8 @@ export default {
 .bl_mainCont_body__bottom {
   margin-top: 30px;
 }
+.theme--light.v-btn.v-btn--has-bg {
+  //カレンダー今日の場所の色
+  // background: ;
+}
 </style>

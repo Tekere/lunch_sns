@@ -45,14 +45,14 @@
 <script>
 import SvgHome from "@/components/svg/SvgHome.vue";
 import SvgArchive from "@/components/svg/SvgArchive.vue";
-import SvgUser from "@/components/svg/SvgUser.vue";
+// import SvgUser from "@/components/svg/SvgUser.vue";
 import SvgCompass from "@/components/svg/SvgCompass.vue";
 export default {
   name: "LeftNav",
   components: {
     SvgHome,
     SvgArchive,
-    SvgUser,
+    // SvgUser,
     SvgCompass,
   },
 };
