@@ -26,13 +26,16 @@ export default {
 <style>
 .fullview {
   width: 100%;
-  height: 100%;  background: #fefefe;
+  height: 100%;
+  background: #fefefe;
   position: fixed;
   z-index: 99999;
   top: 0;
   left: 0;
 }
 .loading-spacer {
-  height: calc(50vh - 60px);  /* 50vhから本体サイズの半分を引いて中央へ ちょっと上めのほうがいいかも */
+  height: calc(
+    50vh - 60px
+  ); /* 50vhから本体サイズの半分を引いて中央へ ちょっと上めのほうがいいかも */
 }
 </style>

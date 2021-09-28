@@ -1,8 +1,8 @@
 module.exports = {
-	transpileDependencies: ['vuetify'],
-  
+  transpileDependencies: ["vuetify"],
+
   // ホットペッパーAPIのプロキシ
-	devServer: {
-		proxy: 'http://webservice.recruit.co.jp'
-	}
-}
+  devServer: {
+    proxy: "http://webservice.recruit.co.jp",
+  },
+};
