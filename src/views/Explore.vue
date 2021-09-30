@@ -11,6 +11,11 @@ import axios from "axios";
 export default {
   name: "Explore",
   components: { ShopContainer },
+  data() {
+    return {
+      result:[]
+    }
+  },
   methods: {
     getShopData() {
       axios
@@ -34,8 +39,8 @@ export default {
           shop.budget.code == "B003"
         );
       });
-
-      return result;
+      this.result = result;
+      return; 
     },
   },
   mounted() {
