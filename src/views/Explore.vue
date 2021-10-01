@@ -1,7 +1,7 @@
 <template>
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
-    <shop-container></shop-container>
+    <shop-container :shop-data="shopData"></shop-container>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   components: { ShopContainer },
   data() {
     return {
-      result:[]
+      shopData:[]
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
           shop.budget.code == "B003"
         );
       });
-      this.result = result;
+      this.shopData = result;
       return; 
     },
   },

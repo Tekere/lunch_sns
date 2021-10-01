@@ -5,7 +5,7 @@
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
-    <shop-card v-for="n of 5" :key="n"></shop-card>
+    <shop-card v-for="n of shopData" :key="n"></shop-card>
   </transition-group>
 </template>
 
@@ -20,6 +20,7 @@ export default {
   },
   props: {
     oneRow: Boolean,
+    shopData:Array,
   },
   mounted() {
     // 動的にClassを付与するので、mount後に初期化
