@@ -153,6 +153,10 @@ export default {
   }
 }
 .bl_header_usr {
+  position: absolute;
+  z-index: 10000;
+  right: 40px;
+  
   .bl_usr_info {
     padding-right: 1rem;
   }
