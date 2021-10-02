@@ -5,26 +5,27 @@
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
-    <shop-card v-for="n of shopData" :key="n"></shop-card>
+    <shop-card v-for="shop of shopData" :key="shop.id" :shop="shop"></shop-card>
+    
   </transition-group>
 </template>
 
 <script>
-import ShopCard from "@/components/ShopCard.vue";
-import Muuri from "muuri";
+import ShopCard from '@/components/ShopCard.vue';
+// import Muuri from "muuri";
 
 export default {
-  name: "ShopContainer",
+  name: 'ShopContainer',
   components: {
     ShopCard,
   },
   props: {
     oneRow: Boolean,
-    shopData:Array,
+    shopData: Array,
   },
   mounted() {
     // 動的にClassを付与するので、mount後に初期化
-    new Muuri(".grid");
+    // new Muuri(".grid");
   },
 };
 </script>
@@ -61,27 +62,28 @@ export default {
   position: relative;
   justify-content: start;
   overflow-x: scroll;
+  padding-top: 5px;
   .bl_shopCard_wrapper {
-    margin: 0 20px 20px 0;
+    margin: 0 30px 30px 0;
   }
 }
-.bl_shopCard_container.grid {
-  position: relative;
-  margin-right: -20px; //中のカードの右マージン相殺
-  .bl_shopCard_wrapper {
-    position: absolute;
-  }
-}
+// .bl_shopCard_container.grid {
+//   position: relative;
+//   margin-right: -20px; //中のカードの右マージン相殺
+//   .bl_shopCard_wrapper {
+//     position: absolute;
+//   }
+// }
 
 .ly_cont__mini .bl_shopCard_container.grid {
-  margin-right: 5px; //相殺した分を返す（中のカードの右マージン相殺）
+  //margin-right: 5px; //相殺した分を返す（中のカードの右マージン相殺）
 }
 
 .bl_shopCard_container.bl_shopCard_container__1row {
   overflow-x: scroll;
   flex-wrap: nowrap;
   justify-content: start;
-  padding-top: 5px;
+
   .bl_shopCard_wrapper {
     margin: 0 0 20px 20px;
   }

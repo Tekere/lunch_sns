@@ -2,17 +2,18 @@
   <div class="bl_shopCard_wrapper">
     <a @click.stop="showIsShowDetail" class="bl_shopCard btnripple new">
       <figure class="bl_shopCard_img">
-        <img src="@/assets/noimage.png" alt="" />
+        <!-- <img src="@/assets/noimage.png" alt="" /> -->
+        <img :src="shop.photo.pc.l" alt="" /> 
       </figure>
       <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">権八</p>
-        <p class="bl_shopCard_shopCategory">12:00</p>
+        <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
+        <p v-if="shop.time" class="bl_shopCard_shopCategory">12:00</p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
-            <p>100m</p>
+            <p>{{ sokutei(shop.lat,shop.lng) }}m</p>
           </div>
-          <div class="bl_shopCard_person bl_usr_info">
+          <div v-if="shop.person" class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
@@ -26,12 +27,24 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+import distance from '@turf/distance';
+import { point } from '@turf/helpers'
 export default {
-  name: "ShopCard",
-
+  name: 'ShopCard',
+  props: {
+    shop: Object,
+  },
   methods: {
-    ...mapActions(["showIsShowDetail"]),
+    ...mapActions(['showIsShowDetail']),
+    sokutei(toLat,toLng) {
+      const from = point([35.6553392, 139.6949893]);  //legit
+      const to = point([toLat, toLng]); //shopの経度 緯度
+
+      const options = { units: 'meters' };
+      const result = distance(from, to, options);
+      return Math.floor(result);
+    },
   },
 };
 </script>
@@ -46,9 +59,9 @@ export default {
   position: relative;
   background-color: #f4f4f4;
   border-radius: 12px;
-  transition: 0.3s;
+  transition: 0.4s;
 }
-.bl_shopCard_container.bl_shopCard_container__1row .bl_shopCard:hover {
+.bl_shopCard_container .bl_shopCard:hover {
   transform: translateY(-5px);
 }
 .bl_shopCard_wrapper {
@@ -59,6 +72,7 @@ export default {
     overflow: hidden;
     img {
       width: 100%;
+      height: 163px;
       border-radius: 12px;
       object-fit: cover;
     }
@@ -122,7 +136,7 @@ export default {
 
 .bl_shopCard.new {
   &::before {
-    content: "New!";
+    content: 'New!';
     display: block;
     top: 5px;
     transform: rotate(45deg);
@@ -141,7 +155,7 @@ export default {
 }
 
 .btnripple::after {
-  content: "";
+  content: '';
   /*絶対配置で波紋位置を決める*/
   position: absolute;
   width: 100%;

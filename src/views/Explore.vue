@@ -40,6 +40,7 @@ export default {
         );
       });
       this.shopData = result;
+      console.log(result)
       return; 
     },
   },
