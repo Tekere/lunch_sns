@@ -91,7 +91,7 @@ a {
 }
 .ly_cont {
   width: calc(100% - 72px);
-  margin-left: 72px;
+  margin-left: 85px;
   transition: width 0.5s;
 }
 .ly_mainCont {
@@ -103,7 +103,7 @@ a {
 .ly_cont.ly_cont__mini {
   width: calc(100% - 382px);
   .ly_mainCont {
-    padding: 20px 0 25px 20px;
+    padding: 20px 0 25px 25px;
   }
 }
 
