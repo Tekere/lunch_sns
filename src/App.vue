@@ -15,7 +15,7 @@
         </main>
       </div>
       <transition name="fade">
-        <detail></detail>
+        <detail v-if="isShowDetail"></detail>
       </transition>
     </div>
     <transition name="fade-out">
@@ -29,6 +29,8 @@ import Header from "@/components/Header.vue";
 import LeftNav from "@/components/LeftNav.vue";
 import Detail from "@/components/Detail.vue";
 import Loading from "@/components/Loading.vue";
+
+
 
 import { mapActions, mapGetters } from "vuex";
 export default {
@@ -91,7 +93,7 @@ a {
 }
 .ly_cont {
   width: calc(100% - 72px);
-  margin-left: 85px;
+  margin-left: 72px;
   transition: width 0.5s;
 }
 .ly_mainCont {
@@ -101,7 +103,7 @@ a {
   padding: 20px 25px;
 }
 .ly_cont.ly_cont__mini {
-  width: calc(100% - 382px);
+  width: calc(100% - 392px);
   .ly_mainCont {
     padding: 20px 0 25px 25px;
   }
