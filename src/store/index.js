@@ -6,13 +6,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isShowDetail: false,
-    detailData: {
-      text: "hello",
+    detailShopData: {
+      name: "none",
+      photo: {
+        pc: {
+          l: "none",
+        },
+      },
     },
   },
   getters: {
     isShowDetail: (state) => state.isShowDetail,
-    detailData: (state) => state.detailData,
+    detailShopData: (state) => state.detailShopData,
   },
   mutations: {
     toggleIsShowDetail: (state) => {
@@ -23,24 +28,25 @@ export default new Vuex.Store({
     },
     hiddenIsShowDetail: (state) => {
       state.isShowDetail = false;
-      console.log("clode");
     },
-    updateDetailData: (state, arg) => {
-      state.detailData.text = arg;
+    setDetailShopData: (state, shop) => {
+      state.detailShopData = shop;
     },
   },
   actions: {
     toggleIsShowDetail: ({ commit }) => {
       commit("toggleIsShowDetail");
     },
-    showIsShowDetail: ({ commit }) => {
+    showIsShowDetail: ({ commit },shop) => {
       commit("showIsShowDetail");
+      // this.setDetailShopData(shop);
+      commit("setDetailShopData", shop);
     },
     hiddenIsShowDetail: ({ commit }) => {
       commit("hiddenIsShowDetail");
     },
-    updateDetailData: ({ commit }, arg) => {
-      commit("updateDetailData", arg);
+    setDetailShopData: ({ commit }, shop) => {
+      commit("setDetailShopData", shop);
     },
   },
   modules: {},

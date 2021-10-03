@@ -1,17 +1,22 @@
 <template>
   <div class="bl_shopCard_wrapper">
-    <a @click.stop="showIsShowDetail" class="bl_shopCard btnripple new">
+    <a
+      @click.stop="showIsShowDetail(shop)"
+      class="bl_shopCard btnripple"
+      :class="{ new: shop.isNew }"
+    >
       <figure class="bl_shopCard_img">
         <!-- <img src="@/assets/noimage.png" alt="" /> -->
-        <img :src="shop.photo.pc.l" alt="" /> 
+        <img :src="shop.photo.pc.l" alt="" />
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
         <p v-if="shop.time" class="bl_shopCard_shopCategory">12:00</p>
+        <p class="bl_shopCard_shopCategory">{{ shop.genre.name }}</p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
-            <p>{{ sokutei(shop.lat,shop.lng) }}m</p>
+            <p>{{ sokutei(shop.lat, shop.lng) }}m</p>
           </div>
           <div v-if="shop.person" class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
@@ -19,7 +24,7 @@
           </div>
         </div>
       </div>
-      <span class="bl_shopCard_badge">
+      <span v-if="shop.isNew" class="bl_shopCard_badge">
         <img src="@/assets/heart.svg" alt="" />
       </span>
     </a>
@@ -28,8 +33,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import distance from '@turf/distance';
-import { point } from '@turf/helpers'
+import {sokutei} from '@/helper.js';
 export default {
   name: 'ShopCard',
   props: {
@@ -37,14 +41,7 @@ export default {
   },
   methods: {
     ...mapActions(['showIsShowDetail']),
-    sokutei(toLat,toLng) {
-      const from = point([35.6553392, 139.6949893]);  //legit
-      const to = point([toLat, toLng]); //shopの経度 緯度
-
-      const options = { units: 'meters' };
-      const result = distance(from, to, options);
-      return Math.floor(result);
-    },
+    sokutei:sokutei
   },
 };
 </script>
@@ -52,14 +49,15 @@ export default {
 <style lang="scss">
 .bl_shopCard {
   display: block;
-  width: 290px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   background-color: transparent; //router-linkの指定解除
   padding: 10px 10px 30px;
   position: relative;
-  background-color: #f4f4f4;
+  background-color: #f6f7fb;
   border-radius: 12px;
   transition: 0.4s;
+  box-shadow: 0px 4px 4px lightgray;
 }
 .bl_shopCard_container .bl_shopCard:hover {
   transform: translateY(-5px);
@@ -70,6 +68,7 @@ export default {
 
   .bl_shopCard_img {
     overflow: hidden;
+
     img {
       width: 100%;
       height: 163px;
@@ -84,6 +83,10 @@ export default {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.4;
+    margin-bottom: 0.3rem;
+  }
+  .bl_shopCard_shopCategory {
+    font-size: 0.8rem;
   }
   .bl_shopCard_subInfo {
     position: absolute;
@@ -138,11 +141,14 @@ export default {
   &::before {
     content: 'New!';
     display: block;
-    top: 5px;
+    top: 9px;
+    right: -29px;
     transform: rotate(45deg);
-    right: 0;
+    color: #fff;
+    background-color: #ff6647;
     position: absolute;
     z-index: 101;
+    padding: 0 30px;
   }
 }
 
@@ -155,7 +161,8 @@ export default {
 }
 
 .btnripple::after {
-  content: '';
+  // FIXME 開発時のみコメントアウト
+  // content: '';
   /*絶対配置で波紋位置を決める*/
   position: absolute;
   width: 100%;

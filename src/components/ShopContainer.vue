@@ -63,6 +63,7 @@ export default {
   justify-content: start;
   overflow-x: scroll;
   padding-top: 5px;
+  padding-left: 5px;
   .bl_shopCard_wrapper {
     margin: 0 30px 30px 0;
   }

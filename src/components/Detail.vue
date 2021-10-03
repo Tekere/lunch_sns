@@ -1,7 +1,7 @@
 <template>
   <!-- <div v-if="isShowDetail" class="ly_detail"> -->
   <div class="ly_detail">
-    <detail-shop-card in-detail="true"></detail-shop-card>
+    <detail-shop-card in-detail="true" :shop="detailShopData"></detail-shop-card>
   </div>
 </template>
 
@@ -14,19 +14,19 @@ export default {
     DetailShopCard,
   },
   computed: {
-    ...mapGetters(["isShowDetail", "detailData"]),
+    ...mapGetters(["isShowDetail", "detailShopData"]),
   },
 };
 </script>
 
 <style scoped lang="scss">
 .ly_detail {
-  width: 310px;
+  width: 320px;
   height: 100vh;
   z-index: 999;
   position: sticky;
   top: 0;
-  padding: 71px 10px 10px;
+  padding: 71px 20px 10px 10px;
   background-color: #f6f7fb;
 }
 .bl_detail {

@@ -80,6 +80,7 @@ html {
   box-sizing: border-box;
   letter-spacing: 0.04em;
   line-height: 1.5;
+  background-color: #f6f7fb;
 }
 a {
   cursor: pointer;
