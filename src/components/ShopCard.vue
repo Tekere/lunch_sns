@@ -11,8 +11,8 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <p v-if="shop.time" class="bl_shopCard_shopCategory">12:00</p>
-        <p class="bl_shopCard_shopCategory">{{ shop.genre.name }}</p>
+        <p v-if="shop.time" class="bl_shopCard_shopCategory bl_shopCard_infoTxt">12:00</p>
+        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">{{ shop.genre.name }}</p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
@@ -85,7 +85,7 @@ export default {
     line-height: 1.4;
     margin-bottom: 0.3rem;
   }
-  .bl_shopCard_shopCategory {
+  .bl_shopCard_infoTxt {
     font-size: 0.8rem;
   }
   .bl_shopCard_subInfo {
@@ -99,6 +99,8 @@ export default {
   .bl_shopCard_pin {
     display: flex;
     font-size: 0.76rem;
+    color: #999;
+    font-weight: bold;
     img {
       widows: 21px;
       height: 21px;
