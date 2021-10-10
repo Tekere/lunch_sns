@@ -36,9 +36,33 @@
               <p>{{ sokutei(shop.lat, shop.lng) }}m</p>
             </div>
           </div>
-          <div class="bl_shopCard_shopMap"></div>
-                </div>
+          <div class="bl_shopCard_shopMap">
+            <iframe
+              :src="
+                'https://maps.google.co.jp/maps?output=embed&q=' +
+                shop.lat +
+                ',' +
+                shop.lng +
+                '&z=15'
+              "
+              width="269"
+              height="280"
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+            <!-- NOTE ルート表示 一旦保留 -->
+            <!-- <iframe
+              :src="
+                'https://maps.google.co.jp/maps?output=embed&saddr=株式会社レジット&daddr='+shop.address+'&z=15'
+              "
+              width="269"
+              height="280"
+              frameborder="0"
+              scrolling="no"
+            ></iframe> -->
+          </div>
         </div>
+      </div>
       <span v-if="shop.isNew" class="bl_shopCard_badge">
         <img src="@/assets/heart.svg" alt="" />
       </span>
@@ -47,8 +71,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { sokutei } from '@/helper.js';
+import { mapActions } from 'vuex'
+import { sokutei } from '@/helper.js'
+
 export default {
   name: 'DetailShopCard',
   props: {
@@ -58,7 +83,7 @@ export default {
     ...mapActions(['showIsShowDetail']),
     sokutei: sokutei,
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -83,8 +108,15 @@ export default {
   font-weight: bold;
   color: #999;
 }
-.bl_shopCard_shopAddress{
-  width:62% ;
+.bl_shopCard_shopAddress {
+  width: 62%;
+}
+.bl_shopCard_shopMap {
+  overflow: hidden;
+  border-radius: 8px;
+  .place-card.place-card-medium {
+    display: none !important;
+  }
 }
 
 .mb10 {

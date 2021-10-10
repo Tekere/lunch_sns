@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import { VueLoading } from "vue-loading-template";
+import { VueLoading } from 'vue-loading-template'
 
 export default {
-  name: "loading",
+  name: 'loading',
   components: {
     VueLoading,
   },
-};
+}
 </script>
 
 <style>

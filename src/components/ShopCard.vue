@@ -11,8 +11,15 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <p v-if="shop.time" class="bl_shopCard_shopCategory bl_shopCard_infoTxt">12:00</p>
-        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">{{ shop.genre.name }}</p>
+        <p
+          v-if="shop.time"
+          class="bl_shopCard_shopCategory bl_shopCard_infoTxt"
+        >
+          12:00
+        </p>
+        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">
+          {{ shop.genre.name }}
+        </p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
@@ -32,8 +39,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import {sokutei} from '@/helper.js';
+import { mapActions } from 'vuex'
+import { sokutei } from '@/helper.js'
 export default {
   name: 'ShopCard',
   props: {
@@ -41,9 +48,9 @@ export default {
   },
   methods: {
     ...mapActions(['showIsShowDetail']),
-    sokutei:sokutei
+    sokutei: sokutei,
   },
-};
+}
 </script>
 
 <style lang="scss">

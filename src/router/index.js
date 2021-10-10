@@ -1,36 +1,36 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import DashBoard from "../views/DashBoard.vue";
-import Archive from "../views/Archive.vue";
-import Profile from "../views/Profile.vue";
-import Explore from "../views/Explore.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import DashBoard from '../views/DashBoard.vue'
+import Archive from '../views/Archive.vue'
+import Profile from '../views/Profile.vue'
+import Explore from '../views/Explore.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/dashboard",
-    name: "DashBoard",
+    path: '/dashboard',
+    name: 'DashBoard',
     component: DashBoard,
   },
   {
-    path: "/archive",
-    name: "Archive",
+    path: '/archive',
+    name: 'Archive',
     component: Archive,
   },
   {
-    path: "/user",
-    name: "Profile",
+    path: '/user',
+    name: 'Profile',
     component: Profile,
   },
   {
-    path: "/explore",
-    name: "Explore",
+    path: '/explore',
+    name: 'Explore',
     component: Explore,
   },
   {
-    path: "*",
-    redirect: "/dashboard",
+    path: '*',
+    redirect: '/dashboard',
   },
   // {
   // path: "/about",
@@ -41,12 +41,12 @@ const routes = [
   // component: () =>
   // import(/* webpackChunkName: "about" */ "../views/About.vue"),
   // },
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
-});
+})
 
-export default router;
+export default router

@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import ShopContainer from "@/components/ShopContainer.vue";
+import ShopContainer from '@/components/ShopContainer.vue'
 
 export default {
-  name: "Archive",
+  name: 'Archive',
   components: {
     ShopContainer,
   },
-};
+}
 </script>

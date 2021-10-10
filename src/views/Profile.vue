@@ -6,9 +6,9 @@
 // import Detail from "@/components/Detail.vue";
 
 export default {
-  name: "Profile",
+  name: 'Profile',
   components: {
     // Detail,
   },
-};
+}
 </script>

@@ -6,12 +6,11 @@
     :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
     <shop-card v-for="shop of shopData" :key="shop.id" :shop="shop"></shop-card>
-    
   </transition-group>
 </template>
 
 <script>
-import ShopCard from '@/components/ShopCard.vue';
+import ShopCard from '@/components/ShopCard.vue'
 // import Muuri from "muuri";
 
 export default {
@@ -27,7 +26,7 @@ export default {
     // 動的にClassを付与するので、mount後に初期化
     // new Muuri(".grid");
   },
-};
+}
 </script>
 
 <style lang="scss">

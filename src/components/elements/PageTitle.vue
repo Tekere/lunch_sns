@@ -4,12 +4,12 @@
 
 <script>
 export default {
-  name: "PageTitle",
+  name: 'PageTitle',
 
   props: {
     title: String,
   },
-};
+}
 </script>
 
 <style></style>

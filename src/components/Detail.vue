@@ -1,22 +1,25 @@
 <template>
   <!-- <div v-if="isShowDetail" class="ly_detail"> -->
   <div class="ly_detail">
-    <detail-shop-card in-detail="true" :shop="detailShopData"></detail-shop-card>
+    <detail-shop-card
+      in-detail="true"
+      :shop="detailShopData"
+    ></detail-shop-card>
   </div>
 </template>
 
 <script>
-import DetailShopCard from "@/components/DetailShopCard.vue";
-import { mapGetters } from "vuex";
+import DetailShopCard from '@/components/DetailShopCard.vue'
+import { mapGetters } from 'vuex'
 export default {
-  name: "detail",
+  name: 'detail',
   components: {
     DetailShopCard,
   },
   computed: {
-    ...mapGetters(["isShowDetail", "detailShopData"]),
+    ...mapGetters(['isShowDetail', 'detailShopData']),
   },
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -25,8 +28,9 @@ export default {
   height: 100vh;
   z-index: 999;
   position: sticky;
-  top: 0;
-  padding: 71px 20px 10px 10px;
+  overflow-y: auto;
+  top: 70px;
+  padding: 0 20px 10px 10px;
   background-color: #f6f7fb;
 }
 .bl_detail {

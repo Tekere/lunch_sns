@@ -43,8 +43,8 @@
 
 <script>
 export default {
-  name: "Header",
-};
+  name: 'Header',
+}
 </script>
 
 <style lang="scss">
@@ -156,7 +156,7 @@ export default {
   position: absolute;
   z-index: 10000;
   right: 40px;
-  
+
   .bl_usr_info {
     padding-right: 1rem;
   }

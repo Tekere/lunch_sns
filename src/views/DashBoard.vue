@@ -11,25 +11,25 @@
 
 <script>
 // import Detail from "@/components/Detail.vue";
-import ShopContainer from "@/components/ShopContainer.vue";
-import Calendar from "@/components/Calendar.vue";
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import ShopContainer from '@/components/ShopContainer.vue'
+import Calendar from '@/components/Calendar.vue'
+import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
-  name: "DashBoard",
+  name: 'DashBoard',
   components: {
     // Detail,
     ShopContainer,
     Calendar,
   },
   computed: {
-    ...mapGetters(["isShowDetail"]),
+    ...mapGetters(['isShowDetail']),
   },
   methods: {
-    ...mapActions(["toggleIsShowDetail"]),
+    ...mapActions(['toggleIsShowDetail']),
   },
-};
+}
 </script>
 <style lang="scss">
 .bl_mainCont_body {
