@@ -7,11 +7,20 @@
 
 <script>
 import ShopContainer from '@/components/ShopContainer.vue'
-
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Archive',
   components: {
     ShopContainer,
+  },
+  computed:{
+    ...mapGetters(['isLoading'])
+  },
+  methods: {
+    ...mapActions(['stopIsLoading'])
+  },
+  mounted() {
+    this.stopIsLoading()
   },
 }
 </script>

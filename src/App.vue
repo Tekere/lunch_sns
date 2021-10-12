@@ -39,26 +39,32 @@ export default {
     Loading,
   },
   data() {
-    return {
-      isLoading: true,
-    }
+    return {}
   },
+  
   computed: {
-    ...mapGetters(['isShowDetail']),
+    ...mapGetters([
+      'isLoading',
+      'isShowDetail']),
   },
   methods: {
-    ...mapActions(['hiddenIsShowDetail']),
+    ...mapActions([
+      'stopIsLoading',
+      'startIsLoading',
+      'hiddenIsShowDetail']),
   },
+  // vue-routerにページ遷移時に発生するイベント
   watch: {
     $route() {
       this.hiddenIsShowDetail()
+      this.startIsLoading()
     },
   },
-  mounted() {
-    setTimeout(() => {
-      this.isLoading = false
-    }, 3000)
-  },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.stopIsLoading()
+  //   }, 1000)
+  // },
 }
 </script>
 

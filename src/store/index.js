@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isLoading: true,
     isShowDetail: false,
     detailShopData: {
       name: 'none',
@@ -16,10 +17,19 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    isLoading: (state) => state.isLoading,
     isShowDetail: (state) => state.isShowDetail,
     detailShopData: (state) => state.detailShopData,
   },
   mutations: {
+    // isLoading
+    stopIsLoading: (state) => {
+      state.isLoading = false
+    },
+    startIsLoading: (state) => {
+      state.isLoading = true
+    },
+    // isShowDetail
     toggleIsShowDetail: (state) => {
       state.isShowDetail = !state.isShowDetail
     },
@@ -34,6 +44,14 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // isLoading
+    stopIsLoading: ({commit}) => {
+      commit('stopIsLoading')
+    },
+    startIsLoading: ({commit}) => {
+      commit('startIsLoading')
+    },
+    // isShowDetail
     toggleIsShowDetail: ({ commit }) => {
       commit('toggleIsShowDetail')
     },

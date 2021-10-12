@@ -9,6 +9,8 @@
 <script>
 import ShopContainer from '@/components/ShopContainer.vue'
 import axios from 'axios'
+
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Explore',
   components: { ShopContainer },
@@ -18,7 +20,11 @@ export default {
       maxCount: 20,
     }
   },
+  computed: {
+    ...mapGetters(['isLoading']),
+  },
   methods: {
+    ...mapActions(['stopIsLoading']),
     getShopData() {
       const that = this
       axios
@@ -27,6 +33,9 @@ export default {
         )
         .then((res) => {
           this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
+        })
+        .then(() => {
+          this.stopIsLoading()
         })
         .catch((error) => {
           throw new Error(error)

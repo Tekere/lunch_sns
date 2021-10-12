@@ -13,8 +13,7 @@
 // import Detail from "@/components/Detail.vue";
 import ShopContainer from '@/components/ShopContainer.vue'
 import Calendar from '@/components/Calendar.vue'
-import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'DashBoard',
@@ -24,10 +23,13 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isShowDetail']),
+    ...mapGetters(['isLoading','isShowDetail']),
   },
   methods: {
-    ...mapActions(['toggleIsShowDetail']),
+    ...mapActions(['stopIsLoading','toggleIsShowDetail']),
+  },
+  mounted() {
+    this.stopIsLoading()
   },
 }
 </script>
