@@ -59,8 +59,12 @@ export default {
 
     // ページ送り
     nextPage() {
+      if(this.maxCount <100){
       this.maxCount += 20
       this.getShopData()
+      }else{
+      // 100件目以降のページへ送る
+      }
     },
   },
   mounted() {
