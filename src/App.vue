@@ -18,7 +18,7 @@
         <detail v-if="isShowDetail"></detail>
       </transition>
     </div>
-    <transition name="fade-out">
+    <transition name="fade-out" mode="in-out">
       <Loading v-if="isLoading"></Loading>
     </transition>
   </div>
@@ -151,7 +151,7 @@ a {
   opacity: 0;
 }
 .fade-out-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.7s;
 }
 
 // right

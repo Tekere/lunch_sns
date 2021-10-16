@@ -2,7 +2,9 @@
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
     <shop-container :shop-data="shopData"></shop-container>
-    <button @click="nextPage">more</button>
+    <button v-if="loadMore" @click="nextPage" class="el_moreBtn">
+      {{ loadMore }}
+    </button>
   </div>
 </template>
 
@@ -18,10 +20,22 @@ export default {
     return {
       shopData: [],
       maxCount: 20,
+      huuh: false,
     }
   },
   computed: {
     ...mapGetters(['isLoading']),
+    // MOREボタンの中身を状態によって書き換える
+    loadMore() {
+      if (this.huuh == true) {
+        return 'Loading'
+      }
+      if (this.maxCount < 100) {
+        return 'MORE'
+      } else {
+        return false
+      }
+    },
   },
   methods: {
     ...mapActions(['stopIsLoading']),
@@ -59,11 +73,25 @@ export default {
 
     // ページ送り
     nextPage() {
-      if(this.maxCount <100){
-      this.maxCount += 20
-      this.getShopData()
-      }else{
-      // 100件目以降のページへ送る
+      if (this.maxCount < 100) {
+        // まず maxCount とMOREボタンをLoading状態にする
+        this.maxCount += 20
+        this.huuh = true
+        
+        // maxCount とMOREボタンをLoading状態にできたら、
+        // データの取得とMOREボタンの書き換えを非同期で順番に行う。（描画前に「MORE」に戻ってしまうのを防ぐ）
+        new Promise((resolve) => {
+          setTimeout(() => {
+            this.getShopData()
+            resolve()
+          }, 400)
+        }).then(() => {
+          setTimeout(() => {
+            this.huuh = false
+          }, 10)
+        })
+      } else {
+        // 100件目以降のページへ送る処理
       }
     },
   },
@@ -72,3 +100,19 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+.el_moreBtn {
+  width: 300px;
+  text-align: center;
+  display: block;
+  color: #fff;
+  background-color: #000;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.bl_explore {
+  .el_moreBtn {
+    margin: 0 auto 30px;
+  }
+}
+</style>

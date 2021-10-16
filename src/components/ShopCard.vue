@@ -1,41 +1,42 @@
 <template>
-  <div class="bl_shopCard_wrapper">
-    <a
-      @click.stop="showIsShowDetail(shop)"
-      class="bl_shopCard btnripple"
-      :class="{ new: shop.isNew }"
-    >
-      <figure class="bl_shopCard_img">
-        <!-- <img src="@/assets/noimage.png" alt="" /> -->
-        <img :src="shop.photo.pc.l" alt="" />
-      </figure>
-      <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <p
-          v-if="shop.time"
-          class="bl_shopCard_shopCategory bl_shopCard_infoTxt"
-        >
-          12:00
-        </p>
-        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">
-          {{ shop.genre.name }}
-        </p>
-        <div class="bl_shopCard_subInfo">
-          <div class="bl_shopCard_pin">
-            <img src="@/assets/pin.svg" alt="" />
-            <p>{{ sokutei(shop.lat, shop.lng) }}m</p>
-          </div>
-          <div v-if="shop.person" class="bl_shopCard_person bl_usr_info">
-            <p class="bl_usr_name">たびちゃん</p>
-            <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
+    <div class="bl_shopCard_wrapper">
+      <a
+        @click.stop="showIsShowDetail(shop)"
+        class="bl_shopCard btnripple"
+        :class="{ new: shop.isNew }"
+      >
+        <figure class="bl_shopCard_img">
+          <!-- <img src="@/assets/noimage.png" alt="" /> -->
+          <img :src="shop.photo.pc.l" alt="" />
+        </figure>
+        <div class="bl_shopCard_body">
+          <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
+          <p
+            v-if="shop.time"
+            class="bl_shopCard_shopCategory bl_shopCard_infoTxt"
+          >
+            12:00
+          </p>
+          <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">
+            {{ shop.genre.name }}
+          </p>
+          <div class="bl_shopCard_subInfo">
+            <div class="bl_shopCard_pin">
+              <img src="@/assets/pin.svg" alt="" />
+              <p>{{ sokutei(shop.lat, shop.lng) }}m</p>
+            </div>
+            <div v-if="shop.person" class="bl_shopCard_person bl_usr_info">
+              <p class="bl_usr_name">たびちゃん</p>
+              <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
+            </div>
           </div>
         </div>
-      </div>
-      <span v-if="shop.isNew" class="bl_shopCard_badge">
-        <img src="@/assets/heart.svg" alt="" />
-      </span>
-    </a>
-  </div>
+        <span v-if="shop.isNew" class="bl_shopCard_badge">
+          <img src="@/assets/heart.svg" alt="" />
+        </span>
+      </a>
+    </div>
+
 </template>
 
 <script>
@@ -70,8 +71,11 @@ export default {
   transform: translateY(-5px);
 }
 .bl_shopCard_wrapper {
+  display: inline-block;
   flex-shrink: 0;
   margin-right: 20px;
+  transition: all 1s;
+  
 
   .bl_shopCard_img {
     overflow: hidden;
@@ -193,4 +197,7 @@ export default {
   transition: 0s;
   opacity: 0.3;
 }
+
+
+
 </style>

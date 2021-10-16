@@ -88,7 +88,13 @@ export default {
     margin: 0 0 20px 20px;
   }
 }
-.cell-move {
-  transition: transform 1s;
+
+.cell-enter-active{
+  transition: opacity 0.8s ease-in;
 }
+.cell-enter
+ {
+  opacity: 0;
+}
+
 </style>
