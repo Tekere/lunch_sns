@@ -88,7 +88,7 @@ export default {
         }).then(() => {
           setTimeout(() => {
             this.huuh = false
-          }, 10)
+          }, 100)
         })
       } else {
         // 100件目以降のページへ送る処理
