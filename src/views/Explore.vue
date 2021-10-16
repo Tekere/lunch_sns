@@ -2,7 +2,7 @@
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
     <shop-container :shop-data="shopData"></shop-container>
-    <button v-if="loadMore" @click="nextPage" class="el_moreBtn">
+    <button v-if="loadMore" @click="nextPage" class="el_moreBtn" :class="{'el_moreBtn__loading':loadMore=='Loading'}">
       {{ loadMore }}
     </button>
   </div>
@@ -108,7 +108,11 @@ export default {
   color: #fff;
   background-color: #000;
   font-weight: bold;
-  padding: 10px 0;
+  padding: 16px 0;
+  letter-spacing: 0.04em;
+}
+.el_moreBtn__loading{
+  background-color: #ff6647;
 }
 .bl_explore {
   .el_moreBtn {
