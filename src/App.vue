@@ -51,7 +51,9 @@ export default {
     ...mapActions([
       'stopIsLoading',
       'startIsLoading',
-      'hiddenIsShowDetail']),
+      'hiddenIsShowDetail',
+      'login'
+      ]),
   },
   // vue-routerにページ遷移時に発生するイベント
   watch: {
@@ -65,6 +67,9 @@ export default {
   //     this.stopIsLoading()
   //   }, 1000)
   // },
+  mounted() {
+    this.login()
+  },
 }
 </script>
 
