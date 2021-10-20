@@ -2,7 +2,12 @@
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
     <shop-container :shop-data="shopData"></shop-container>
-    <button v-if="loadMore" @click="nextPage" class="el_moreBtn" :class="{'el_moreBtn__loading':loadMore=='Loading'}">
+    <button
+      v-if="loadMore"
+      @click="nextPage"
+      class="el_moreBtn"
+      :class="{ el_moreBtn__loading: loadMore == 'Loading' }"
+    >
       {{ loadMore }}
     </button>
   </div>
@@ -77,7 +82,7 @@ export default {
         // まず maxCount とMOREボタンをLoading状態にする
         this.maxCount += 20
         this.huuh = true
-        
+
         // maxCount とMOREボタンをLoading状態にできたら、
         // データの取得とMOREボタンの書き換えを非同期で順番に行う。（描画前に「MORE」に戻ってしまうのを防ぐ）
         new Promise((resolve) => {
@@ -111,7 +116,7 @@ export default {
   padding: 16px 0;
   letter-spacing: 0.04em;
 }
-.el_moreBtn__loading{
+.el_moreBtn__loading {
   background-color: #ff6647;
 }
 .bl_explore {

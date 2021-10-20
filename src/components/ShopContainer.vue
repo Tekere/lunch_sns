@@ -89,12 +89,10 @@ export default {
   }
 }
 
-.cell-enter-active{
+.cell-enter-active {
   transition: opacity 0.8s ease-in;
 }
-.cell-enter
- {
+.cell-enter {
   opacity: 0;
 }
-
 </style>

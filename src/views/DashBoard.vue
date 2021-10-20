@@ -23,10 +23,10 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isLoading','isShowDetail']),
+    ...mapGetters(['isLoading', 'isShowDetail']),
   },
   methods: {
-    ...mapActions(['stopIsLoading','toggleIsShowDetail']),
+    ...mapActions(['stopIsLoading', 'toggleIsShowDetail']),
   },
   mounted() {
     this.stopIsLoading()

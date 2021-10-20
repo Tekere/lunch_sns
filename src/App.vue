@@ -41,19 +41,17 @@ export default {
   data() {
     return {}
   },
-  
+
   computed: {
-    ...mapGetters([
-      'isLoading',
-      'isShowDetail']),
+    ...mapGetters(['isLoading', 'isShowDetail']),
   },
   methods: {
     ...mapActions([
       'stopIsLoading',
       'startIsLoading',
       'hiddenIsShowDetail',
-      'login'
-      ]),
+      'login',
+    ]),
   },
   // vue-routerにページ遷移時に発生するイベント
   watch: {
@@ -68,7 +66,7 @@ export default {
   //   }, 1000)
   // },
   mounted() {
-    this.login()
+    // this.login()
   },
 }
 </script>

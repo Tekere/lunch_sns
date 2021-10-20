@@ -5,7 +5,6 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import firebase from 'firebase'
 
-
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
   authDomain: 'lunch-sns.firebaseapp.com',
@@ -18,7 +17,6 @@ const firebaseConfig = {
 
 // Firebase 初期化
 firebase.initializeApp(firebaseConfig)
-
 
 Vue.config.productionTip = false
 

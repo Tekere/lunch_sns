@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import firebase from 'firebase'
 import 'firebase/auth'
 
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -48,10 +47,10 @@ export default new Vuex.Store({
   },
   actions: {
     // isLoading
-    stopIsLoading: ({commit}) => {
+    stopIsLoading: ({ commit }) => {
       commit('stopIsLoading')
     },
-    startIsLoading: ({commit}) => {
+    startIsLoading: ({ commit }) => {
       commit('startIsLoading')
     },
     // isShowDetail
@@ -69,7 +68,7 @@ export default new Vuex.Store({
     setDetailShopData: ({ commit }, shop) => {
       commit('setDetailShopData', shop)
     },
-    
+
     login() {
       const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(googleAuthProvider)

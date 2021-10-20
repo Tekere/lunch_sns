@@ -13,11 +13,11 @@ export default {
   components: {
     ShopContainer,
   },
-  computed:{
-    ...mapGetters(['isLoading'])
+  computed: {
+    ...mapGetters(['isLoading']),
   },
   methods: {
-    ...mapActions(['stopIsLoading'])
+    ...mapActions(['stopIsLoading']),
   },
   mounted() {
     this.stopIsLoading()
