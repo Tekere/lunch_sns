@@ -4,7 +4,7 @@
     <shop-container :shop-data="shopData"></shop-container>
     <button
       v-if="loadMore"
-      @click="nextPage"
+      @click.stop="moreLoad"
       class="el_moreBtn"
       :class="{ el_moreBtn__loading: loadMore == 'Loading' }"
     >
@@ -77,7 +77,7 @@ export default {
     },
 
     // ページ送り
-    nextPage() {
+    moreLoad() {
       if (this.maxCount < 100) {
         // まず maxCount とMOREボタンをLoading状態にする
         this.maxCount += 20

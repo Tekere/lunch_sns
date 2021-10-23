@@ -10,13 +10,13 @@
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
-          ジャンル:{{ shop.genre.name }}
+          <span>ジャンル:</span><span>{{ shop.genre.name }}</span>
         </p>
         <p class="bl_shopCard_shopOpen bl_shopCard_infoTxt mb10">
-          営業時間:{{ shop.open }}
+          <span>営業時間:</span><span>{{ shop.open }}</span>
         </p>
         <p class="bl_shopCard_shopClose bl_shopCard_infoTxt">
-          定休日:{{ shop.close }}
+          <span>定休日:</span><span>{{ shop.close }}</span>
         </p>
 
         <!--<div class="bl_shopCard_subInfo">
@@ -121,5 +121,22 @@ export default {
 
 .mb10 {
   margin-bottom: 10px;
+}
+</style>
+
+<style scoped lang="scss">
+.bl_shopCard_infoTxt{
+	display: flex;
+	span{
+		display: block;
+	}
+	span:first-child{
+		display: block;
+		white-space: nowrap;
+		width: 25%;
+	}
+	span:last-child{
+		width:75%
+	}
 }
 </style>
