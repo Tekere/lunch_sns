@@ -50,7 +50,7 @@ export default {
       'stopIsLoading',
       'startIsLoading',
       'hiddenIsShowDetail',
-      'login',
+			'checkIsLogin'
     ]),
   },
   // vue-routerにページ遷移時に発生するイベント
@@ -65,9 +65,9 @@ export default {
   //     this.stopIsLoading()
   //   }, 1000)
   // },
-  mounted() {
-    // this.login()
-  },
+  created(){
+  this.checkIsLogin()
+}
 }
 </script>
 

@@ -12,9 +12,9 @@
       </div>
       <div class="bl_header_usr bl_usr">
         <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
-          <p class="bl_usr_name">たびちゃん</p>
+          <p class="bl_usr_name">{{user.displayName}}</p>
 
-          <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
+          <img :src="user.photoURL" alt="" class="bl_usr_img" />
         </router-link>
         <div class="bl_usr_action">
           <a href="" class="bl_usr_logout">
@@ -42,8 +42,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
+	computed:{
+		...mapGetters(['user'])
+	},
+
 }
 </script>
 
@@ -139,6 +144,11 @@ export default {
 }
 .bl_usr_name {
   margin-right: 0.2em;
+}
+.bl_usr_img{
+	width: 41px;
+	height: 41px;
+	border-radius: 50%;
 }
 .bl_usr_action {
   display: flex;

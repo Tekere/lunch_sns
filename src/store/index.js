@@ -17,11 +17,23 @@ export default new Vuex.Store({
         },
       },
     },
+    user: null,
   },
   getters: {
     isLoading: (state) => state.isLoading,
     isShowDetail: (state) => state.isShowDetail,
     detailShopData: (state) => state.detailShopData,
+    user: (state) => {
+      const user = firebase.auth().currentUser
+      if (state.user == user) {
+        return user
+      } else {
+        console.log('tigau')
+        this.deleteLoginUser()
+        this.logout()
+				return
+      }
+    },
   },
   mutations: {
     // isLoading
@@ -43,6 +55,16 @@ export default new Vuex.Store({
     },
     setDetailShopData: (state, shop) => {
       state.detailShopData = shop
+    },
+
+    /*
+     * auth
+     */
+    setLoginUser(state, user) {
+      state.user = user
+    },
+    deleteLoginUser(state) {
+      state.login_user = null
     },
   },
   actions: {
@@ -69,9 +91,36 @@ export default new Vuex.Store({
       commit('setDetailShopData', shop)
     },
 
-    login() {
-      const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithRedirect(googleAuthProvider)
+    /*
+     * auth
+     */
+    // login() {
+    //   const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+    //   firebase.auth().signInWithRedirect(googleAuthProvider)
+    // },
+    // setLoginUser({ commit }, user) {
+    // 	commit('setLoginUser', user)
+    // 	console.log('setloginuser')
+    // },
+    checkIsLogin({commit}) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // setLoginUser(user)
+          commit('setLoginUser', user)
+          console.log('setloginuser')
+        } else {
+          // login()
+          const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+          firebase.auth().signInWithRedirect(googleAuthProvider)
+        }
+      })
+    },
+    deleteLoginUser({ commit }) {
+      commit('deleteLoguinUser')
+    },
+
+    logout() {
+      firebase.auth().signOut()
     },
   },
   modules: {},
