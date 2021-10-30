@@ -6,12 +6,12 @@ import 'firebase/auth'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	state: {
-		// ローディング画面の表示非表示
-		isLoading: true,
-		// Detailの表示非表示
-		isShowDetail: false,
-		// Detailに渡されるデータ
+  state: {
+    // ローディング画面の表示非表示
+    isLoading: true,
+    // Detailの表示非表示
+    isShowDetail: false,
+    // Detailに渡されるデータ
     detailShopData: {
       name: 'none',
       photo: {
@@ -19,28 +19,28 @@ export default new Vuex.Store({
           l: 'none',
         },
       },
-		},
-		// ログインユーザー
+    },
+    // ログインユーザー
     user: null,
   },
   getters: {
     isLoading: (state) => state.isLoading,
     isShowDetail: (state) => state.isShowDetail,
-		detailShopData: (state) => state.detailShopData,
-		user: (state) => {
-			// firebaseの現在ログインしているユーザーを取得
-			const user = firebase.auth().currentUser
-			// stateのユーザーと同一か念の為確認してから処理を行う
+    detailShopData: (state) => state.detailShopData,
+    user: (state) => {
+      // firebaseの現在ログインしているユーザーを取得
+      const user = firebase.auth().currentUser
+      // stateのユーザーと同一か念の為確認してから処理を行う
       if (state.user == user) {
         return user
-			} else {
-				// 違ったらログアウトさせる
+      } else {
+        // 違ったらログアウトさせる
         this.deleteLoginUser()
         this.logout()
         return
       }
-		},
-		// NOTE userの情報は、必要なプロパティだけ返すGettersよりそのまま返すのがよさそうなのでコメントアウト。
+    },
+    // NOTE userの情報は、必要なプロパティだけ返すGettersよりそのまま返すのがよさそうなのでコメントアウト。
     // userName: (state) => (state.user ? state.user.displayName : null),
     // userImg: (state) => (state.user ? state.user.photoURL : null),
     // userUid: (state) => (state.user ? state.user.uid : null),
@@ -81,26 +81,26 @@ export default new Vuex.Store({
     // isLoading ローディング画面の表示停止
     stopIsLoading: ({ commit }) => {
       commit('stopIsLoading')
-		},
-		// isLoading ローディング画面表示開始
+    },
+    // isLoading ローディング画面表示開始
     startIsLoading: ({ commit }) => {
       commit('startIsLoading')
     },
     // isShowDetail Detailの表示切り替え
     toggleIsShowDetail: ({ commit }) => {
       commit('toggleIsShowDetail')
-		},
-		//  isShowDetail Detailの表示
+    },
+    //  isShowDetail Detailの表示
     showIsShowDetail: ({ commit }, shop) => {
-			commit('showIsShowDetail')
-			// Detailに必要なデータもセット
+      commit('showIsShowDetail')
+      // Detailに必要なデータもセット
       commit('setDetailShopData', shop)
-		},
-		// isShowDetail Detailの非表示
+    },
+    // isShowDetail Detailの非表示
     hiddenIsShowDetail: ({ commit }) => {
       commit('hiddenIsShowDetail')
-		},
-		// detailData Detailにデータのセット
+    },
+    // detailData Detailにデータのセット
     setDetailShopData: ({ commit }, shop) => {
       commit('setDetailShopData', shop)
     },
@@ -108,35 +108,35 @@ export default new Vuex.Store({
     /*
      * auth
      */
-		// Firebaseでログイン（Google）
+    // Firebaseでログイン（Google）
     login() {
       const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(googleAuthProvider)
-		},
-		// stateにuserを登録
+    },
+    // stateにuserを登録
     setLoginUser({ commit }, user) {
-    	commit('setLoginUser', user)
-    	console.log('setloginuser')
-		},
-		// 未ログインがどうかをチェックして適切な処理を行う
-		checkIsLogin() {
-			const that = this
+      commit('setLoginUser', user)
+      console.log('setloginuser')
+    },
+    // 未ログインがどうかをチェックして適切な処理を行う
+    checkIsLogin() {
+      const that = this
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           that.setLoginUser(user)
-					console.log(user)
+          console.log(user)
         } else {
-					// that.login()
-					that.dispatch('login')
-					console.log('erroe')
+          // that.login()
+          that.dispatch('login')
+          console.log('erroe')
         }
       })
-		},
-		// stateよりuserをリセット
+    },
+    // stateよりuserをリセット
     deleteLoginUser({ commit }) {
       commit('deleteLoguinUser')
     },
-		// Firebaseのログアウト
+    // Firebaseのログアウト
     logout() {
       firebase.auth().signOut()
     },
@@ -144,9 +144,7 @@ export default new Vuex.Store({
     /*
      * Shopデータ操作
      */
-		addLunch() {
-			
-		}
+    addLunch() {},
   },
   modules: {},
 })

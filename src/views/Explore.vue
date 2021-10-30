@@ -50,9 +50,9 @@ export default {
         .get(
           `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=${that.maxCount}&format=json`
         )
-				// .then(res =>{
-				// 	console.log(res.data)
-				// })
+        // .then(res =>{
+        // 	console.log(res.data)
+        // })
         .then((res) => {
           this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
         })

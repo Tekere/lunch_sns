@@ -125,18 +125,18 @@ export default {
 </style>
 
 <style scoped lang="scss">
-.bl_shopCard_infoTxt{
-	display: flex;
-	span{
-		display: block;
-	}
-	span:first-child{
-		display: block;
-		white-space: nowrap;
-		width: 25%;
-	}
-	span:last-child{
-		width:75%
-	}
+.bl_shopCard_infoTxt {
+  display: flex;
+  span {
+    display: block;
+  }
+  span:first-child {
+    display: block;
+    white-space: nowrap;
+    width: 25%;
+  }
+  span:last-child {
+    width: 75%;
+  }
 }
 </style>

@@ -12,7 +12,7 @@
       </div>
       <div class="bl_header_usr bl_usr">
         <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
-          <p class="bl_usr_name">{{user.displayName}}</p>
+          <p class="bl_usr_name">{{ user.displayName }}</p>
 
           <img :src="user.photoURL" alt="" class="bl_usr_img" />
         </router-link>
@@ -45,10 +45,9 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
-	computed:{
-		...mapGetters(['user'])
-	},
-
+  computed: {
+    ...mapGetters(['user']),
+  },
 }
 </script>
 
@@ -145,10 +144,10 @@ export default {
 .bl_usr_name {
   margin-right: 0.2em;
 }
-.bl_usr_img{
-	width: 41px;
-	height: 41px;
-	border-radius: 50%;
+.bl_usr_img {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
 }
 .bl_usr_action {
   display: flex;
