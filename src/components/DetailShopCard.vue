@@ -9,6 +9,7 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
+        <a class="bl_shopCard_btn" @click="addLunch(shop)">募集する</a>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
           <span>ジャンル:</span><span>{{ shop.genre.name }}</span>
         </p>
@@ -80,7 +81,7 @@ export default {
     shop: Object,
   },
   methods: {
-    ...mapActions(['showIsShowDetail']),
+    ...mapActions(['showIsShowDetail','addLunch']),
     sokutei: sokutei,
   },
 }
@@ -98,6 +99,29 @@ export default {
   height: auto;
   box-shadow: none;
 }
+.bl_shopCard_btn {
+  display: block;
+  padding: 0.7em 0;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.bl_shopCard_btn {
+  color: #fff;
+  background-color: #ff6647;
+  border-radius: 6px;
+}
+.bl_shopCard_btn:hover{
+  opacity: 0.7;
+}
+.bl_shopCard__type_long .bl_shopCard_btn{
+  margin: 1em 0;
+}
+.bl_shopCard_btn:hover {
+
+}
+
 .bl_shopCard_rest {
   font-size: 0.8rem;
 }

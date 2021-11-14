@@ -76,6 +76,13 @@ export default new Vuex.Store({
     deleteLoginUser(state) {
       state.login_user = null
     },
+
+    /*
+     * ランチのデータ操作
+     */
+    addLunch(shop) {
+      console.log(shop)
+    },
   },
   actions: {
     // isLoading ローディング画面の表示停止
@@ -116,19 +123,15 @@ export default new Vuex.Store({
     // stateにuserを登録
     setLoginUser({ commit }, user) {
       commit('setLoginUser', user)
-      console.log('setloginuser')
     },
     // 未ログインがどうかをチェックして適切な処理を行う
     checkIsLogin() {
       const that = this
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          that.setLoginUser(user)
-          console.log(user)
+          that.dispatch('setLoginUser', user)
         } else {
-          // that.login()
           that.dispatch('login')
-          console.log('erroe')
         }
       })
     },
@@ -144,7 +147,33 @@ export default new Vuex.Store({
     /*
      * Shopデータ操作
      */
-    addLunch() {},
+    //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
+    addLunch({ getters, commit }, shop) {
+      if (getters.user) {
+        // 1.APIで取得したshopのオブジェクトをそのまま入れる。
+        firebase
+          .firestore()
+          .collection('lunches/')
+          .add(shop)
+          // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
+          .then((doc) => {
+            firebase
+              .firestore()
+              // 直前のadd()したやつがdocで渡ってきてるので自動IDを使って、配下にadd()
+              .collection(`lunches/${doc.id}/users/`)
+              // add()には純粋なJsオブジェクトでないといけない。
+              .add({
+                uid: getters.user.uid,
+                name: getters.user.displayName,
+                img: getters.user.photoURL,
+              })
+              // 最後にStateに保存
+              .then(() => {
+                commit('addLunch', shop)
+              })
+          })
+      }
+    },
   },
   modules: {},
 })

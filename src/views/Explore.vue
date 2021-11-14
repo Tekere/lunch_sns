@@ -75,7 +75,7 @@ export default {
         )
       })
       this.shopData = result
-      console.log(result)
+
       return
     },
 
@@ -92,11 +92,11 @@ export default {
           setTimeout(() => {
             this.getShopData()
             resolve()
-          }, 400)
+          }, 200)
         }).then(() => {
           setTimeout(() => {
             this.huuh = false
-          }, 100)
+          }, 300)
         })
       } else {
         // 100件目以降のページへ送る処理
