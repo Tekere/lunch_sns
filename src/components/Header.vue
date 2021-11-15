@@ -10,7 +10,7 @@
           </button>
         </div> -->
       </div>
-      <div class="bl_header_usr bl_usr">
+      <div v-if="user" class="bl_header_usr bl_usr">
         <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
           <p class="bl_usr_name">{{ user.displayName }}</p>
 
