@@ -26,10 +26,12 @@ export default {
     ...mapGetters(['isLoading', 'isShowDetail']),
   },
   methods: {
-    ...mapActions(['stopIsLoading', 'toggleIsShowDetail']),
+    ...mapActions(['stopIsLoading', 'toggleIsShowDetail','fetchLunches']),
   },
   mounted() {
+    this.fetchLunches()
     this.stopIsLoading()
+    
   },
 }
 </script>

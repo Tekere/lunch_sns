@@ -2,18 +2,32 @@ import firebase from 'firebase'
 
 const lunchesModule = {
   namespaces: true,
-  state: {},
+  state: {
+    lunches: [],
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    addLunch(shop) {
+      console.log(shop)
+    },
+    fetchLunches(state, lunches) {
+      state.lunches.push(lunches)
+      console.log(lunches)
+    },
+  },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
     addLunch({ getters, commit }, shop) {
       if (getters.user) {
-        // 1.APIで取得したshopのオブジェクトをそのまま入れる。
+        // 1.APIで取得したshopのオブジェクト整えて記録。
+        const data = {
+          shop: shop,
+          createdAt: new Date(),
+        }
         firebase
           .firestore()
           .collection('lunches/')
-          .add(shop)
+          .add(data)
           // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
           .then((doc) => {
             firebase
@@ -32,6 +46,19 @@ const lunchesModule = {
               })
           })
       }
+    },
+
+    // 登録されているランチの取得
+    fetchLunches({ commit }) {
+      firebase
+        .firestore()
+        .collection('lunches')
+        .get()
+        .then((res) => {
+          res.forEach((doc) => {
+            commit('fetchLunches', { id: doc.id, date: doc.data() })
+          })
+        })
     },
   },
 }

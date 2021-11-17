@@ -2,12 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import authModule from './auth'
+import lunchesModule from './lunches'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     authModule,
+    lunchesModule
   },
   state: {
     // ローディング画面の表示非表示
@@ -49,13 +51,6 @@ export default new Vuex.Store({
     },
     setDetailShopData: (state, shop) => {
       state.detailShopData = shop
-    },
-
-    /*
-     * ランチのデータ操作
-     */
-    addLunch(shop) {
-      console.log(shop)
     },
   },
   actions: {
