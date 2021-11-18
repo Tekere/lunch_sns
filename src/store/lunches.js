@@ -48,7 +48,7 @@ const lunchesModule = {
       }
     },
 
-    // 登録されているランチの取得
+    // 登録されているランチの一覧取得
     fetchLunches({ commit }) {
       firebase
         .firestore()

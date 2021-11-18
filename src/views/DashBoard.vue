@@ -29,9 +29,10 @@ export default {
     ...mapActions(['stopIsLoading', 'toggleIsShowDetail','fetchLunches']),
   },
   mounted() {
-    this.fetchLunches()
     this.stopIsLoading()
-    
+  },
+  created() {
+    this.fetchLunches()
   },
 }
 </script>
