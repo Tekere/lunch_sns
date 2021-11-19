@@ -5,7 +5,19 @@ const lunchesModule = {
   state: {
     lunches: [],
   },
-  getters: {},
+  getters: {
+    lunches: (state) => state.lunches,
+    activeLunches: (state) => {
+      let result = []
+        // (state.lunches).foreach((el) => {
+        // 日付が今日以降か判別するしょり
+        // code
+          // result.push(el.data)
+        // })
+      result.push(state.lunches[0].data.shop)
+      return result;
+    }
+  },
   mutations: {
     addLunch(shop) {
       console.log(shop)
@@ -56,7 +68,7 @@ const lunchesModule = {
         .get()
         .then((res) => {
           res.forEach((doc) => {
-            commit('fetchLunches', { id: doc.id, date: doc.data() })
+            commit('fetchLunches', { id: doc.id, data: doc.data() })
           })
         })
     },
