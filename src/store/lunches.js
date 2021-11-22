@@ -7,16 +7,16 @@ const lunchesModule = {
   },
   getters: {
     lunches: (state) => state.lunches,
-    activeLunches: (state) => {
-      let result = []
-        // (state.lunches).foreach((el) => {
-        // 日付が今日以降か判別するしょり
-        // code
-          // result.push(el.data)
-        // })
-      result.push(state.lunches[0].data.shop)
-      return result;
-    }
+    // activeLunches: (state) => {
+    //   let result = []
+    //     // (state.lunches).foreach((el) => {
+    //     // 日付が今日以降か判別するしょり
+    //     // code
+    //       // result.push(el.data)
+    //     // })
+    //   result.push(state.lunches[0].data.shop)
+    //   return result;
+    // }
   },
   mutations: {
     addLunch(shop) {

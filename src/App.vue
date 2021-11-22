@@ -51,6 +51,7 @@ export default {
       'startIsLoading',
       'hiddenIsShowDetail',
       'checkIsLogin',
+      'fetchLunches'
     ]),
   },
   // vue-routerにページ遷移時に発生するイベント
@@ -67,6 +68,7 @@ export default {
   // },
   created() {
     this.checkIsLogin()
+    this.fetchLunches()
   },
 }
 </script>

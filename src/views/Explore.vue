@@ -54,7 +54,8 @@ export default {
         // 	console.log(res.data)
         // })
         .then((res) => {
-          this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
+          this.shopData = this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
+          console.log(this.shopData)
         })
         .then(() => {
           this.stopIsLoading()
@@ -74,9 +75,7 @@ export default {
           shop.budget.code == 'B003'
         )
       })
-      this.shopData = result
-
-      return
+      return result
     },
 
     // ページ送り
