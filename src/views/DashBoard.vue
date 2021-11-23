@@ -4,7 +4,7 @@
     <shop-container
       v-if="isActiveLunches"
       :one-row="true"
-      :shop-data="shopData"
+      :shop-data="activeLunches"
     ></shop-container>
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
       <h2 class="el_lv2_ttl">Schedule</h2>
@@ -23,8 +23,7 @@ export default {
   name: 'DashBoard',
   data() {
     return {
-      shopData: [],
-      isActiveLunches: false, //shpDataが空ならfalseのまま shop-containerを表示しない
+      //isActiveLunches: false, //shpDataが空ならfalseのまま shop-containerを表示しない
     }
   },
   components: {
@@ -33,7 +32,16 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isLoading', 'isShowDetail', 'lunches']),
+    ...mapGetters(['isLoading', 'isShowDetail', 'lunches', 'activeLunches']),
+    
+    // activeLunches(日付が有効なランチ)の有無で、Newの欄を表示を切り替える
+    isActiveLunches: function () {
+      if (this.activeLunches.length > 0) {
+        return true
+      } else {
+        return false
+      }
+    },
   },
   methods: {
     ...mapActions(['stopIsLoading', 'toggleIsShowDetail', 'fetchLunches']),
@@ -44,18 +52,10 @@ export default {
   },
   created() {
     setTimeout(() => {
-      // FireStoreに保存されている全てのランチを取得してコピー
-      let allLunches = this.lunches.slice()
-      // 全てのランチから、createdAtでフィルターをかけてdataに格納(形も整える)
-      allLunches.forEach((el) => {
-        if (el.data.createdAt != '') {
-          this.shopData.push(el.data.shop)
-        }
-      })
       //shop-containerの表示フラグをtrueに切り替え、ローディングも止める
-      this.isActiveLunches = true
+      // app.vueのfetchLunchesの非同期処理が遅れてカクつくため
       this.stopIsLoading()
-    }, 1000)
+    }, 600)
   },
 }
 </script>

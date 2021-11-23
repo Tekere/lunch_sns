@@ -6,17 +6,32 @@ const lunchesModule = {
     lunches: [],
   },
   getters: {
+    //FireStoreに保存されている全てのランチ
     lunches: (state) => state.lunches,
-    // activeLunches: (state) => {
-    //   let result = []
-    //     // (state.lunches).foreach((el) => {
-    //     // 日付が今日以降か判別するしょり
-    //     // code
-    //       // result.push(el.data)
-    //     // })
-    //   result.push(state.lunches[0].data.shop)
-    //   return result;
-    // }
+    // 期日がただいまの時刻より後の全てのランチ(募集中)
+    activeLunches: (state) => {
+      let result = []
+      state.lunches.forEach((el) => {
+        const unixTime = el.data.createdAt.seconds
+        const now = new Date('2021-11-01').getTime() //テスト的に11-01に設定
+        if (new Date(unixTime * 1000).getTime() > now) {
+          result.push(el.data.shop)
+        }
+      })
+      return result
+    },
+    //期日が過ぎ去った全てのランチ
+    pastLunches: (state) => {
+      let result = []
+      state.lunches.forEach((el) => {
+        const unixTime = el.data.createdAt.seconds
+        const now = new Date().getTime() //テスト的に11-01に設定
+        if (new Date(unixTime * 1000).getTime() < now) {
+          result.push(el.data.shop)
+        }
+      })
+      return result
+    },
   },
   mutations: {
     addLunch(shop) {
@@ -72,6 +87,25 @@ const lunchesModule = {
           })
         })
     },
+
+    /*
+     * helper
+     */
+    // compareLunchIsActive(type) {
+    //   let result = []
+    //   if (type === 'active') {
+    //     state.lunches.forEach((el) => {
+    //       const unixTime = el.data.createdAt.seconds
+    //       const now = new Date().getTime()
+    //       if (new Date(unixTime * 1000).getTime() < now) {
+    //         result.push(el.data.shop)
+    //       }
+    //     })
+    //   }else if(type==='past'){
+    //   
+    //    }
+    //   return result
+    // },
   },
 }
 export default lunchesModule
