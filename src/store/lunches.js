@@ -12,9 +12,9 @@ const lunchesModule = {
     activeLunches: (state) => {
       let result = []
       state.lunches.forEach((el) => {
-        const unixTime = el.data.createdAt.seconds
-        const now = new Date('2021-11-01').getTime() //テスト的に11-01に設定
-        if (new Date(unixTime * 1000).getTime() > now) {
+        const unixTime = el.data.dateTime.seconds
+        const now = new Date().getTime() //テスト的に11-01に設定
+        if (new Date(unixTime * 1000).getTime() < now) {
           result.push(el.data.shop)
         }
       })
@@ -24,9 +24,9 @@ const lunchesModule = {
     pastLunches: (state) => {
       let result = []
       state.lunches.forEach((el) => {
-        const unixTime = el.data.createdAt.seconds
+        const unixTime = el.data.dateTime.seconds
         const now = new Date().getTime() //テスト的に11-01に設定
-        if (new Date(unixTime * 1000).getTime() < now) {
+        if (new Date(unixTime * 1000).getTime() > now) {
           result.push(el.data.shop)
         }
       })
@@ -49,6 +49,7 @@ const lunchesModule = {
         // 1.APIで取得したshopのオブジェクト整えて記録。
         const data = {
           shop: shop,
+          dateTime:new Date('2021-11-30T11:01:22+09:00'),
           createdAt: new Date(),
         }
         firebase

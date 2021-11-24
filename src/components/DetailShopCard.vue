@@ -112,14 +112,13 @@ export default {
   background-color: #ff6647;
   border-radius: 6px;
 }
-.bl_shopCard_btn:hover{
+.bl_shopCard_btn:hover {
   opacity: 0.7;
 }
-.bl_shopCard__type_long .bl_shopCard_btn{
+.bl_shopCard__type_long .bl_shopCard_btn {
   margin: 1em 0;
 }
 .bl_shopCard_btn:hover {
-
 }
 
 .bl_shopCard_rest {
