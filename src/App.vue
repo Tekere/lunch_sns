@@ -129,7 +129,7 @@ a {
   letter-spacing: 0;
   font-weight: 500;
   margin-bottom: 10px;
-  width: calc(100vw - 72px);
+  // width: calc(100vw - 72px);
 }
 
 /*
