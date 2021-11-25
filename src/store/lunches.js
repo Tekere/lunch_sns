@@ -44,14 +44,10 @@ const lunchesModule = {
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
-    addLunch({ getters, commit }, shop) {
+    addLunch({ getters, commit }, data) {
+      // dataは整えられて渡ってくる
       if (getters.user) {
-        // 1.APIで取得したshopのオブジェクト整えて記録。
-        const data = {
-          shop: shop,
-          dateTime:new Date('2021-11-30T11:01:22+09:00'),
-          createdAt: new Date(),
-        }
+        
         firebase
           .firestore()
           .collection('lunches/')
@@ -70,7 +66,7 @@ const lunchesModule = {
               })
               // 最後にStateに保存
               .then(() => {
-                commit('addLunch', shop)
+                commit('addLunch', data.shop)
               })
           })
       }

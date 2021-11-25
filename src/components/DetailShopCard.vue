@@ -9,7 +9,11 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <a class="bl_shopCard_btn" @click="addLunch(shop)">募集する</a>
+        <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">募集する</a>
+        <date-time-picker
+          :request-date="requestDate"
+          @update-request-date="updateRequestDate"
+        ></date-time-picker>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
           <span>ジャンル:</span><span>{{ shop.genre.name }}</span>
         </p>
@@ -74,15 +78,39 @@
 <script>
 import { mapActions } from 'vuex'
 import { sokutei } from '@/helper.js'
-
+import DateTimePicker from '@/components/DateTimePicker.vue'
+import moment from 'moment'
 export default {
+  components: { DateTimePicker },
   name: 'DetailShopCard',
   props: {
     shop: Object,
   },
+  data() {
+    return {
+      dateTimePicker: false,
+      requestDate: '2021-11-26 12:30',
+    }
+  },
   methods: {
-    ...mapActions(['showIsShowDetail','addLunch']),
+    ...mapActions(['showIsShowDetail', 'addLunch']),
     sokutei: sokutei,
+    // ランチ募集メソッド
+    recruit(shop) {
+      
+      const dateTime = moment(this.requestDate).toISOString()
+      // requestDateTimeとshopを持ってaddLunchを実行
+      // shopとrequestDateとモディファイアを整えた状態でアクションへ引き渡す。
+        const data = {
+          shop: shop,
+          requestDate:new Date(dateTime),
+          createdAt: new Date(),
+        }
+      this.addLunch(data)
+    },
+    updateRequestDate(value){
+      this.requestDate = value
+    }
   },
 }
 </script>
@@ -145,9 +173,7 @@ export default {
 .mb10 {
   margin-bottom: 10px;
 }
-</style>
 
-<style scoped lang="scss">
 .bl_shopCard_infoTxt {
   display: flex;
   span {
