@@ -10,6 +10,7 @@
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
     </div>
+    <pre>{{activeLunches}}</pre>
   </div>
 </template>
 

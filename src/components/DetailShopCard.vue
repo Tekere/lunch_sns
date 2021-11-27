@@ -9,11 +9,16 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">募集する</a>
-        <date-time-picker
-          :request-date="requestDate"
-          @update-request-date="updateRequestDate"
-        ></date-time-picker>
+        <div v-if="!shop.isRecruitLunch">
+          <date-time-picker
+            :request-date="requestDate"
+            @update-request-date="updateRequestDate"
+          ></date-time-picker>
+          <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">募集する</a>
+        </div>
+        <div v-else>
+          <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">参加する</a>
+        </div>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
           <span>ジャンル:</span><span>{{ shop.genre.name }}</span>
         </p>
@@ -101,6 +106,8 @@ export default {
       const dateTime = moment(this.requestDate).toISOString()
       // requestDateTimeとshopを持ってaddLunchを実行
       // shopとrequestDateとモディファイアを整えた状態でアクションへ引き渡す。
+      //FIXME 募集ランチのフラグを入れる
+      shop.isRecruitLunch = true
         const data = {
           shop: shop,
           requestDate:new Date(dateTime),
@@ -144,7 +151,7 @@ export default {
   opacity: 0.7;
 }
 .bl_shopCard__type_long .bl_shopCard_btn {
-  margin: 1em 0;
+  margin: 0.7em 0 1em;
 }
 .bl_shopCard_btn:hover {
 }

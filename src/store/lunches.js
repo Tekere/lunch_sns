@@ -12,9 +12,9 @@ const lunchesModule = {
     activeLunches: (state) => {
       let result = []
       state.lunches.forEach((el) => {
-        const unixTime = el.data.dateTime.seconds
+        const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime() //テスト的に11-01に設定
-        if (new Date(unixTime * 1000).getTime() < now) {
+        if (new Date(unixTime * 1000).getTime() > now) {
           result.push(el.data.shop)
         }
       })
@@ -24,9 +24,9 @@ const lunchesModule = {
     pastLunches: (state) => {
       let result = []
       state.lunches.forEach((el) => {
-        const unixTime = el.data.dateTime.seconds
+        const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime() //テスト的に11-01に設定
-        if (new Date(unixTime * 1000).getTime() > now) {
+        if (new Date(unixTime * 1000).getTime() < now) {
           result.push(el.data.shop)
         }
       })
@@ -34,12 +34,12 @@ const lunchesModule = {
     },
   },
   mutations: {
-    addLunch(shop) {
-      console.log(shop)
+    addLunch(state,data) {
+      state.lunches.push(data)
+
     },
     fetchLunches(state, lunches) {
       state.lunches.push(lunches)
-      console.log(lunches)
     },
   },
   actions: {
@@ -54,6 +54,7 @@ const lunchesModule = {
           .add(data)
           // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
           .then((doc) => {
+            
             firebase
               .firestore()
               // 直前のadd()したやつがdocで渡ってきてるので自動IDを使って、配下にadd()
@@ -66,7 +67,10 @@ const lunchesModule = {
               })
               // 最後にStateに保存
               .then(() => {
-                commit('addLunch', data.shop)
+                commit('addLunch', {
+                  id:doc.id,
+                  data:data
+                })
               })
           })
       }

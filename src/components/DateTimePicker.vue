@@ -2,11 +2,12 @@
   <div>
     <Datetime
       v-model="tmpRequestDate"
-      :minute-interval="30"
+      :minute-interval="15"
       :format="'YYYY-MM-DD HH:mm'"
       :overlay="true"
       :min-date="start"
       :max-date="end"
+      :noClearButton="true"
     ></Datetime>
   </div>
 </template>
