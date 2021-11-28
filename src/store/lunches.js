@@ -13,7 +13,7 @@ const lunchesModule = {
       let result = []
       state.lunches.forEach((el) => {
         const unixTime = el.data.requestDate.seconds
-        const now = new Date().getTime() //テスト的に11-01に設定
+        const now = new Date().getTime()
         if (new Date(unixTime * 1000).getTime() > now) {
           result.push(el.data)
         }
@@ -25,7 +25,7 @@ const lunchesModule = {
       let result = []
       state.lunches.forEach((el) => {
         const unixTime = el.data.requestDate.seconds
-        const now = new Date().getTime() //テスト的に11-01に設定
+        const now = new Date().getTime()
         if (new Date(unixTime * 1000).getTime() < now) {
           result.push(el.data)
         }

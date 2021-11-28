@@ -11,6 +11,8 @@
       <calendar></calendar>
     </div>
     <pre>{{activeLunches}}</pre>
+    <hr>
+    <pre>{{lunches}}</pre>
   </div>
 </template>
 

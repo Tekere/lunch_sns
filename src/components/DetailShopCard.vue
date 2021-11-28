@@ -11,6 +11,7 @@
         <p class="bl_shopCard_shopTtl">{{ shopData.shop.name }}</p>
         <div v-if="!shopData.requestDate">
           <date-time-picker
+        :disabled="false"
             :request-date="requestDate"
             @update-request-date="updateRequestDate"
           ></date-time-picker>
@@ -19,6 +20,10 @@
           >
         </div>
         <div v-else>
+          <date-time-picker
+            :request-date="formatRequestDate(shopData.requestDate)"
+            :disabled="true"
+          ></date-time-picker>
           <a class="bl_shopCard_btn" @click.prevent="recruit(shopData)"
             >参加する</a
           >
@@ -115,12 +120,21 @@ export default {
         createdAt: new Date(),
       }
       // 登録時間を確認してからポスト
-      if (window.confirm(moment(dateTime).format('YYYY年MM月DD日HH時mm分')+'で募集しますか？')) {
+      if (
+        window.confirm(
+          moment(dateTime).format('YYYY年MM月DD日HH時mm分') + 'で募集しますか？'
+        )
+      ) {
         this.addLunch(data)
       }
     },
     updateRequestDate(value) {
       this.requestDate = value
+    },
+    // 日付の形式を変更するメソッド
+    // 募集の日付がFireStoreよりタイムスタンプで渡ってくるため
+    formatRequestDate(date) {
+      return moment(new Date(date.seconds * 1000)).format('YYYY-MM-DD HH:mm')  //DateTimePickerに渡しているのと同じ型を使うこと
     },
   },
 }

@@ -8,6 +8,7 @@
       :min-date="start"
       :max-date="end"
       :noClearButton="true"
+      :disabled="disabled"
     ></Datetime>
   </div>
 </template>
@@ -23,17 +24,18 @@ export default {
   },
   props: {
     requestDate: String,
+    disabled: Boolean,
   },
   data() {
     return {
-      tmpRequestDate:''
+      tmpRequestDate: '',
     }
   },
   // propsのrequestDateを監視して親DetailShopCardへ検知
-  watch:{
-    tmpRequestDate:function () {
-      this.$emit('update-request-date',this.tmpRequestDate)
-    }
+  watch: {
+    tmpRequestDate: function () {
+      this.$emit('update-request-date', this.tmpRequestDate)
+    },
   },
   computed: {
     start() {
