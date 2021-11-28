@@ -2,36 +2,40 @@
   <div class="bl_shopCard_wrapper">
     <div
       class="bl_shopCard btnripple bl_shopCard__type_long"
-      :class="{ new: shop.isNew }"
+      :class="{ new: shopData.shop.isNew }"
     >
       <figure class="bl_shopCard_img">
-        <img :src="shop.photo.pc.l" alt="" />
+        <img :src="shopData.shop.photo.pc.l" alt="" />
       </figure>
       <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">{{ shop.name }}</p>
-        <div v-if="!shop.isRecruitLunch">
+        <p class="bl_shopCard_shopTtl">{{ shopData.shop.name }}</p>
+        <div v-if="!shopData.requestDate">
           <date-time-picker
             :request-date="requestDate"
             @update-request-date="updateRequestDate"
           ></date-time-picker>
-          <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">募集する</a>
+          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData.shop)"
+            >募集する</a
+          >
         </div>
         <div v-else>
-          <a class="bl_shopCard_btn" @click.prevent="recruit(shop)">参加する</a>
+          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData)"
+            >参加する</a
+          >
         </div>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
-          <span>ジャンル:</span><span>{{ shop.genre.name }}</span>
+          <span>ジャンル:</span><span>{{ shopData.shop.genre.name }}</span>
         </p>
         <p class="bl_shopCard_shopOpen bl_shopCard_infoTxt mb10">
-          <span>営業時間:</span><span>{{ shop.open }}</span>
+          <span>営業時間:</span><span>{{ shopData.shop.open }}</span>
         </p>
         <p class="bl_shopCard_shopClose bl_shopCard_infoTxt">
-          <span>定休日:</span><span>{{ shop.close }}</span>
+          <span>定休日:</span><span>{{ shopData.shop.close }}</span>
         </p>
 
         <!--<div class="bl_shopCard_subInfo">
            
-          <div v-if="shop.user" class="bl_shopCard_person bl_usr_info">
+          <div v-if="shopData.shop.user" class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
@@ -39,20 +43,20 @@
         <div class="bl_shopCard_area">
           <div class="bl_shopCard_shopAddress_wrapper">
             <p class="bl_shopCard_shopAddress bl_shopCard_infoTxt">
-              {{ shop.address }}
+              {{ shopData.shop.address }}
             </p>
             <div class="bl_shopCard_pin">
               <img src="@/assets/pin.svg" alt="" />
-              <p>{{ sokutei(shop.lat, shop.lng) }}m</p>
+              <p>{{ sokutei(shopData.shop.lat, shopData.shop.lng) }}m</p>
             </div>
           </div>
           <div class="bl_shopCard_shopMap">
             <iframe
               :src="
                 'https://maps.google.co.jp/maps?output=embed&q=' +
-                shop.lat +
+                shopData.shop.lat +
                 ',' +
-                shop.lng +
+                shopData.shop.lng +
                 '&z=15'
               "
               width="269"
@@ -63,7 +67,7 @@
             <!-- NOTE ルート表示 一旦保留 -->
             <!-- <iframe
               :src="
-                'https://maps.google.co.jp/maps?output=embed&saddr=株式会社レジット&daddr='+shop.address+'&z=15'
+                'https://maps.google.co.jp/maps?output=embed&saddr=株式会社レジット&daddr='+shopData.shop.address+'&z=15'
               "
               width="269"
               height="280"
@@ -73,7 +77,7 @@
           </div>
         </div>
       </div>
-      <span v-if="shop.isNew" class="bl_shopCard_badge">
+      <span v-if="shopData.shop.isNew" class="bl_shopCard_badge">
         <img src="@/assets/heart.svg" alt="" />
       </span>
     </div>
@@ -89,7 +93,7 @@ export default {
   components: { DateTimePicker },
   name: 'DetailShopCard',
   props: {
-    shop: Object,
+    shopData: Object,
   },
   data() {
     return {
@@ -102,22 +106,22 @@ export default {
     sokutei: sokutei,
     // ランチ募集メソッド
     recruit(shop) {
-      
       const dateTime = moment(this.requestDate).toISOString()
       // requestDateTimeとshopを持ってaddLunchを実行
       // shopとrequestDateとモディファイアを整えた状態でアクションへ引き渡す。
-      //FIXME 募集ランチのフラグを入れる
-      shop.isRecruitLunch = true
-        const data = {
-          shop: shop,
-          requestDate:new Date(dateTime),
-          createdAt: new Date(),
-        }
-      this.addLunch(data)
+      const data = {
+        shop: shop,
+        requestDate: new Date(dateTime),
+        createdAt: new Date(),
+      }
+      // 登録時間を確認してからポスト
+      if (window.confirm(moment(dateTime).format('YYYY年MM月DD日HH時mm分')+'で募集しますか？')) {
+        this.addLunch(data)
+      }
     },
-    updateRequestDate(value){
+    updateRequestDate(value) {
       this.requestDate = value
-    }
+    },
   },
 }
 </script>

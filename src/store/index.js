@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     authModule,
-    lunchesModule
+    lunchesModule,
   },
   state: {
     // ローディング画面の表示非表示
@@ -18,10 +18,12 @@ export default new Vuex.Store({
     isShowDetail: false,
     // Detailに渡されるデータ
     detailShopData: {
-      name: 'none',
-      photo: {
-        pc: {
-          l: 'none',
+      shop: {
+        name: 'none',
+        photo: {
+          pc: {
+            l: 'none',
+          },
         },
       },
     },
@@ -49,8 +51,8 @@ export default new Vuex.Store({
     hiddenIsShowDetail: (state) => {
       state.isShowDetail = false
     },
-    setDetailShopData: (state, shop) => {
-      state.detailShopData = shop
+    setDetailShopData: (state, shopData) => {
+      state.detailShopData = shopData
     },
   },
   actions: {
@@ -67,18 +69,18 @@ export default new Vuex.Store({
       commit('toggleIsShowDetail')
     },
     //  isShowDetail Detailの表示
-    showIsShowDetail: ({ commit }, shop) => {
+    showIsShowDetail: ({ commit }, shopData) => {
       commit('showIsShowDetail')
       // Detailに必要なデータもセット
-      commit('setDetailShopData', shop)
+      commit('setDetailShopData', shopData)
     },
     // isShowDetail Detailの非表示
     hiddenIsShowDetail: ({ commit }) => {
       commit('hiddenIsShowDetail')
     },
     // detailData Detailにデータのセット
-    setDetailShopData: ({ commit }, shop) => {
-      commit('setDetailShopData', shop)
+    setDetailShopData: ({ commit }, shopData) => {
+      commit('setDetailShopData', shopData)
     },
   },
 })

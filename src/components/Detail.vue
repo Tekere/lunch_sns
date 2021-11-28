@@ -3,7 +3,7 @@
   <div class="ly_detail">
     <detail-shop-card
       in-detail="true"
-      :shop="detailShopData"
+      :shop-data="detailShopData"
     ></detail-shop-card>
   </div>
 </template>

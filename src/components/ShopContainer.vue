@@ -5,7 +5,7 @@
     class="bl_shopCard_container dc_has_innerShadow dc_has_innerShadow__right"
     :class="oneRow ? 'bl_shopCard_container__1row' : 'grid'"
   >
-    <shop-card v-for="shop of shopData" :key="shop.shop.id" :shop="shop.shop"></shop-card>
+    <shop-card v-for="data of shopData" :key="data.shop.id" :shop-data="data"></shop-card>
   </transition-group>
 </template>
 
