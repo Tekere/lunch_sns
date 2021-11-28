@@ -15,7 +15,7 @@ const lunchesModule = {
         const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime() //テスト的に11-01に設定
         if (new Date(unixTime * 1000).getTime() > now) {
-          result.push(el.data.shop)
+          result.push(el.data)
         }
       })
       return result
@@ -27,7 +27,7 @@ const lunchesModule = {
         const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime() //テスト的に11-01に設定
         if (new Date(unixTime * 1000).getTime() < now) {
-          result.push(el.data.shop)
+          result.push(el.data)
         }
       })
       return result

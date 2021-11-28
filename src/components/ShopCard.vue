@@ -3,7 +3,6 @@
     <a
       @click.stop="showIsShowDetail(shop)"
       class="bl_shopCard btnripple"
-      :class="{ new: shop.isNew }"
     >
       <figure class="bl_shopCard_img">
         <!-- <img src="@/assets/noimage.png" alt="" /> -->

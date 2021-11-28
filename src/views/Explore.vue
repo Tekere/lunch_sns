@@ -54,7 +54,14 @@ export default {
         // 	console.log(res.data)
         // })
         .then((res) => {
-          this.shopData = this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
+          // filter
+          let shops = this.filterPremiumShop(res.data.results.shop) //responseの形式に注意
+
+          //  オブジェクトの中にshopのデータがあるような形にする
+          this.shopData = []
+          shops.forEach((el) => {
+            this.shopData.push({ shop: el })
+          })
         })
         .then(() => {
           this.stopIsLoading()
