@@ -88,6 +88,9 @@ const lunchesModule = {
           })
         })
     },
+    
+    // ランチへの参加
+    joinLunch(){}
 
     /*
      * helper
