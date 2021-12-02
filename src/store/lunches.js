@@ -15,7 +15,7 @@ const lunchesModule = {
         const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime()
         if (new Date(unixTime * 1000).getTime() > now) {
-          result.push(el.data)
+          result.push(el)
         }
       })
       return result
@@ -27,7 +27,7 @@ const lunchesModule = {
         const unixTime = el.data.requestDate.seconds
         const now = new Date().getTime()
         if (new Date(unixTime * 1000).getTime() < now) {
-          result.push(el.data)
+          result.push(el)
         }
       })
       return result
