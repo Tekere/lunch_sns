@@ -59,8 +59,10 @@ export default {
 
           //  オブジェクトの中にshopのデータがあるような形にする
           this.shopData = []
+          let n = 1
           shops.forEach((el) => {
-            this.shopData.push({ shop: el })
+            this.shopData.push({ id: n, data: { shop: el } })
+            n++
           })
         })
         .then(() => {

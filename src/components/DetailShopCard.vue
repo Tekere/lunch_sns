@@ -24,7 +24,7 @@
             :request-date="formatRequestDate(shopData.requestDate)"
             :disabled="true"
           ></date-time-picker>
-          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData)"
+          <a v-if="isPastRequestDate(shopData.requestDate)" class="bl_shopCard_btn" @click.prevent="recruit(shopData)"
             >参加する</a
           >
         </div>
@@ -94,6 +94,10 @@ import { mapActions } from 'vuex'
 import { sokutei } from '@/helper.js'
 import DateTimePicker from '@/components/DateTimePicker.vue'
 import moment from 'moment'
+
+const today = new Date()
+const ddd = moment(today).format('YYYY-MM-DD')
+
 export default {
   components: { DateTimePicker },
   name: 'DetailShopCard',
@@ -103,7 +107,7 @@ export default {
   data() {
     return {
       dateTimePicker: false,
-      requestDate: '2021-11-26 12:30',
+      requestDate: ddd,
     }
   },
   methods: {
@@ -136,6 +140,16 @@ export default {
     formatRequestDate(date) {
       return moment(new Date(date.seconds * 1000)).format('YYYY-MM-DD HH:mm')  //DateTimePickerに渡しているのと同じ型を使うこと
     },
+    // requestDateが過ぎているかどうかのメソッド
+    isPastRequestDate(date){
+      // 現在の時間を過ぎていたらfalseを返す
+      if(today > new Date(date.seconds)){
+        return false
+      }else{
+        return true
+      }
+      
+    }
   },
 }
 </script>
