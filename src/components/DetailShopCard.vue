@@ -96,7 +96,8 @@ import DateTimePicker from '@/components/DateTimePicker.vue'
 import moment from 'moment'
 
 const today = new Date()
-const ddd = moment(today).format('YYYY-MM-DD')
+// datepickerの初期値
+const ddd = moment(today).hour(12).minute(30).add(1,'days').format('YYYY-MM-DD HH:mm')
 
 export default {
   components: { DateTimePicker },
