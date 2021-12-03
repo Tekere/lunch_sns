@@ -11,7 +11,7 @@
         <p class="bl_shopCard_shopTtl">{{ shopData.shop.name }}</p>
         <div v-if="!shopData.requestDate">
           <date-time-picker
-        :disabled="false"
+            :disabled="false"
             :request-date="requestDate"
             @update-request-date="updateRequestDate"
           ></date-time-picker>
@@ -24,9 +24,21 @@
             :request-date="formatRequestDate(shopData.requestDate)"
             :disabled="true"
           ></date-time-picker>
-          <a v-if="isPastRequestDate(shopData.requestDate)" class="bl_shopCard_btn" @click.prevent="recruit(shopData)"
+          <a
+            v-if="isPastRequestDate(shopData.requestDate)"
+            class="bl_shopCard_btn"
+            @click.prevent="recruit(shopData)"
             >参加する</a
           >
+          <div class="bl_shopCard_user_container">
+            <img
+              v-for="user of shopData.users"
+              :key="user.uid"
+              :src="user.img"
+              class="bl_shopCard_user bl_shopCard_user__l"
+              alt=""
+            />
+          </div>
         </div>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
           <span>ジャンル:</span><span>{{ shopData.shop.genre.name }}</span>
@@ -97,7 +109,11 @@ import moment from 'moment'
 
 const today = new Date()
 // datepickerの初期値
-const ddd = moment(today).hour(12).minute(30).add(1,'days').format('YYYY-MM-DD HH:mm')
+const ddd = moment(today)
+  .hour(12)
+  .minute(30)
+  .add(1, 'days')
+  .format('YYYY-MM-DD HH:mm')
 
 export default {
   components: { DateTimePicker },
@@ -139,18 +155,17 @@ export default {
     // 日付の形式を変更するメソッド
     // 募集の日付がFireStoreよりタイムスタンプで渡ってくるため
     formatRequestDate(date) {
-      return moment(new Date(date.seconds * 1000)).format('YYYY-MM-DD HH:mm')  //DateTimePickerに渡しているのと同じ型を使うこと
+      return moment(new Date(date.seconds * 1000)).format('YYYY-MM-DD HH:mm') //DateTimePickerに渡しているのと同じ型を使うこと
     },
     // requestDateが過ぎているかどうかのメソッド
-    isPastRequestDate(date){
+    isPastRequestDate(date) {
       // 現在の時間を過ぎていたらfalseを返す
-      if(today > new Date(date.seconds)){
+      if (today < new Date(date.seconds)) {
         return false
-      }else{
+      } else {
         return true
       }
-      
-    }
+    },
   },
 }
 </script>

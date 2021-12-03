@@ -194,4 +194,28 @@ export default {
   transition: 0s;
   opacity: 0.3;
 }
+
+// user
+.bl_shopCard_user_container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.bl_shopCard_user{
+  
+  border: 1px solid lightgray;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  // 先頭=募集者はピンク
+  &:first-child{
+    border-color: pink;
+  }
+  &:last-child{
+    margin-right: 0;
+  }
+} .bl_shopCard_user__l{
+  height: 36px;
+  width:36px;
+}
 </style>

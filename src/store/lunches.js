@@ -34,9 +34,8 @@ const lunchesModule = {
     },
   },
   mutations: {
-    addLunch(state,data) {
+    addLunch(state, data) {
       state.lunches.push(data)
-
     },
     fetchLunches(state, lunches) {
       state.lunches.push(lunches)
@@ -47,14 +46,12 @@ const lunchesModule = {
     addLunch({ getters, commit }, data) {
       // dataは整えられて渡ってくる
       if (getters.user) {
-        
         firebase
           .firestore()
           .collection('lunches/')
           .add(data)
           // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
           .then((doc) => {
-            
             firebase
               .firestore()
               // 直前のadd()したやつがdocで渡ってきてるので自動IDを使って、配下にadd()
@@ -68,8 +65,8 @@ const lunchesModule = {
               // 最後にStateに保存
               .then(() => {
                 commit('addLunch', {
-                  id:doc.id,
-                  data:data
+                  id: doc.id,
+                  data: data,
                 })
               })
           })
@@ -78,19 +75,40 @@ const lunchesModule = {
 
     // 登録されているランチの一覧取得
     fetchLunches({ commit }) {
+      // let result = []
+      // まず、全ランチを取得
       firebase
         .firestore()
         .collection('lunches')
         .get()
-        .then((res) => {
-          res.forEach((doc) => {
-            commit('fetchLunches', { id: doc.id, data: doc.data() })
+        .then((lunchRes) => {
+          // 取得ができたらイテレートして 型を整えてオブジェクトが入った配列を作る
+          lunchRes.forEach((doc) => {
+            // result.push({ id: doc.id, data: doc.data() })
+
+            const id = doc.id
+            const data = doc.data()
+            // 取得した全ランチの配列を再度イテレートしてUsersを取得&型追加
+            firebase
+              .firestore()
+              .collection(`lunches/${doc.id}/users`)
+              .get()
+              .then((userRes) => {
+                let users = []
+                userRes.forEach((doc) => {
+                  users.push(doc.data())
+                })
+                // dataに日付やshopのデータなど全て入れる形なので、プロパティを指定して入れる
+                data.users = users
+                //コミット
+                commit('fetchLunches', { id: id, data: data })
+              })
           })
         })
     },
-    
+
     // ランチへの参加
-    joinLunch(){}
+    joinLunch() {},
 
     /*
      * helper
@@ -106,7 +124,7 @@ const lunchesModule = {
     //       }
     //     })
     //   }else if(type==='past'){
-    //   
+    //
     //    }
     //   return result
     // },
