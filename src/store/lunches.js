@@ -48,7 +48,7 @@ const lunchesModule = {
       if (getters.user) {
         firebase
           .firestore()
-          .collection('lunches/')
+          .collection('lunches')
           .add(data)
           // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
           .then((doc) => {
@@ -108,7 +108,18 @@ const lunchesModule = {
     },
 
     // ランチへの参加
-    joinLunch() {},
+    joinLunch(lunchId, user, { commit }) {
+      if (getters.user) {
+        firebase
+          .firestore()
+          .collection(`lunches/${lunchId}/users`)
+          .add(user)
+          // 2.add()した際のデータをdocで受け取り、mutation
+          .then((doc) => {
+            
+          })
+      }
+    },
 
     /*
      * helper
