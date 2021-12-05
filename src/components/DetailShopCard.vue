@@ -1,38 +1,38 @@
-<template>
+<template :key="shopData.id">
   <div class="bl_shopCard_wrapper">
     <div
       class="bl_shopCard btnripple bl_shopCard__type_long"
-      :class="{ new: shopData.shop.isNew }"
+      :class="{ new: shopData.data.shop.isNew }"
     >
       <figure class="bl_shopCard_img">
-        <img :src="shopData.shop.photo.pc.l" alt="" />
+        <img :src="shopData.data.shop.photo.pc.l" alt="" />
       </figure>
       <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">{{ shopData.shop.name }}</p>
-        <div v-if="!shopData.requestDate">
+        <p class="bl_shopCard_shopTtl">{{ shopData.data.shop.name }}</p>
+        <div v-if="!shopData.data.requestDate">
           <date-time-picker
             :disabled="false"
             :request-date="requestDate"
             @update-request-date="updateRequestDate"
           ></date-time-picker>
-          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData.shop)"
+          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData.data.shop)"
             >募集する</a
           >
         </div>
         <div v-else>
-          <date-time-picker
-            :request-date="formatRequestDate(shopData.requestDate)"
+          <date-time-picker :key="shopData.id"
+            :request-date="formatRequestDate(shopData.data.requestDate)"
             :disabled="true"
           ></date-time-picker>
           <a
-            v-if="isPastRequestDate(shopData.requestDate)"
+            v-if="isPastRequestDate(shopData.data.requestDate)"
             class="bl_shopCard_btn"
-            @click.prevent="JoinLunch(shopData.id,)"
+            @click.prevent="joinLunch(shopData.data.id)"
             >参加する</a
           >
           <div class="bl_shopCard_user_container">
             <img
-              v-for="participant of shopData.participants"
+              v-for="participant of shopData.data.participants"
               :key="participant.uid"
               :src="participant.img"
               class="bl_shopCard_user bl_shopCard_user__l"
@@ -41,18 +41,18 @@
           </div>
         </div>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
-          <span>ジャンル:</span><span>{{ shopData.shop.genre.name }}</span>
+          <span>ジャンル:</span><span>{{ shopData.data.shop.genre.name }}</span>
         </p>
         <p class="bl_shopCard_shopOpen bl_shopCard_infoTxt mb10">
-          <span>営業時間:</span><span>{{ shopData.shop.open }}</span>
+          <span>営業時間:</span><span>{{ shopData.data.shop.open }}</span>
         </p>
         <p class="bl_shopCard_shopClose bl_shopCard_infoTxt">
-          <span>定休日:</span><span>{{ shopData.shop.close }}</span>
+          <span>定休日:</span><span>{{ shopData.data.shop.close }}</span>
         </p>
 
         <!--<div class="bl_shopCard_subInfo">
            
-          <div v-if="shopData.shop.user" class="bl_shopCard_person bl_usr_info">
+          <div v-if="shopData.data.shop.user" class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
@@ -60,20 +60,21 @@
         <div class="bl_shopCard_area">
           <div class="bl_shopCard_shopAddress_wrapper">
             <p class="bl_shopCard_shopAddress bl_shopCard_infoTxt">
-              {{ shopData.shop.address }}
+              {{ shopData.data.shop.address }}
             </p>
             <div class="bl_shopCard_pin">
               <img src="@/assets/pin.svg" alt="" />
-              <p>{{ sokutei(shopData.shop.lat, shopData.shop.lng) }}m</p>
+              <p>{{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m</p>
             </div>
           </div>
           <div class="bl_shopCard_shopMap">
             <iframe
+            :key="shopData.id"
               :src="
                 'https://maps.google.co.jp/maps?output=embed&q=' +
-                shopData.shop.lat +
+                shopData.data.shop.lat +
                 ',' +
-                shopData.shop.lng +
+                shopData.data.shop.lng +
                 '&z=15'
               "
               width="269"
@@ -84,7 +85,7 @@
             <!-- NOTE ルート表示 一旦保留 -->
             <!-- <iframe
               :src="
-                'https://maps.google.co.jp/maps?output=embed&saddr=株式会社レジット&daddr='+shopData.shop.address+'&z=15'
+                'https://maps.google.co.jp/maps?output=embed&saddr=株式会社レジット&daddr='+shopData.data.shop.address+'&z=15'
               "
               width="269"
               height="280"
@@ -94,7 +95,7 @@
           </div>
         </div>
       </div>
-      <span v-if="shopData.shop.isNew" class="bl_shopCard_badge">
+      <span v-if="shopData.data.shop.isNew" class="bl_shopCard_badge">
         <img src="@/assets/heart.svg" alt="" />
       </span>
     </div>
@@ -131,7 +132,7 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
-    ...mapActions(['showIsShowDetail', 'addLunch']),
+    ...mapActions(['showIsShowDetail', 'addLunch','joinLunch']),
     sokutei: sokutei,
     // ランチ募集メソッド
     recruit(shop) {

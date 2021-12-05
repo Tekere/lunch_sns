@@ -6,31 +6,31 @@
     >
       <figure class="bl_shopCard_img">
         <!-- <img src="@/assets/noimage.png" alt="" /> -->
-        <img :src="shopData.shop.photo.pc.l" alt="" />
+        <img :src="shopData.data.shop.photo.pc.l" alt="" />
       </figure>
       <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">{{ shopData.shop.name }}</p>
+        <p class="bl_shopCard_shopTtl">{{ shopData.data.shop.name }}</p>
         <p
-          v-if="shopData.shop.time"
+          v-if="shopData.data.shop.time"
           class="bl_shopCard_shopCategory bl_shopCard_infoTxt"
         >
           12:00
         </p>
         <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">
-          {{ shopData.shop.genre.name }}
+          {{ shopData.data.shop.genre.name }}
         </p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
-            <p>{{ sokutei(shopData.shop.lat, shopData.shop.lng) }}m</p>
+            <p>{{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m</p>
           </div>
-          <div v-if="shopData.shop.person" class="bl_shopCard_person bl_usr_info">
+          <div v-if="shopData.data.shop.person" class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
         </div>
       </div>
-      <span v-if="shopData.shop.isNew" class="bl_shopCard_badge">
+      <span v-if="shopData.data.shop.isNew" class="bl_shopCard_badge">
         <img src="@/assets/heart.svg" alt="" />
       </span>
     </a>
