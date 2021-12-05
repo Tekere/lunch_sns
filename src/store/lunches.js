@@ -40,6 +40,9 @@ const lunchesModule = {
     fetchLunches(state, lunches) {
       state.lunches.push(lunches)
     },
+    joinLunch(user) {
+      console.log(user)
+    }
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
@@ -50,12 +53,12 @@ const lunchesModule = {
           .firestore()
           .collection('lunches')
           .add(data)
-          // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しUserを登録
+          // 2.add()した際のデータをdocで受け取り、新たにfirestoreを呼び出しparticipantを登録
           .then((doc) => {
             firebase
               .firestore()
               // 直前のadd()したやつがdocで渡ってきてるので自動IDを使って、配下にadd()
-              .collection(`lunches/${doc.id}/users/`)
+              .collection(`lunches/${doc.id}/participants/`)
               // add()には純粋なJsオブジェクトでないといけない。
               .add({
                 uid: getters.user.uid,
@@ -91,15 +94,15 @@ const lunchesModule = {
             // 取得した全ランチの配列を再度イテレートしてUsersを取得&型追加
             firebase
               .firestore()
-              .collection(`lunches/${doc.id}/users`)
+              .collection(`lunches/${doc.id}/participants`)
               .get()
-              .then((userRes) => {
-                let users = []
-                userRes.forEach((doc) => {
-                  users.push(doc.data())
+              .then((participantRes) => {
+                let participants = []
+                participantRes.forEach((doc) => {
+                  participants.push(doc.data())
                 })
                 // dataに日付やshopのデータなど全て入れる形なので、プロパティを指定して入れる
-                data.users = users
+                data.participants = participants
                 //コミット
                 commit('fetchLunches', { id: id, data: data })
               })
@@ -108,7 +111,7 @@ const lunchesModule = {
     },
 
     // ランチへの参加
-    joinLunch(lunchId, user, { commit }) {
+    joinLunch(lunchId, user, { getters,commit }) {
       if (getters.user) {
         firebase
           .firestore()
@@ -116,7 +119,8 @@ const lunchesModule = {
           .add(user)
           // 2.add()した際のデータをdocで受け取り、mutation
           .then((doc) => {
-            
+            console.log(doc)
+            commit('joinLunch',user)
           })
       }
     },

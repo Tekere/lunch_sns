@@ -27,14 +27,14 @@
           <a
             v-if="isPastRequestDate(shopData.requestDate)"
             class="bl_shopCard_btn"
-            @click.prevent="recruit(shopData)"
+            @click.prevent="JoinLunch(shopData.id,)"
             >参加する</a
           >
           <div class="bl_shopCard_user_container">
             <img
-              v-for="user of shopData.users"
-              :key="user.uid"
-              :src="user.img"
+              v-for="participant of shopData.participants"
+              :key="participant.uid"
+              :src="participant.img"
               class="bl_shopCard_user bl_shopCard_user__l"
               alt=""
             />
@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { sokutei } from '@/helper.js'
 import DateTimePicker from '@/components/DateTimePicker.vue'
 import moment from 'moment'
@@ -126,6 +126,9 @@ export default {
       dateTimePicker: false,
       requestDate: ddd,
     }
+  },
+  computed:{
+    ...mapGetters(['user'])
   },
   methods: {
     ...mapActions(['showIsShowDetail', 'addLunch']),
