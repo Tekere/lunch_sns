@@ -42,7 +42,7 @@ const lunchesModule = {
     },
     joinLunch(user) {
       console.log(user)
-    }
+    },
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
@@ -91,7 +91,7 @@ const lunchesModule = {
 
             const id = doc.id
             const data = doc.data()
-            // 取得した全ランチの配列を再度イテレートしてUsersを取得&型追加
+            // 取得した全ランチの配列を再度イテレートしてparticipantsを取得&型追加
             firebase
               .firestore()
               .collection(`lunches/${doc.id}/participants`)
@@ -111,16 +111,21 @@ const lunchesModule = {
     },
 
     // ランチへの参加
-    joinLunch(lunchId, user, { getters,commit }) {
+    joinLunch({ getters, commit }, lunchId) {
+      console.log(lunchId)
       if (getters.user) {
         firebase
           .firestore()
-          .collection(`lunches/${lunchId}/users`)
-          .add(user)
+          .collection(`lunches/${lunchId}/participants`)
+          .add({
+            uid: getters.user.uid,
+            name: getters.user.displayName,
+            img: getters.user.photoURL,
+          })
           // 2.add()した際のデータをdocで受け取り、mutation
           .then((doc) => {
             console.log(doc)
-            commit('joinLunch',user)
+            commit('joinLunch', doc)
           })
       }
     },

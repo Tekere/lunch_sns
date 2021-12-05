@@ -27,7 +27,7 @@
           <a
             v-if="isPastRequestDate(shopData.data.requestDate)"
             class="bl_shopCard_btn"
-            @click.prevent="joinLunch(shopData.data.id)"
+            @click.prevent="joinLunch(shopData.id)"
             >参加する</a
           >
           <div class="bl_shopCard_user_container">
