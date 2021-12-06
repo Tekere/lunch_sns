@@ -15,17 +15,23 @@
             :request-date="requestDate"
             @update-request-date="updateRequestDate"
           ></date-time-picker>
-          <a class="bl_shopCard_btn" @click.prevent="recruit(shopData.data.shop)"
+          <a
+            class="bl_shopCard_btn"
+            @click.prevent="recruit(shopData.data.shop)"
             >募集する</a
           >
         </div>
         <div v-else>
-          <date-time-picker :key="shopData.id"
+          <date-time-picker
+            :key="shopData.id"
             :request-date="formatRequestDate(shopData.data.requestDate)"
             :disabled="true"
           ></date-time-picker>
           <a
-            v-if="isPastRequestDate(shopData.data.requestDate)"
+            v-if="
+              isPastRequestDate(shopData.data.requestDate) &&
+              isUnParticipated(shopData.data.participants)
+            "
             class="bl_shopCard_btn"
             @click.prevent="joinLunch(shopData.id)"
             >参加する</a
@@ -64,12 +70,14 @@
             </p>
             <div class="bl_shopCard_pin">
               <img src="@/assets/pin.svg" alt="" />
-              <p>{{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m</p>
+              <p>
+                {{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m
+              </p>
             </div>
           </div>
           <div class="bl_shopCard_shopMap">
             <iframe
-            :key="shopData.id"
+              :key="shopData.id"
               :src="
                 'https://maps.google.co.jp/maps?output=embed&q=' +
                 shopData.data.shop.lat +
@@ -128,11 +136,11 @@ export default {
       requestDate: ddd,
     }
   },
-  computed:{
-    ...mapGetters(['user'])
+  computed: {
+    ...mapGetters(['user']),
   },
   methods: {
-    ...mapActions(['showIsShowDetail', 'addLunch','joinLunch']),
+    ...mapActions(['showIsShowDetail', 'addLunch', 'joinLunch']),
     sokutei: sokutei,
     // ランチ募集メソッド
     recruit(shop) {
@@ -169,6 +177,16 @@ export default {
       } else {
         return true
       }
+    },
+
+    // ユーザーが未参加のランチか判別するメソッド
+    isUnParticipated(participants) {
+      // loginUserのuidと一致するものがparticipantsに含まれてないかチェック
+      const flag = participants.some((el) => {
+        return el.uid === this.user.uid
+      })
+      // idが一致したときにtrueが返ってくるで反転させる
+      return !flag
     },
   },
 }
