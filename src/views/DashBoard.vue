@@ -10,9 +10,9 @@
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar></calendar>
     </div>
-    <pre>{{activeLunches}}</pre>
-    <hr>
-    <pre>{{lunches}}</pre>
+    <pre>{{ activeLunches }}</pre>
+    <hr />
+    <pre>{{ lunches }}</pre>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     ...mapGetters(['isLoading', 'isShowDetail', 'lunches', 'activeLunches']),
-    
+
     // activeLunches(日付が有効なランチ)の有無で、Newの欄を表示を切り替える
     isActiveLunches: function () {
       if (this.activeLunches.length > 0) {

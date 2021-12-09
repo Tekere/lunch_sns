@@ -1,8 +1,7 @@
 <template>
   <div class="bl_archive">
     <h2 class="el_lv2_ttl">Archive</h2>
-    <shop-container
-      :shop-data="pastLunches"></shop-container>
+    <shop-container :shop-data="pastLunches"></shop-container>
   </div>
 </template>
 
@@ -15,7 +14,7 @@ export default {
     ShopContainer,
   },
   computed: {
-    ...mapGetters(['isLoading','pastLunches']),
+    ...mapGetters(['isLoading', 'pastLunches']),
   },
   methods: {
     ...mapActions(['stopIsLoading']),

@@ -1,9 +1,6 @@
 <template>
   <div class="bl_shopCard_wrapper">
-    <a
-      @click.stop="showIsShowDetail(shopData)"
-      class="bl_shopCard btnripple"
-    >
+    <a @click.stop="showIsShowDetail(shopData)" class="bl_shopCard btnripple">
       <figure class="bl_shopCard_img">
         <!-- <img src="@/assets/noimage.png" alt="" /> -->
         <img :src="shopData.data.shop.photo.pc.l" alt="" />
@@ -22,9 +19,14 @@
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
             <img src="@/assets/pin.svg" alt="" />
-            <p>{{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m</p>
+            <p>
+              {{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m
+            </p>
           </div>
-          <div v-if="shopData.data.shop.person" class="bl_shopCard_person bl_usr_info">
+          <div
+            v-if="shopData.data.shop.person"
+            class="bl_shopCard_person bl_usr_info"
+          >
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
@@ -196,26 +198,26 @@ export default {
 }
 
 // user
-.bl_shopCard_user_container{
+.bl_shopCard_user_container {
   display: flex;
   flex-wrap: wrap;
 }
-.bl_shopCard_user{
-  
+.bl_shopCard_user {
   border: 1px solid lightgray;
   background-color: #fff;
   border-radius: 50%;
   margin-right: 10px;
   margin-bottom: 10px;
   // 先頭=募集者はピンク
-  &:first-child{
+  &:first-child {
     border-color: pink;
   }
-  &:last-child{
+  &:last-child {
     margin-right: 0;
   }
-} .bl_shopCard_user__l{
+}
+.bl_shopCard_user__l {
   height: 36px;
-  width:36px;
+  width: 36px;
 }
 </style>
