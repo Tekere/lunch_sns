@@ -1,6 +1,7 @@
 <template>
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
+    <a href="" v-if="pageCount > 100" @click="prevPage">prev page</a>
     <shop-container :shop-data="shopData"></shop-container>
     <button
       v-if="loadMore"
@@ -10,6 +11,7 @@
     >
       {{ loadMore }}
     </button>
+    <button v-else @click="nextPage" class="el_moreBtn">NEXT</button>
   </div>
 </template>
 
@@ -25,6 +27,7 @@ export default {
     return {
       shopData: [],
       maxCount: 20,
+      pageCount: 1,
       huuh: false,
     }
   },
@@ -43,12 +46,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['stopIsLoading']),
+    ...mapActions(['stopIsLoading', 'startIsLoading']),
     getShopData() {
       const that = this
+
       axios
         .get(
-          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=${that.maxCount}&format=json`
+          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=${that.maxCount}&start=${that.pageCount}&format=json`
         )
         // .then(res =>{
         // 	console.log(res.data)
@@ -86,7 +90,7 @@ export default {
       return result
     },
 
-    // ページ送り
+    // LoadMore
     moreLoad() {
       if (this.maxCount < 100) {
         // まず maxCount とMOREボタンをLoading状態にする
@@ -103,11 +107,26 @@ export default {
         }).then(() => {
           setTimeout(() => {
             this.huuh = false
-          }, 300)
+          }, 450)
         })
       } else {
         // 100件目以降のページへ送る処理
       }
+    },
+    // ページ送り （マックスが100件なので開始位置を101にしてAPIを叩き直す）
+    nextPage() {
+      this.pageCount += 100
+      this.startIsLoading()
+      this.getShopData()
+      // 一番上からデータが書き換えられるので、一番上に戻る
+      window.scroll({ top: 0, behavior: 'smooth' })
+    },
+    // ページ戻り （開始位置を-100してAPIを叩き直す）
+    prevPage() {
+      this.pageCount -= 100
+      this.startIsLoading()
+      this.getShopData()
+      // 一番上からデータが書き換えられるので、一番上に戻る
     },
   },
   created() {
