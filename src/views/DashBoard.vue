@@ -5,10 +5,11 @@
       v-if="isActiveLunches"
       :one-row="true"
       :shop-data="activeLunches"
+      :key="lunches.length"
     ></shop-container>
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
       <h2 class="el_lv2_ttl">Schedule</h2>
-      <calendar></calendar>
+      <calendar :events="events"></calendar>
     </div>
     <pre>{{ activeLunches }}</pre>
     <hr />
@@ -21,12 +22,14 @@
 import ShopContainer from '@/components/ShopContainer.vue'
 import Calendar from '@/components/Calendar.vue'
 import { mapActions, mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'DashBoard',
   data() {
     return {
       //isActiveLunches: false, //shpDataが空ならfalseのまま shop-containerを表示しない
+      
     }
   },
   components: {
@@ -35,7 +38,7 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isLoading', 'isShowDetail', 'lunches', 'activeLunches']),
+    ...mapGetters(['isLoading', 'isShowDetail', 'lunches','activeLunches']),
 
     // activeLunches(日付が有効なランチ)の有無で、Newの欄を表示を切り替える
     isActiveLunches: function () {
@@ -45,9 +48,28 @@ export default {
         return false
       }
     },
+    // 募集中のランチカレンダー
+    events: function () {
+      let result = []
+      this.activeLunches.forEach((el) => {
+        result.push({
+          data:el,
+          name: el.data.shop.name,
+          start: moment(el.data.requestDate.seconds* 1000).toDate(),
+          color: 'blue',
+          timed: true,
+        })
+      })
+
+      return result
+    },
   },
   methods: {
-    ...mapActions(['stopIsLoading', 'toggleIsShowDetail', 'fetchLunches']),
+    ...mapActions([
+      'stopIsLoading',
+      'toggleIsShowDetail',
+      'fetchLunches',
+    ]),
   },
   mounted() {
     // this.stopIsLoading()
@@ -79,8 +101,8 @@ export default {
 .bl_mainCont_body__bottom {
   margin-top: 30px;
 }
-.theme--light.v-btn.v-btn--has-bg {
-  //カレンダー今日の場所の色
-  // background: ;
-}
+// .theme--light.v-btn.v-btn--has-bg {
+//   //カレンダー今日の場所の色
+//   // background: ;
+// }
 </style>

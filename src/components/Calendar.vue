@@ -22,7 +22,6 @@
         :month-format="
           (timestamp) => new Date(timestamp.date).getMonth() + 1 + ' /'
         "
-        @change="getEvents"
         @click:event="showEvent"
         @click:date="createEvent"
       ></v-calendar>
@@ -34,8 +33,10 @@
 import moment from 'moment'
 import { mapActions } from 'vuex'
 export default {
+  props:{
+    events:Array
+  },
   data: () => ({
-    events: [],
     value: moment().format('yyyy-MM-DD'),
   }),
   computed: {
@@ -50,9 +51,8 @@ export default {
     },
     showEvent(e) {
       // shoEvent({event}) でイベントも取ってこれる
-      console.log(e.event) //クリックされたカレンダーのデータ
-      this.showIsShowDetail()
-      event.stopPropagation()
+      this.showIsShowDetail(e.event.data)
+      event.stopPropagation()  //これでpreventDefaultできる
     },
     createEvent() {
       console.log('createEvent')
@@ -61,34 +61,6 @@ export default {
     getEvents() {
       const events = [
         // new Dateからmomentに変更
-        {
-          name: '権八 たびちゃん',
-          start: moment('2021-09-10 12:00:00').toDate(),
-          end: moment('2021-09-10 13:00:00').toDate(),
-          color: 'blue',
-          timed: true,
-        },
-        {
-          name: 'テスト2',
-          start: moment('2021-09-21 12:00:00').toDate(),
-          end: moment('2021-09-21 13:00:00').toDate(),
-          color: 'blue',
-          timed: true,
-        },
-        {
-          name: 'テスト3',
-          start: moment('22021-09-15 12:30:00').toDate(),
-          end: moment('2021-09-15 13:30:00').toDate(),
-          color: 'blue',
-          timed: true,
-        },
-        {
-          name: 'テスト4',
-          start: moment('2021-10-01 13:00:00').toDate(),
-          end: moment('2021-10-01 14:00:00').toDate(),
-          color: 'blue',
-          timed: true,
-        },
       ]
       this.events = events
     },
