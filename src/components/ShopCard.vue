@@ -201,6 +201,7 @@ export default {
 .bl_shopCard_user_container {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 10px;
 }
 .bl_shopCard_user {
   border: 1px solid lightgray;
@@ -214,6 +215,9 @@ export default {
   }
   &:last-child {
     margin-right: 0;
+  }
+  &:hover{
+    
   }
 }
 .bl_shopCard_user__l {
