@@ -59,11 +59,10 @@ export default {
 .bl_shopCard_container {
   display: flex;
   flex-wrap: wrap;
-  overflow-x: scroll;
   padding-bottom: 40px;
   position: relative;
   justify-content: start;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding-top: 5px;
   padding-left: 5px;
   .bl_shopCard_wrapper {
