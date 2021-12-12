@@ -1,7 +1,7 @@
 <template>
   <header class="ly_header">
     <div class="bl_header">
-      <div class="bl_header_searchBox bl_search">
+      <div v-if="this.$route.path === '/explore'" class="bl_header_searchBox bl_search">
         <img src="@/assets/search-solid.svg" alt="" class="bl_search_icon" />
         <input type="text" class="bl_search_input" placeholder="Search..." />
         <!-- <div class="bl_search_btn">
@@ -67,6 +67,7 @@ export default {
 .bl_header {
   display: flex;
   justify-content: space-between;
+  min-height:40px;
 }
 .bl_header_logo {
   font-size: 1.625rem;
