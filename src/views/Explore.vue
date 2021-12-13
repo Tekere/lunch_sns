@@ -4,14 +4,12 @@
     <a href="" v-if="pageCount > 100" @click="prevPage">prev page</a>
     <shop-container :shop-data="shopData"></shop-container>
     <button
-      v-if="loadMore"
       @click.stop="moreLoad"
       class="el_moreBtn"
       :class="{ el_moreBtn__loading: loadMore == 'Loading' }"
     >
       {{ loadMore }}
     </button>
-    <button v-else @click="nextPage" class="el_moreBtn">NEXT</button>
   </div>
 </template>
 
@@ -20,13 +18,14 @@ import ShopContainer from '@/components/ShopContainer.vue'
 import axios from 'axios'
 
 import { mapActions, mapGetters } from 'vuex'
+import { getShuffledArr } from '@/helper.js'
 export default {
   name: 'Explore',
   components: { ShopContainer },
   data() {
     return {
       shopData: [],
-      maxCount: 20,
+
       pageCount: 1,
       huuh: false,
     }
@@ -37,11 +36,8 @@ export default {
     loadMore() {
       if (this.huuh == true) {
         return 'Loading'
-      }
-      if (this.maxCount < 100) {
-        return 'MORE'
       } else {
-        return false
+        return 'MORE'
       }
     },
   },
@@ -52,7 +48,7 @@ export default {
 
       axios
         .get(
-          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=${that.maxCount}&start=${that.pageCount}&format=json`
+          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=100&start=${that.pageCount}&format=json`
         )
         // .then(res =>{
         // 	console.log(res.data)
@@ -63,11 +59,14 @@ export default {
 
           //  オブジェクトの中にshopのデータがあるような形にする
           this.shopData = []
-          let n = 1
+          let n = 1    //仮ID
+          let temp = []    // 仮配列
           shops.forEach((el) => {
-            this.shopData.push({ id: n, data: { shop: el } })
+            temp.push({ id: n, data: { shop: el } })
             n++
           })
+          // 100件をシャッフルしてshopDataに格納
+          this.shopData = getShuffledArr(temp)
         })
         .then(() => {
           this.stopIsLoading()
@@ -92,36 +91,31 @@ export default {
 
     // LoadMore
     moreLoad() {
-      if (this.maxCount < 100) {
-        // まず maxCount とMOREボタンをLoading状態にする
-        this.maxCount += 20
-        this.huuh = true
-
-        // maxCount とMOREボタンをLoading状態にできたら、
-        // データの取得とMOREボタンの書き換えを非同期で順番に行う。（描画前に「MORE」に戻ってしまうのを防ぐ）
-        new Promise((resolve) => {
-          setTimeout(() => {
-            this.getShopData()
-            resolve()
-          }, 200)
-        }).then(() => {
-          setTimeout(() => {
-            this.huuh = false
-          }, 450)
-        })
-      } else {
-        // 100件目以降のページへ送る処理
-      }
-    },
-    // ページ送り （マックスが100件なので開始位置を101にしてAPIを叩き直す）
-    nextPage() {
+      // まず pageCount とMOREボタンをLoading状態にする
       this.pageCount += 100
-      this.startIsLoading()
-      this.getShopData()
-      // 一番上からデータが書き換えられるので、一番上に戻る
-      window.scroll({ top: 0, behavior: 'smooth' })
+      this.huuh = true
+
+      new Promise((resolve) => {
+        setTimeout(() => {
+          this.getShopData()
+          resolve()
+          window.scroll({ top: 0, behavior: 'smooth' })
+        }, 200)
+      }).then(() => {
+        setTimeout(() => {
+          this.huuh = false
+        }, 300)
+      })
     },
-    // ページ戻り （開始位置を-100してAPIを叩き直す）
+    // // ページ送り （マックスが100件なので開始位置を101にしてAPIを叩き直す）
+    // nextPage() {
+    //   this.pageCount += 100
+    //   this.startIsLoading()
+    //   this.getShopData()
+    //   // 一番上からデータが書き換えられるので、一番上に戻る
+    //   window.scroll({ top: 0, behavior: 'smooth' })
+    // },
+    // // ページ戻り （開始位置を-100してAPIを叩き直す）
     prevPage() {
       this.pageCount -= 100
       this.startIsLoading()
