@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       //isActiveLunches: false, //shpDataが空ならfalseのまま shop-containerを表示しない
-      
+      activeLunches: [],
     }
   },
   components: {
@@ -38,8 +38,7 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isLoading', 'isShowDetail', 'lunches','activeLunches']),
-
+    ...mapGetters(['isLoading', 'isShowDetail', 'lunches']),
     // activeLunches(日付が有効なランチ)の有無で、Newの欄を表示を切り替える
     isActiveLunches: function () {
       if (this.activeLunches.length > 0) {
@@ -53,9 +52,9 @@ export default {
       let result = []
       this.activeLunches.forEach((el) => {
         result.push({
-          data:el,
+          data: el,
           name: el.data.shop.name,
-          start: moment(el.data.requestDate.seconds* 1000).toDate(),
+          start: moment(el.data.requestDate.seconds * 1000).toDate(),
           color: 'blue',
           timed: true,
         })
@@ -65,16 +64,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      'stopIsLoading',
-      'toggleIsShowDetail',
-      'fetchLunches',
-    ]),
+    ...mapActions(['stopIsLoading', 'toggleIsShowDetail', 'fetchLunches']),
   },
-  mounted() {
-    // this.stopIsLoading()
-    // console.log(this.activeLunches)
-  },
+
   created() {
     setTimeout(() => {
       //shop-containerの表示フラグをtrueに切り替え、ローディングも止める
