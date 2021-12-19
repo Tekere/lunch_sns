@@ -1,6 +1,20 @@
 <template>
   <div class="bl_explore">
     <h2 class="el_lv2_ttl">Explore</h2>
+    <div class="bl_search">
+      <img src="@/assets/search-solid.svg" alt="" class="bl_search_icon" />
+      <input
+        v-model="searchTxt"
+        type="text"
+        class="bl_search_input"
+        placeholder="Search..."
+      />
+      <div class="bl_search_btn">
+        <button @click="search">
+          <img src="@/assets/filter.svg" alt="" />
+        </button>
+      </div>
+    </div>
     <a href="" v-if="pageCount > 100" @click="prevPage">prev page</a>
     <shop-container :shop-data="shopData"></shop-container>
     <button
@@ -25,7 +39,8 @@ export default {
   data() {
     return {
       shopData: [],
-
+      searchTxt: '',
+      lastEditSearchTxt: '',
       pageCount: 1,
       huuh: false,
     }
@@ -45,10 +60,9 @@ export default {
     ...mapActions(['stopIsLoading', 'startIsLoading']),
     getShopData() {
       const that = this
-
       axios
         .get(
-          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=100&start=${that.pageCount}&format=json`
+          `/hotpepper/gourmet/v1/?key=${process.env.VUE_APP_HOTPEPPER_API_KEY}&lat=35.6553392&lng=139.6928003&lang=3&lunch=1&count=100&start=${that.pageCount}&keyword=${that.searchTxt}&format=json`
         )
         // .then(res =>{
         // 	console.log(res.data)
@@ -59,14 +73,15 @@ export default {
 
           //  オブジェクトの中にshopのデータがあるような形にする
           this.shopData = []
-          let n = 1    //仮ID
-          let temp = []    // 仮配列
+          let n = 1 //仮ID
+          let temp = [] // 仮配列
           shops.forEach((el) => {
             temp.push({ id: n, data: { shop: el } })
             n++
           })
           // 100件をシャッフルしてshopDataに格納
-          this.shopData = getShuffledArr(temp)
+            this.shopData = getShuffledArr(temp)
+        
         })
         .then(() => {
           this.stopIsLoading()
@@ -107,15 +122,18 @@ export default {
         }, 300)
       })
     },
-    // // ページ送り （マックスが100件なので開始位置を101にしてAPIを叩き直す）
-    // nextPage() {
-    //   this.pageCount += 100
-    //   this.startIsLoading()
-    //   this.getShopData()
-    //   // 一番上からデータが書き換えられるので、一番上に戻る
-    //   window.scroll({ top: 0, behavior: 'smooth' })
-    // },
-    // // ページ戻り （開始位置を-100してAPIを叩き直す）
+
+    //検索
+    search() {
+      // 検索ボックスが空でない 且つ 検索キーワードが前回と同じでないなら
+      if (this.searchTxt !== '' && this.searchTxt !== this.lastEditSearchTxt) {
+        // 検索実行したワードをコピーして記録
+        this.lastEditSearchTxt = this.searchTxt
+        this.getShopData()
+      }
+    },
+
+    //戻るページ
     prevPage() {
       this.pageCount -= 100
       this.startIsLoading()
@@ -146,5 +164,8 @@ export default {
   .el_moreBtn {
     margin: 0 auto 30px;
   }
+}
+.bl_explore .bl_search {
+  margin-bottom: 20px;
 }
 </style>

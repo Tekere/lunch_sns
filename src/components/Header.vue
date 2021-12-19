@@ -1,19 +1,10 @@
 <template>
   <header class="ly_header">
     <div class="bl_header">
-      <div v-if="this.$route.path === '/explore'" class="bl_header_searchBox bl_search">
-        <img src="@/assets/search-solid.svg" alt="" class="bl_search_icon" />
-        <input type="text" class="bl_search_input" placeholder="Search..." />
-        <!-- <div class="bl_search_btn">
-          <button>
-            <img src="@/assets/filter.svg" alt="">
-          </button>
-        </div> -->
-      </div>
+
       <div v-if="user" class="bl_header_usr bl_usr">
         <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
           <p class="bl_usr_name">{{ user.displayName }}</p>
-
           <img :src="user.photoURL" alt="" class="bl_usr_img" />
         </router-link>
         <div class="bl_usr_action">
@@ -80,7 +71,6 @@ export default {
 // bl_search
 .bl_search {
   display: flex;
-  justify-content: space-between;
   position: relative;
   // width: 387px;
 }
@@ -108,6 +98,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 10px;
 
   button {
     background-color: #f86549;
