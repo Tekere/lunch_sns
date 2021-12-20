@@ -7,14 +7,14 @@
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shopData.data.shop.name }}</p>
+        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
+          {{ shopData.data.shop.genre.name }}
+        </p>
         <p
-          v-if="shopData.data.shop.time"
+          v-if="shopData.data.requestDate"
           class="bl_shopCard_shopCategory bl_shopCard_infoTxt"
         >
-          12:00
-        </p>
-        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt">
-          {{ shopData.data.shop.genre.name }}
+          {{ formatRequestDate(shopData.data.requestDate) }}
         </p>
         <div class="bl_shopCard_subInfo">
           <div class="bl_shopCard_pin">
@@ -23,10 +23,7 @@
               {{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m
             </p>
           </div>
-          <div
-            v-if="shopData.data.shop.person"
-            class="bl_shopCard_person bl_usr_info"
-          >
+          <div class="bl_shopCard_person bl_usr_info">
             <p class="bl_usr_name">たびちゃん</p>
             <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
           </div>
@@ -41,7 +38,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { sokutei } from '@/helper.js'
+import { sokutei, formatRequestDate } from '@/helper.js'
 export default {
   name: 'ShopCard',
   props: {
@@ -50,6 +47,7 @@ export default {
   methods: {
     ...mapActions(['showIsShowDetail']),
     sokutei: sokutei,
+    formatRequestDate: formatRequestDate,
   },
 }
 </script>
@@ -216,12 +214,15 @@ export default {
   &:last-child {
     margin-right: 0;
   }
-  &:hover{
-    
+  &:hover {
   }
 }
 .bl_shopCard_user__l {
   height: 36px;
   width: 36px;
+}
+
+.mb10{
+  margin-bottom: 10px;
 }
 </style>

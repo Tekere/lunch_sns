@@ -5,7 +5,7 @@
       :class="{ new: shopData.data.shop.isNew }"
     >
       <figure class="bl_shopCard_img">
-        <img :src="shopData.data.shop.photo.pc.l" alt="" />
+        <a :href="shopData.data.shop.urls.pc" target="blank"><img :src="shopData.data.shop.photo.pc.l" alt="" /></a>
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shopData.data.shop.name }}</p>
@@ -51,6 +51,9 @@
         </p>
         <p class="bl_shopCard_shopOpen bl_shopCard_infoTxt mb10">
           <span>営業時間:</span><span>{{ shopData.data.shop.open }}</span>
+        </p>
+                <p class="bl_shopCard_shopClose bl_shopCard_infoTxt mb10">
+          <span>平均予算:</span><span>{{ shopData.data.shop.budget.average }}</span>
         </p>
         <p class="bl_shopCard_shopClose bl_shopCard_infoTxt">
           <span>定休日:</span><span>{{ shopData.data.shop.close }}</span>
@@ -112,7 +115,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { sokutei } from '@/helper.js'
+import { sokutei,formatRequestDate } from '@/helper.js'
 import DateTimePicker from '@/components/DateTimePicker.vue'
 import moment from 'moment'
 
@@ -164,11 +167,7 @@ export default {
     updateRequestDate(value) {
       this.requestDate = value
     },
-    // 日付の形式を変更するメソッド
-    // 募集の日付がFireStoreよりタイムスタンプで渡ってくるため
-    formatRequestDate(date) {
-      return moment(new Date(date.seconds * 1000)).format('YYYY-MM-DD HH:mm') //DateTimePickerに渡しているのと同じ型を使うこと
-    },
+
     // requestDateが過ぎているかどうかのメソッド
     isPastRequestDate(date) {
       // 現在の時間を過ぎていたらfalseを返す
