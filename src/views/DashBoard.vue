@@ -22,6 +22,7 @@
 import ShopContainer from '@/components/ShopContainer.vue'
 import Calendar from '@/components/Calendar.vue'
 import { mapActions, mapGetters } from 'vuex'
+
 import moment from 'moment'
 
 export default {
@@ -29,7 +30,7 @@ export default {
   data() {
     return {
       //isActiveLunches: false, //shpDataが空ならfalseのまま shop-containerを表示しない
-      activeLunches: [],
+      // activeLunches: [],
     }
   },
   components: {
@@ -38,7 +39,7 @@ export default {
     Calendar,
   },
   computed: {
-    ...mapGetters(['isLoading', 'isShowDetail', 'lunches']),
+    ...mapGetters(['isLoading', 'isShowDetail', 'lunches','activeLunches']),
     // activeLunches(日付が有効なランチ)の有無で、Newの欄を表示を切り替える
     isActiveLunches: function () {
       if (this.activeLunches.length > 0) {
