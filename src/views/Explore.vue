@@ -172,4 +172,8 @@ export default {
 .bl_explore .bl_search {
   margin-bottom: 20px;
 }
+.bl_explore .bl_shopCard{
+  height: 300px !important;
+}
 </style>
+

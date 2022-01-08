@@ -23,9 +23,10 @@
               {{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m
             </p>
           </div>
-          <div class="bl_shopCard_person bl_usr_info">
-            <p class="bl_usr_name">たびちゃん</p>
-            <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
+          <!-- NOTE 参加者一人目(=発起人)のアイコンを表示 -->
+          <div v-if="shopData.data.participants" class="bl_shopCard_person bl_usr_info">
+            <p class="bl_usr_name">{{shopData.data.participants[0].name}}</p>
+            <img :src="shopData.data.participants[0].img" alt="" class="bl_usr_img" />
           </div>
         </div>
       </div>
@@ -56,7 +57,7 @@ export default {
 .bl_shopCard {
   display: block;
   width: 300px;
-  height: 300px;
+  height: 340px;
   background-color: transparent; //router-linkの指定解除
   padding: 10px 10px 30px;
   position: relative;
