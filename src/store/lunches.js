@@ -64,6 +64,7 @@ const lunchesModule = {
                 uid: getters.user.uid,
                 name: getters.user.displayName,
                 img: getters.user.photoURL,
+                reader:true
               })
               // 最後にStateに保存
               .then(() => {
@@ -121,6 +122,7 @@ const lunchesModule = {
             uid: getters.user.uid,
             name: getters.user.displayName,
             img: getters.user.photoURL,
+            reader:false
           })
           // 2.add()した際のデータをdocで受け取り、mutation
           .then((doc) => {

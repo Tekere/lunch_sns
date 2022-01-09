@@ -24,9 +24,11 @@
             </p>
           </div>
           <!-- NOTE 参加者一人目(=発起人)のアイコンを表示 -->
-          <div v-if="shopData.data.participants" class="bl_shopCard_person bl_usr_info">
-            <p class="bl_usr_name">{{shopData.data.participants[0].name}}</p>
-            <img :src="shopData.data.participants[0].img" alt="" class="bl_usr_img" />
+          <div v-if="shopData.data.participants">
+            <div v-for="participant in shopData.data.participants" :key="participant.uid" class="bl_shopCard_person bl_usr_info">
+              <p v-if="participant.reader" class="bl_usr_name">{{participant.name}}</p>
+              <img v-if="participant.reader" :src="participant.img" alt="" class="bl_usr_img" />
+            </div>
           </div>
         </div>
       </div>
