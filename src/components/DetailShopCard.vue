@@ -5,7 +5,8 @@
       :class="{ new: shopData.data.shop.isNew }"
     >
       <figure class="bl_shopCard_img">
-        <a :href="shopData.data.shop.urls.pc" target="blank"><img :src="shopData.data.shop.photo.pc.l" alt="" /></a>
+        <a :href="shopData.data.shop.urls.pc" target="blank"><img :src="shopData.data.shop.photo.pc.l" alt="" />
+        <img src="@/assets/link.svg" alt="" class="link_icon"></a>
       </figure>
       <div class="bl_shopCard_body">
         <p class="bl_shopCard_shopTtl">{{ shopData.data.shop.name }}</p>
@@ -248,6 +249,19 @@ export default {
   }
 }
 
+.bl_shopCard_img a{
+  display: block;
+  position: relative;
+}
+.bl_shopCard_img a .link_icon{
+  position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba(100,100,100,0.8);
+    padding: 3px;
+}
 .mb10 {
   margin-bottom: 10px;
 }
