@@ -144,7 +144,9 @@ export default {
   },
   methods: {
     ...mapActions(['showIsShowDetail', 'addLunch', 'joinLunch']),
-    sokutei: sokutei,
+    // helper関数2つ定義
+    sokutei,
+    formatRequestDate,
     // ランチ募集メソッド
     recruit(shop) {
       const dateTime = moment(this.requestDate).toISOString()

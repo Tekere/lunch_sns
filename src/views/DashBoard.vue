@@ -11,9 +11,9 @@
       <h2 class="el_lv2_ttl">Schedule</h2>
       <calendar :events="events"></calendar>
     </div>
-    <pre>{{ activeLunches }}</pre>
+    <!-- <pre>{{ activeLunches }}</pre>
     <hr />
-    <pre>{{ lunches }}</pre>
+    <pre>{{ lunches }}</pre> -->
   </div>
 </template>
 

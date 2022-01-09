@@ -3,12 +3,12 @@
     <div class="bl_header">
 
       <div v-if="user" class="bl_header_usr bl_usr">
-        <router-link :to="{ name: 'Profile' }" class="bl_usr_info">
+        <div  class="bl_usr_info">
           <p class="bl_usr_name">{{ user.displayName }}</p>
           <img :src="user.photoURL" alt="" class="bl_usr_img" />
-        </router-link>
+        </div>
         <div class="bl_usr_action">
-          <a href="" class="bl_usr_logout">
+          <a @click="logout" class="bl_usr_logout">
             <!-- <svg-logout></svg-logout> -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,11 +33,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 export default {
   name: 'Header',
   computed: {
     ...mapGetters(['user']),
+  },
+  methods: {
+    ...mapActions(['logout'])
   },
 }
 </script>
