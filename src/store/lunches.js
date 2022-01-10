@@ -129,7 +129,7 @@ const lunchesModule = {
           // 2.add()した際のデータをdocで受け取り、mutation
           .then((doc) => {
             // console.log(doc)
-            commit('joinLunch', doc)
+            // commit('joinLunch', doc)
           })
           .then(()=>{
             alert("参加アクションをしました！")
