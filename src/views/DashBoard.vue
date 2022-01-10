@@ -1,6 +1,6 @@
 <template>
   <div class="bl_dashboard">
-    <h2 class="el_lv2_ttl">New</h2>
+    <h2 class="el_lv2_ttl">Dashboard</h2>
     <shop-container
       v-if="isActiveLunches"
       :one-row="true"
@@ -8,7 +8,7 @@
       :key="lunches.length"
     ></shop-container>
     <div class="bl_allScheduleArea bl_mainCont_body__bottom">
-      <h2 class="el_lv2_ttl">Schedule</h2>
+      <h2 class="el_lv2_ttl">Calendar</h2>
       <calendar :events="events"></calendar>
     </div>
     <!-- <pre>{{ activeLunches }}</pre>

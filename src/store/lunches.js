@@ -40,9 +40,9 @@ const lunchesModule = {
     fetchLunches(state, lunches) {
       state.lunches.push(lunches)
     },
-    joinLunch(user) {
-      console.log(user)
-    },
+    // joinLunch(user) {
+    //   console.log(user)
+    // },
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
@@ -72,6 +72,8 @@ const lunchesModule = {
                   id: doc.id,
                   data: data,
                 })
+              }).then(()=>{
+                alert('ランチを作成しました！')
               })
           })
       }
@@ -113,7 +115,7 @@ const lunchesModule = {
 
     // ランチへの参加
     joinLunch({ getters, commit }, lunchId) {
-      console.log(lunchId)
+      // console.log(lunchId)
       if (getters.user) {
         firebase
           .firestore()
@@ -126,8 +128,11 @@ const lunchesModule = {
           })
           // 2.add()した際のデータをdocで受け取り、mutation
           .then((doc) => {
-            console.log(doc)
+            // console.log(doc)
             commit('joinLunch', doc)
+          })
+          .then(()=>{
+            alert("参加アクションをしました！")
           })
       }
     },

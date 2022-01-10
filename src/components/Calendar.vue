@@ -55,7 +55,7 @@ export default {
       event.stopPropagation()  //これでpreventDefaultできる
     },
     createEvent() {
-      console.log('createEvent')
+      // console.log('createEvent')
     },
 
     getEvents() {

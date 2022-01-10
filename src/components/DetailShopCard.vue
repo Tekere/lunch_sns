@@ -34,7 +34,7 @@
               isUnParticipated(shopData.data.participants)
             "
             class="bl_shopCard_btn"
-            @click.prevent="joinLunch(shopData.id)"
+            @click.prevent="joinThisLunch(shopData.id)"
             >参加する</a
           >
           <div class="bl_shopCard_user_container">
@@ -190,6 +190,12 @@ export default {
       // idが一致したときにtrueが返ってくるで反転させる
       return !flag
     },
+    
+    //ランチに参加するためのメソッド
+    joinThisLunch(id,e){
+      this.joinLunch(id)
+      console.log(e.currentTarget)
+    }
   },
 }
 </script>
