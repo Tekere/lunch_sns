@@ -192,9 +192,8 @@ export default {
     },
     
     //ランチに参加するためのメソッド
-    joinThisLunch(id,e){
+    joinThisLunch(id){
       this.joinLunch(id)
-      console.log(e.currentTarget)
     }
   },
 }

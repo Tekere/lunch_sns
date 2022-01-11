@@ -40,9 +40,13 @@ const lunchesModule = {
     fetchLunches(state, lunches) {
       state.lunches.push(lunches)
     },
-    // joinLunch(user) {
-    //   console.log(user)
-    // },
+    // 参加したユーザーをstateに保存
+    joinLunch(state,{lunchId,user}) {
+      const targetLunchId = state.lunches.findIndex(el=>{
+        return el.id === lunchId
+      })
+      state.lunches[targetLunchId].data.participants.push(user)
+    },
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
@@ -117,19 +121,19 @@ const lunchesModule = {
     joinLunch({ getters, commit }, lunchId) {
       // console.log(lunchId)
       if (getters.user) {
+        const user = {
+          uid: getters.user.uid,
+          name: getters.user.displayName,
+          img: getters.user.photoURL,
+          reader:false
+        }
         firebase
           .firestore()
           .collection(`lunches/${lunchId}/participants`)
-          .add({
-            uid: getters.user.uid,
-            name: getters.user.displayName,
-            img: getters.user.photoURL,
-            reader:false
-          })
-          // 2.add()した際のデータをdocで受け取り、mutation
-          .then((doc) => {
+          .add(user)
+          .then(() => {
             // console.log(doc)
-            // commit('joinLunch', doc)
+            commit('joinLunch', {lunchId:lunchId,user:user})
           })
           .then(()=>{
             alert("参加アクションをしました！")
