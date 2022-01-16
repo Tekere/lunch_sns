@@ -1,7 +1,12 @@
 <template>
   <header class="ly_header">
     <div class="bl_header">
-
+      <div class="bl_create">
+        <a href="" class="bl_crete_btn">
+          <span class="icon"><img src="@/assets/create.svg" alt=""></span>
+          お店を決めずに作成
+        </a>
+      </div>
       <div v-if="user" class="bl_header_usr bl_usr">
         <div  class="bl_usr_info">
           <p class="bl_usr_name">{{ user.displayName }}</p>
@@ -9,7 +14,6 @@
         </div>
         <div class="bl_usr_action">
           <a @click="logout" class="bl_usr_logout">
-            <!-- <svg-logout></svg-logout> -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 24 24"
@@ -167,5 +171,30 @@ export default {
   .bl_usr_name {
     margin-right: 0.6em;
   }
+}
+
+.bl_crete_btn{
+  display: block;
+  position: relative;
+  font-size: 14px;
+  color: #fff;
+  background-color: #ff6647;
+  border-radius: 6px;
+  line-height: 40px;
+  padding: 0 15px 0 30px;
+  box-shadow: 0 3px 3px 0 rgb(248 101 73 / 24%), 0 1.5px 7.5px 0 rgb(248 101 73 / 24%), 0 4.5px 1.5px -3px rgb(248 101 73 / 40%);
+}
+.bl_crete_btn .icon{
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  left: 10px;
+  width: 18px;
+  height: 18px;
+}
+.bl_crete_btn .icon img{
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>

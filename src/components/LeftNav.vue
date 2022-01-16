@@ -72,7 +72,8 @@ export default {
 .bl_leftNav_inner {
 }
 .bl_leftNav_logo {
-  background-color: #ff6647;
+  // background-color: #ff6647;
+  background-color: black;
   width: 100%;
   height: 70.68px;
   color: #fff;
