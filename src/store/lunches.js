@@ -50,6 +50,7 @@ const lunchesModule = {
   },
   actions: {
     //ランチ募集の登録 (まずショップを登録、その後ショップ以下に登録ユーザーを登録、その後stateに保存)
+    //お店が指定されてないパターンもある
     addLunch({ getters, commit }, data) {
       // dataは整えられて渡ってくる
       if (getters.user) {

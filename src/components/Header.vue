@@ -2,8 +2,8 @@
   <header class="ly_header">
     <div class="bl_header">
       <div class="bl_create">
-        <a href="" class="bl_crete_btn">
-          <span class="icon"><img src="@/assets/create.svg" alt=""></span>
+        <a @click.stop="showIsShowDetail(tmpShopData)" class="bl_crete_btn">
+          <span class="icon"><img src="@/assets/create.svg" alt="" /></span>
           お店を決めずに作成
         </a>
       </div>
@@ -37,14 +37,39 @@
 </template>
 
 <script>
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'Header',
+  data() {
+    return {
+      tmpShopData: {
+        id: 'abcd',
+        data: {
+          shop: {
+            name: 'name',
+          urls: {
+              pc: '',
+            },
+            photo: {
+              pc: {
+                l: '',
+              },
+            },
+            genre: { name: 'genre' },
+            open: '',
+            close: '',
+            budget: { average: '1000~' },
+          },
+        },
+      },
+    }
+  },
   computed: {
     ...mapGetters(['user']),
   },
   methods: {
-    ...mapActions(['logout'])
+    ...mapActions(['logout', 'showIsShowDetail']),
   },
 }
 </script>
@@ -65,7 +90,7 @@ export default {
 .bl_header {
   display: flex;
   justify-content: space-between;
-  min-height:40px;
+  min-height: 40px;
 }
 .bl_header_logo {
   font-size: 1.625rem;
@@ -173,7 +198,7 @@ export default {
   }
 }
 
-.bl_crete_btn{
+.bl_crete_btn {
   display: block;
   position: relative;
   font-size: 14px;
@@ -182,9 +207,11 @@ export default {
   border-radius: 6px;
   line-height: 40px;
   padding: 0 15px 0 30px;
-  box-shadow: 0 3px 3px 0 rgb(248 101 73 / 24%), 0 1.5px 7.5px 0 rgb(248 101 73 / 24%), 0 4.5px 1.5px -3px rgb(248 101 73 / 40%);
+  box-shadow: 0 3px 3px 0 rgb(248 101 73 / 24%),
+    0 1.5px 7.5px 0 rgb(248 101 73 / 24%),
+    0 4.5px 1.5px -3px rgb(248 101 73 / 40%);
 }
-.bl_crete_btn .icon{
+.bl_crete_btn .icon {
   position: absolute;
   top: 55%;
   transform: translateY(-50%);
@@ -192,7 +219,7 @@ export default {
   width: 18px;
   height: 18px;
 }
-.bl_crete_btn .icon img{
+.bl_crete_btn .icon img {
   display: block;
   width: 100%;
   height: 100%;

@@ -68,19 +68,20 @@
           </div>
         </div>-->
         <div class="bl_shopCard_area">
-          <div class="bl_shopCard_shopAddress_wrapper">
+          <div v-if="shopData.data.shop.address" class="bl_shopCard_shopAddress_wrapper">
             <p class="bl_shopCard_shopAddress bl_shopCard_infoTxt">
               {{ shopData.data.shop.address }}
             </p>
-            <div class="bl_shopCard_pin">
+            <div v-if="shopData.data.shop.lat && shopData.data.shop.lng" class="bl_shopCard_pin">
               <img src="@/assets/pin.svg" alt="" />
-              <p>
+              <p >
                 {{ sokutei(shopData.data.shop.lat, shopData.data.shop.lng) }}m
               </p>
             </div>
           </div>
           <div class="bl_shopCard_shopMap">
             <iframe
+            v-if="shopData.data.shop.lat && shopData.data.shop.lng"
               :key="shopData.id"
               :src="
                 'https://maps.google.co.jp/maps?output=embed&q=' +
