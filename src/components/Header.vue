@@ -8,7 +8,7 @@
         </a>
       </div>
       <div v-if="user" class="bl_header_usr bl_usr">
-        <div  class="bl_usr_info">
+        <div class="bl_usr_info">
           <p class="bl_usr_name">{{ user.displayName }}</p>
           <img :src="user.photoURL" alt="" class="bl_usr_img" />
         </div>
@@ -43,25 +43,9 @@ export default {
   name: 'Header',
   data() {
     return {
+      // 新規作成を開く用の形式だけのオブジェクト()
       tmpShopData: {
-        id: 'abcd',
-        data: {
-          shop: {
-            name: 'name',
-          urls: {
-              pc: '',
-            },
-            photo: {
-              pc: {
-                l: '',
-              },
-            },
-            genre: { name: 'genre' },
-            open: '',
-            close: '',
-            budget: { average: '1000~' },
-          },
-        },
+        id: 0,
       },
     }
   },
