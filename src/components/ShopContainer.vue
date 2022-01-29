@@ -61,7 +61,7 @@ export default {
   flex-wrap: wrap;
   padding-bottom: 40px;
   position: relative;
-  justify-content: start;
+  justify-content: center;
   overflow-x: auto;
   padding-top: 5px;
   padding-left: 5px;
