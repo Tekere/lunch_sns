@@ -1,14 +1,14 @@
 <template :key="shopData.id">
   <div class="bl_shopCard_wrapper">
-    <div
-      class="bl_shopCard btnripple bl_shopCard__type_long"
-    >
+    <div class="bl_shopCard btnripple bl_shopCard__type_long bl_createShopCard">
       <figure class="bl_shopCard_img">
-        <a><img src="" alt="" />
-      </a>
+        <a><img src="@/assets/noimage.png" alt="" /> </a>
       </figure>
       <div class="bl_shopCard_body">
-        <p class="bl_shopCard_shopTtl">name</p>
+        <p class="bl_shopCard_shopTtl">
+          <span>タイトル:</span>
+          <input class="bl_createShopCard_inputTxt" type="text" required />
+        </p>
         <div>
           <date-time-picker
             :disabled="false"
@@ -21,50 +21,28 @@
             >募集する</a
           >
         </div>
-    
-        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
-          <span>ジャンル:</span><span>kari</span>
-        </p>
-        <p class="bl_shopCard_shopOpen bl_shopCard_infoTxt mb10">
-          <span>営業時間:</span><span>kari</span>
-        </p>
-                <p class="bl_shopCard_shopClose bl_shopCard_infoTxt mb10">
-          <span>平均予算:</span><span>kari</span>
-        </p>
-  
 
-        <!--<div class="bl_shopCard_subInfo">
-           
-          <div v-if="shopData.data.shop.user" class="bl_shopCard_person bl_usr_info">
-            <p class="bl_usr_name">たびちゃん</p>
-            <img src="@/assets/testuser.svg" alt="" class="bl_usr_img" />
-          </div>
-        </div>-->
-        <div class="bl_shopCard_area">
-          <div class="bl_shopCard_shopAddress_wrapper">
-            <p class="bl_shopCard_shopAddress bl_shopCard_infoTxt">
-              kari
-            </p>
-            <div class="bl_shopCard_pin">
-              <img src="@/assets/pin.svg" alt="" />
-              <p >
-              karim
-              </p>
-            </div>
-          </div>
+        <p class="bl_shopCard_shopCategory bl_shopCard_infoTxt mb10">
+          <span>ジャンル:</span>
+          <input class="bl_createShopCard_inputTxt" type="text" />
+        </p>
+        <p class="bl_shopCard_shopClose bl_shopCard_infoTxt mb10">
+          <span>平均予算:</span
+          ><input class="bl_createShopCard_inputTxt" type="text" />
+        </p>
+        <p class="bl_shopCard_shopClose bl_shopCard_infoTxt mb10">
+          <span>住所:</span
+          ><input class="bl_createShopCard_inputTxt" type="text" />
+        </p>
         
-        </div>
       </div>
-      <!-- <span v-if="shopData.data.shop.isNew" class="bl_shopCard_badge">
-        <img src="@/assets/heart.svg" alt="" />
-      </span> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { sokutei,formatRequestDate } from '@/helper.js'
+import { sokutei, formatRequestDate } from '@/helper.js'
 import DateTimePicker from '@/components/DateTimePicker.vue'
 import moment from 'moment'
 
@@ -84,9 +62,7 @@ export default {
       dateTimePicker: false,
       requestDate: ddd,
       // 新規作成用データ
-      createShopDate:{
-        
-      }
+      createShopDate: {},
     }
   },
   computed: {
@@ -139,11 +115,11 @@ export default {
       // idが一致したときにtrueが返ってくるで反転させる
       return !flag
     },
-    
+
     //ランチに参加するためのメソッド
-    joinThisLunch(id){
+    joinThisLunch(id) {
       this.joinLunch(id)
-    }
+    },
   },
 }
 </script>
@@ -203,18 +179,18 @@ export default {
   }
 }
 
-.bl_shopCard_img a{
+.bl_shopCard_img a {
   display: block;
   position: relative;
 }
-.bl_shopCard_img a .link_icon{
+.bl_shopCard_img a .link_icon {
   position: absolute;
-    top: 0;
-    right: 0;
-    width: 24px;
-    height: 24px;
-    background: rgba(100,100,100,0.8);
-    padding: 3px;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(100, 100, 100, 0.8);
+  padding: 3px;
 }
 .mb10 {
   margin-bottom: 10px;
@@ -228,10 +204,33 @@ export default {
   span:first-child {
     display: block;
     white-space: nowrap;
-    width: 25%;
+    width: 29%;
   }
   span:last-child {
     width: 75%;
+  }
+}
+
+.bl_createShopCard_inputTxt {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid lightgray
+  ;
+  padding: 0.2em 0.3em 0.2em 0.5em;
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+
+.bl_shopCard_wrapper .bl_shopCard_shopTtl {
+  // display: flex;
+  span {
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  .bl_createShopCard_inputTxt{
+    margin-left: 0;
   }
 }
 </style>

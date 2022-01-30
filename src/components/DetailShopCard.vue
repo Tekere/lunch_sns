@@ -280,7 +280,7 @@ export default {
   span:first-child {
     display: block;
     white-space: nowrap;
-    width: 25%;
+    width: 29%;
   }
   span:last-child {
     width: 75%;
